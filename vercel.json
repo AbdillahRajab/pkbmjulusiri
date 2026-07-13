@@ -20,6 +20,10 @@
             "dest": "/public/images/"
         },
         {
+            "src": "/berkas/(.*)",
+            "dest": "/public/storage/"
+        },
+        {
             "src": "/js/(.*)",
             "dest": "/public/js/"
         },
