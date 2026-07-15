@@ -761,8 +761,7 @@
                 Data Warga Belajar / Siswa</h5>
             <div class="table-responsive">
                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importExcel">
-                    <i class="bi bi-file-earmark-excel"></i>
-                    Import Excel
+                    <i class="bi bi-file-earmark-excel"></i>Import File Excel
                 </button>
                 <table class="table table-striped table-hover align-middle">
                     <thead class="table-light">
