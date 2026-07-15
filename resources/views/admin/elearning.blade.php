@@ -188,24 +188,16 @@
         <button class="nav-link border-0 text-start bg-transparent text-white" id="tab-jadwal-tutor"
             data-bs-toggle="pill" data-bs-target="#panel-jadwal-tutor" type="button" role="tab"><i
                 class="bi bi-calendar-event me-3"></i> Profil Tutor</button>
-            <button
-                class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-1"
-                id="tab-kelas-tutor"
-                data-bs-toggle="pill"
-                data-bs-target="#panel-kelas-tutor"
-                type="button">
-                <i class="bi bi-book-half me-3 text-warning"></i>
-                Kelas Pembelajaran
-            </button>
-            <button
-            class="nav-link border-0 text-start bg-transparent text-white"
-            id="tab-berita"
-            data-bs-toggle="pill"
-            data-bs-target="#panel-berita"
-            type="button">
+        <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-1" id="tab-kelas-tutor"
+            data-bs-toggle="pill" data-bs-target="#panel-kelas-tutor" type="button">
+            <i class="bi bi-book-half me-3 text-warning"></i>
+            Kelas Pembelajaran
+        </button>
+        <button class="nav-link border-0 text-start bg-transparent text-white" id="tab-berita" data-bs-toggle="pill"
+            data-bs-target="#panel-berita" type="button">
             <i class="bi bi-newspaper me-3 text-info"></i>
             Berita PKBM
-            </button>
+        </button>
 
         {{-- HALAMAN  SISWA --}}
     @elseif(Auth::user()->role == 'siswa')
@@ -216,13 +208,13 @@
         <button class="nav-link border-0 text-start bg-transparent text-warning" data-bs-toggle="pill"
             data-bs-target="#panel-kelas-saya">
             <i class="bi bi-journal-bookmark-fill me-3"></i>Kelas Saya</button>
-            <button class="nav-link border-0 text-start bg-transparent text-white"id="tab-profil-siswa"data-bs-toggle="pill"
-            data-bs-target="#panel-profil-siswa"type="button">
+        <button class="nav-link border-0 text-start bg-transparent text-white"id="tab-profil-siswa"
+            data-bs-toggle="pill" data-bs-target="#panel-profil-siswa"type="button">
             <i class="bi bi-person-circle me-3 text-success"></i>Profil Saya</button>
-            <button class="nav-link border-0 text-start bg-transparent text-white"id="tab-berita"
-                data-bs-toggle="pill"data-bs-target="#panel-berita"type="button">
-                <i class="bi bi-newspaper me-3 text-info"></i>Berita PKBM
-            </button>
+        <button class="nav-link border-0 text-start bg-transparent text-white"id="tab-berita"
+            data-bs-toggle="pill"data-bs-target="#panel-berita" type="button">
+            <i class="bi bi-newspaper me-3 text-info"></i>Berita PKBM
+        </button>
         @endif
     </div>
     </div>
@@ -248,18 +240,15 @@
                 </ul>
             </div>
         </div>
-                    @if(session('error'))
+        @if (session('error'))
             <div class="alert alert-danger alert-dismissible fade show mt-3">
                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
                 {{ session('error') }}
 
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert">
                 </button>
             </div>
-                    @endif
+        @endif
     </nav>
 
     <!-- AREA KONTEN UTAMA -->
@@ -343,34 +332,34 @@
             </div>
 
             @if (Auth::user()->role == 'admin')
-              <!-- TABEL DATA TUTOR  -->
+                <!-- TABEL DATA TUTOR  -->
                 <div class="tab-pane fade" id="panel-tutor" role="tabpanel">
                     <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
                         <h5 class="fw-bold mb-3 text-dark">
-                        <i class="bi bi-person-badge-fill text-success me-2"></i>
-                        Tabel Data Tenaga Pengajar / Tutor
-                    </h5>
-                    @if(session('success_tutor'))
-                    <div class="alert alert-success alert-dismissible fade show">
-                        <i class="bi bi-check-circle-fill me-2"></i>
-                        {{ session('success_tutor') }}
-                        <button class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                    @endif
+                            <i class="bi bi-person-badge-fill text-success me-2"></i>
+                            Tabel Data Tenaga Pengajar / Tutor
+                        </h5>
+                        @if (session('success_tutor'))
+                            <div class="alert alert-success alert-dismissible fade show">
+                                <i class="bi bi-check-circle-fill me-2"></i>
+                                {{ session('success_tutor') }}
+                                <button class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-striped table-hover align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Tutor</th>
-                                    <th>Alamat Email</th>
-                                    <th>Bidang Keahlian</th>
-                                    <th>No WhatsApp</th>
-                                    <th>Role</th>
-                                    <th width="120">Aksi</th>
-                                </tr>
-                            </thead>
-                                   @forelse($data_tutor as $key => $t)
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Tutor</th>
+                                        <th>Alamat Email</th>
+                                        <th>Bidang Keahlian</th>
+                                        <th>No WhatsApp</th>
+                                        <th>Role</th>
+                                        <th width="120">Aksi</th>
+                                    </tr>
+                                </thead>
+                                @forelse($data_tutor as $key => $t)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td class="fw-bold text-success">
@@ -380,7 +369,7 @@
                                             {{ $t->email }}
                                         </td>
                                         <td>
-                                            @if($t->bidang_keahlian)
+                                            @if ($t->bidang_keahlian)
                                                 <span class="badge bg-info">
                                                     {{ $t->bidang_keahlian }}
                                                 </span>
@@ -399,79 +388,64 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <button
-                                                class="btn btn-warning btn-sm"
-                                                data-bs-toggle="modal"
+                                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#editTutor{{ $t->id }}">
                                                 <i class="bi bi-pencil-square"></i>
                                                 Edit
                                             </button>
                                         </td>
                                     </tr>
-                                    @empty
-                                        <tr>
-                                           <td colspan="7" class="text-center text-muted py-3">
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center text-muted py-3">
                                             Belum ada akun tutor yang terdaftar.
                                         </td>
-                                        </tr>
-                                    @endforelse
-                                    @foreach($data_tutor as $t)
-
-                                <div class="modal fade" id="editTutor{{ $t->id }}" tabindex="-1">
-                                <div class="modal-dialog">
-                                <form action="/tutor/{{ $t->id }}/update" method="POST">
-                                @csrf
-                                <div class="modal-content"><div class="modal-header">
-                                <h5 class="modal-title">Edit Profil Tutor</h5>
-                                <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal">
-                                </button>
-                                </div>
-                                <div class="modal-body">
-                                <div class="mb-3">
-                                <label>Nama Tutor</label>
-                                <input
-                                type="text"
-                                name="name"
-                                class="form-control"
-                                value="{{ $t->name }}">
-                                </div>
-                                <div class="mb-3">
-                                <label>Email</label>
-                                <input
-                                type="email"
-                                name="email"
-                                class="form-control"
-                                value="{{ $t->email }}">
-                                </div>
-                                <div class="mb-3">
-                                <label>Bidang Keahlian</label>
-                                <input
-                                type="text"
-                                name="bidang_keahlian"
-                                class="form-control"
-                                value="{{ $t->bidang_keahlian }}">
-                                </div>
-                                <div class="mb-3">
-                                <label>No WhatsApp</label>
-                                <input
-                                type="text"
-                                name="no_whatsapp"
-                                class="form-control"
-                                value="{{ $t->no_whatsapp }}">
-                                </div>
-                                </div>
-                                <div class="modal-footer">
-                                <button class="btn btn-success">
-                                Simpan Perubahan
-                                </button>
-                                </div>
-                                </div>
-                                </form>
-                                </div>
-                                </div>
+                                    </tr>
+                                @endforelse
+                                @foreach ($data_tutor as $t)
+                                    <div class="modal fade" id="editTutor{{ $t->id }}" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <form action="/tutor/{{ $t->id }}/update" method="POST">
+                                                @csrf
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Edit Profil Tutor</h5>
+                                                        <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal">
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label>Nama Tutor</label>
+                                                            <input type="text" name="name" class="form-control"
+                                                                value="{{ $t->name }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>Email</label>
+                                                            <input type="email" name="email" class="form-control"
+                                                                value="{{ $t->email }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>Bidang Keahlian</label>
+                                                            <input type="text" name="bidang_keahlian"
+                                                                class="form-control"
+                                                                value="{{ $t->bidang_keahlian }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>No WhatsApp</label>
+                                                            <input type="text" name="no_whatsapp"
+                                                                class="form-control" value="{{ $t->no_whatsapp }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-success">
+                                                            Simpan Perubahan
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 @endforeach
                                 </tbody>
                             </table>
@@ -479,7 +453,7 @@
                     </div>
                 </div>
 
-{{-- TABEL DATA USER --}}
+                {{-- TABEL DATA USER --}}
 
                 <div class="tab-pane fade" id="panel-user" role="tabpanel">
                     <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
@@ -654,7 +628,7 @@
                         </div>
                     </div>
                 </div>
-                
+
 
                 <!-- TABEL DATA PENDAFTAR ) -->
                 <div class="tab-pane fade" id="panel-pendaftar" role="tabpanel">
@@ -698,814 +672,765 @@
                                             <td><span
                                                     class="badge bg-secondary">{{ strtoupper($p->paket ?? 'Paket C') }}</span>
                                             </td>
-                                                <td>
-                                                    @if($p->status == 'Diterima')
-
-                                                        <span class="badge bg-success rounded-pill px-3 py-2">
-                                                            <i class="bi bi-check-circle-fill me-1"></i>
-                                                            Diterima
-                                                        </span>
-
-                                                    @elseif($p->status == 'Ditolak')
-
-                                                        <span class="badge bg-danger rounded-pill px-3 py-2">
-                                                            <i class="bi bi-x-circle-fill me-1"></i>
-                                                            Ditolak
-                                                        </span>
-
-                                                    @else
-
-                                                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
-                                                            <i class="bi bi-hourglass-split me-1"></i>
-                                                            Pending
-                                                        </span>
-
-                                                    @endif
-                                                </td>
                                             <td>
-                                                   <a href="{{ route('admin.pendaftaran.show', $p->id) }}"
-                                                        class="btn btn-primary btn-sm rounded-pill">
-                                                        <i class="bi bi-search me-1"></i>
-                                                        Detail Verifikasi
-                                                    </a>
-                                                    <form action="{{ route('admin.pendaftaran.destroy', $p->id) }}"
-                                                        method="POST" class="d-inline m-0"
-                                                        onsubmit="return confirm('Yakin ingin menghapus pendaftar {{ $p->nama }}?')">
+                                                @if ($p->status == 'Diterima')
+                                                    <span class="badge bg-success rounded-pill px-3 py-2">
+                                                        <i class="bi bi-check-circle-fill me-1"></i>
+                                                        Diterima
+                                                    </span>
+                                                @elseif($p->status == 'Ditolak')
+                                                    <span class="badge bg-danger rounded-pill px-3 py-2">
+                                                        <i class="bi bi-x-circle-fill me-1"></i>
+                                                        Ditolak
+                                                    </span>
+                                                @else
+                                                    <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                                        <i class="bi bi-hourglass-split me-1"></i>
+                                                        Pending
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('admin.pendaftaran.show', $p->id) }}"
+                                                    class="btn btn-primary btn-sm rounded-pill">
+                                                    <i class="bi bi-search me-1"></i>
+                                                    Detail Verifikasi
+                                                </a>
+                                                <form action="{{ route('admin.pendaftaran.destroy', $p->id) }}"
+                                                    method="POST" class="d-inline m-0"
+                                                    onsubmit="return confirm('Yakin ingin menghapus pendaftar {{ $p->nama }}?')">
                                                     @csrf
                                                     @method('DELETE')
-                                                        <form action="{{ route('admin.pendaftaran.destroy', $p->id) }}"method="POST"class="d-inline"
+                                                    <form
+                                                        action="{{ route('admin.pendaftaran.destroy', $p->id) }}"method="POST"
+                                                        class="d-inline"
                                                         onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                                    @csrf
-                                                    @method('DELETE')
+                                                        @csrf
+                                                        @method('DELETE')
                                                         <button class="btn btn-outline-danger btn-sm rounded-pill">
                                                             <i class="bi bi-trash"></i>
                                                         </button>
 
                                                     </form>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="5" class="text-center text-muted py-3">Belum ada data
-                                                formulir pendaftar masuk.</td>
-                                        </tr>
-                                    @endforelse
-                                    <script>
-                                        document.addEventListener("DOMContentLoaded", function() {
-                                            // 1. Cek apakah ada tab aktif yang disimpan di memori browser (localStorage)
-                                            var activeTab = localStorage.getItem('activeAdminTab');
-                                            if (activeTab) {
-                                                var tabElement = document.querySelector('button[data-bs-target="' + activeTab + '"]') ||
-                                                    document.querySelector('a[href="' + activeTab + '"]');
-                                                if (tabElement) {
-                                                    var tab = new bootstrap.Tab(tabElement);
-                                                    tab.show();
-                                                }
-                                            }
+                                                </form>
+                        </div>
+                        </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-3">Belum ada data
+                                formulir pendaftar masuk.</td>
+                        </tr>
+            @endforelse
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // 1. Cek apakah ada tab aktif yang disimpan di memori browser (localStorage)
+                    var activeTab = localStorage.getItem('activeAdminTab');
+                    if (activeTab) {
+                        var tabElement = document.querySelector('button[data-bs-target="' + activeTab + '"]') ||
+                            document.querySelector('a[href="' + activeTab + '"]');
+                        if (tabElement) {
+                            var tab = new bootstrap.Tab(tabElement);
+                            tab.show();
+                        }
+                    }
 
-                                            // 2. Simpan tab baru ke memori browser setiap kali Admin mengklik sidebar / tab lain
-                                            var tabTriggerList = [].slice.call(document.querySelectorAll(
-                                                '[data-bs-toggle="tab"], [data-bs-toggle="pill"]'));
-                                            tabTriggerList.forEach(function(tabTriggerEl) {
-                                                tabTriggerEl.addEventListener('shown.bs.tab', function(event) {
-                                                    var targetId = event.target.getAttribute('data-bs-target') || event.target
-                                                        .getAttribute('href');
-                                                    localStorage.setItem('activeAdminTab', targetId);
-                                                });
-                                            });
-                                        });
-                                    </script>
-                                </tbody>
-                            </table>
+                    // 2. Simpan tab baru ke memori browser setiap kali Admin mengklik sidebar / tab lain
+                    var tabTriggerList = [].slice.call(document.querySelectorAll(
+                        '[data-bs-toggle="tab"], [data-bs-toggle="pill"]'));
+                    tabTriggerList.forEach(function(tabTriggerEl) {
+                        tabTriggerEl.addEventListener('shown.bs.tab', function(event) {
+                            var targetId = event.target.getAttribute('data-bs-target') || event.target
+                                .getAttribute('href');
+                            localStorage.setItem('activeAdminTab', targetId);
+                        });
+                    });
+                });
+            </script>
+            </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    @endif
+
+    <!-- TABEL DATA SISWA -->
+    <div class="tab-pane fade" id="panel-siswa" role="tabpanel">
+        <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
+            <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-people-fill text-primary me-2"></i>Tabel
+                Data Warga Belajar / Siswa</h5>
+            <div class="table-responsive">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importExcel">
+                    <i class="bi bi-file-earmark-excel"></i>
+                    Import Excel
+                </button>
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Siswa</th>
+                            <th>Alamat Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($data_siswa as $key => $s)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td class="fw-bold text-dark">{{ $s->name }}</td>
+                                <td>{{ $s->email }}</td>
+                                <td><span class="badge bg-primary">Siswa</span></td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-3">Belum ada akun
+                                    siswa.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {{-- Wadah Panel untuk Kelola Akademik --}}
+    <div class="tab-pane fade" id="panel-kelas">
+        @if (session('success_kelas'))
+            <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                {{ session('success_kelas') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                </button>
+            </div>
+        @endif
+        <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
+            <h5 class="fw-bold mb-3 text-dark">
+                <i class="bi bi-houses-fill text-warning me-2"></i>Manajemen Ruang Kelas
+            </h5>
+            <p class="text-muted small">
+                Konten manajemen ruang kelas hasil request tutor diletakkan di sini. Anda dapat membuat
+                kelas baru dan menunjuk Tutor yang bertanggung jawab.
+            </p>
+
+            <button class="btn btn-primary btn-sm rounded-2 mt-2" data-bs-toggle="modal"
+                data-bs-target="#modalTambahKelas" style="width: fit-content;">
+                <i class="bi bi-plus-lg me-1"></i> Buat Kelas Baru (Request Tutor)
+            </button>
+        </div>
+
+        <hr class="my-4">
+        <h6 class="fw-bold mb-3">Daftar Kelas</h6>
+
+        @forelse($data_kelas as $kelas)
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h5 class="fw-bold text-dark mb-2">
+                                <i class="bi bi-book-half text-primary me-2"></i>
+                                {{ $kelas->nama_kelas }}
+                            </h5>
+                            <p class="text-muted mb-2">
+                                <i class="bi bi-person-badge-fill text-warning me-2"></i>
+                                Tutor :
+                                <strong>{{ $kelas->nama_tutor }}</strong>
+                            </p>
+                        </div>
+                        <form action="{{ url('/admin/kelas/' . $kelas->id . '/hapus') }}" method="POST"
+                            onsubmit="return confirm('Yakin ingin menghapus kelas ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-outline-danger btn-sm rounded-3">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <hr>
+                    <p class="text-secondary mb-4">
+                        {{ $kelas->deskripsi }}
+                    </p>
+
+                    <div class="d-flex justify-content-between">
+
+                        <small class="text-muted">
+                            <i class="bi bi-calendar-event me-1"></i>
+                            {{ \Carbon\Carbon::parse($kelas->created_at)->format('d M Y') }}
+                        </small>
+
+                    </div>
+                </div>
+            </div>
+
+        @empty
+
+            <div class="alert alert-warning">
+                Belum ada kelas dibuat.
+            </div>
+        @endforelse
+
+        <div class="modal fade" id="modalTambahKelas" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="{{ route('admin.simpanKelas') }}" method="POST"
+                    class="modal-content border-0 shadow-lg rounded-4">
+                    @csrf
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title fw-bold">
+                            <i class="bi bi-plus-circle me-2"></i>Buat Kelas Baru
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Nama Kelas
+                                Pembelajaran</label>
+                            <input type="text" name="nama_kelas" class="form-control"
+                                placeholder="Contoh: Matematika Paket C (Kelas XI)" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Pilih Tutor /
+                                Pengajar</label>
+                            <select name="tutor_id" class="form-select" required>
+                                <option value="">-- Pilih Tutor Penanggung Jawab --</option>
+                                @php
+                                    // Mengambil data user yang memiliki role tutor secara langsung
+                                    $listTutor = \DB::select("SELECT id, name FROM users WHERE role = 'tutor'");
+                                @endphp
+                                @foreach ($listTutor as $tutor)
+                                    <option value="{{ $tutor->id }}">{{ $tutor->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Deskripsi atau
+                                Instruksi</label>
+                            <textarea name="deskripsi" class="form-control" rows="3"
+                                placeholder="Tulis deskripsi ringkas atau aturan kelas..."></textarea>
                         </div>
                     </div>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Konfirmasi & Buat Kelas</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- BERITA & INFORMASI ADMIN --}}
+    <div class="tab-pane fade" id="panel-berita" role="tabpanel">
+        @if (Auth::user()->role == 'admin')
+            @if (session('success_berita'))
+                <div class="alert alert-success alert-dismissible fade show shadow-sm mt-5 mb-4 rounded-3">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    {{ session('success_berita') }}
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert">
+                    </button>
                 </div>
             @endif
+            <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
 
-                <!-- TABEL DATA SISWA -->
-                <div class="tab-pane fade" id="panel-siswa" role="tabpanel">
-                    <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
-                        <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-people-fill text-primary me-2"></i>Tabel
-                            Data Warga Belajar / Siswa</h5>
-                        <div class="table-responsive">
-                             <button
-                                class="btn btn-success"
-                                data-bs-toggle="modal"
-                                data-bs-target="#importExcel">
-                                <i class="bi bi-file-earmark-excel"></i>
-                                Import Excel
-                            </button>
-                                <table class="table table-striped table-hover align-middle">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Siswa</th>
-                                        <th>Alamat Email</th>
-                                        <th>Role</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($data_siswa as $key => $s)
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td class="fw-bold text-dark">{{ $s->name }}</td>
-                                            <td>{{ $s->email }}</td>
-                                            <td><span class="badge bg-primary">Siswa</span></td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center text-muted py-3">Belum ada akun
-                                                siswa.</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                <h5 class="fw-bold text-dark">
+                    <i class="bi bi-megaphone-fill text-danger me-2"></i>
+                    Berita & Informasi
+                </h5>
 
-                {{-- Wadah Panel untuk Kelola Akademik --}}
-                <div class="tab-pane fade" id="panel-kelas">
-                    @if(session('success_kelas'))
-                        <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
-                            <i class="bi bi-check-circle-fill me-2"></i>
-                            {{ session('success_kelas') }}
-                            <button type="button"
-                                class="btn-close"
-                                data-bs-dismiss="alert"
-                                aria-label="Close">
-                            </button>
-                        </div>
-                    @endif
-                    <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
-                        <h5 class="fw-bold mb-3 text-dark">
-                            <i class="bi bi-houses-fill text-warning me-2"></i>Manajemen Ruang Kelas
-                        </h5>
-                        <p class="text-muted small">
-                            Konten manajemen ruang kelas hasil request tutor diletakkan di sini. Anda dapat membuat
-                            kelas baru dan menunjuk Tutor yang bertanggung jawab.
-                        </p>
+                <p class="text-muted small">
+                    Admin dapat membagikan pengumuman, informasi akademik, jadwal ujian,
+                    maupun berita penting kepada Tutor dan Siswa.
+                </p>
 
-                        <button class="btn btn-primary btn-sm rounded-2 mt-2" data-bs-toggle="modal"
-                            data-bs-target="#modalTambahKelas" style="width: fit-content;">
-                            <i class="bi bi-plus-lg me-1"></i> Buat Kelas Baru (Request Tutor)
-                        </button>
-                    </div>
+                <button class="btn btn-primary rounded-3 shadow-sm" data-bs-toggle="modal"
+                    data-bs-target="#modalTambahBerita">
+                    <i class="bi bi-plus-circle-fill me-2"></i>
+                    Tambah Berita
+                </button>
 
-                    <hr class="my-4">
-                    <h6 class="fw-bold mb-3">Daftar Kelas</h6>
-
-                   @forelse($data_kelas as $kelas)
-                        <div class="card border-0 shadow-sm rounded-4 mb-4">
-                            <div class="card-body p-4">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <div>
-                                        <h5 class="fw-bold text-dark mb-2">
-                                            <i class="bi bi-book-half text-primary me-2"></i>
-                                            {{ $kelas->nama_kelas }}
-                                        </h5>
-                                        <p class="text-muted mb-2">
-                                            <i class="bi bi-person-badge-fill text-warning me-2"></i>
-                                            Tutor :
-                                            <strong>{{ $kelas->nama_tutor }}</strong>
-                                        </p>
-                                    </div>
-                                    <form
-                                        action="{{ url('/admin/kelas/'.$kelas->id.'/hapus') }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus kelas ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-outline-danger btn-sm rounded-3">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </button>
-                                    </form>
-                                </div>
-
-                                <hr>
-                                <p class="text-secondary mb-4">
-                                    {{ $kelas->deskripsi }}
-                                </p>
-
-                                <div class="d-flex justify-content-between">
-
-                                    <small class="text-muted">
-                                        <i class="bi bi-calendar-event me-1"></i>
-                                        {{ \Carbon\Carbon::parse($kelas->created_at)->format('d M Y') }}
-                                    </small>
-
+            </div>
+            <hr class="my-4">
+            <h6 class="fw-bold mb-3">
+                Daftar Berita
+            </h6>
+            @forelse($data_berita as $berita)
+                <div class="card border-0 shadow rounded-4 mb-4 overflow-hidden">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <span class="badge bg-danger rounded-pill px-3 py-2 mb-3">
+                                    <i class="bi bi-megaphone-fill me-1"></i>
+                                    Pengumuman
+                                </span>
+                                <h4 class="fw-bold mb-2">
+                                    {{ $berita->judul }}
+                                </h4>
+                                <div class="text-muted small">
+                                    <i class="bi bi-person-circle"></i>
+                                    {{ $berita->nama_admin }}
+                                    <span class="mx-2">•</span>
+                                    <i class="bi bi-calendar-event"></i>
+                                    {{ \Carbon\Carbon::parse($berita->created_at)->format('d M Y H:i') }}
                                 </div>
                             </div>
                         </div>
-
-                        @empty
-
-                        <div class="alert alert-warning">
-                            Belum ada kelas dibuat.
-                        </div>
-
-                        @endforelse
-
-                    <div class="modal fade" id="modalTambahKelas" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <form action="{{ route('admin.simpanKelas') }}" method="POST"
-                                class="modal-content border-0 shadow-lg rounded-4">
+                        <hr>
+                        <p class="text-secondary fs-6 mb-4" style="line-height:1.8">
+                            {{ $berita->isi }}
+                        </p>
+                        <div class="d-flex justify-content-end gap-2">
+                            <form action="{{ route('admin.berita.hapus', $berita->id) }}" method="POST"
+                                onsubmit="return confirm('Yakin ingin menghapus berita ini?')">
                                 @csrf
-                                <div class="modal-header bg-dark text-white">
-                                    <h5 class="modal-title fw-bold">
-                                        <i class="bi bi-plus-circle me-2"></i>Buat Kelas Baru
-                                    </h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold text-secondary">Nama Kelas
-                                            Pembelajaran</label>
-                                        <input type="text" name="nama_kelas" class="form-control"
-                                            placeholder="Contoh: Matematika Paket C (Kelas XI)" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold text-secondary">Pilih Tutor /
-                                            Pengajar</label>
-                                        <select name="tutor_id" class="form-select" required>
-                                            <option value="">-- Pilih Tutor Penanggung Jawab --</option>
-                                            @php
-                                                // Mengambil data user yang memiliki role tutor secara langsung
-                                                $listTutor = \DB::select(
-                                                    "SELECT id, name FROM users WHERE role = 'tutor'",
-                                                );
-                                            @endphp
-                                            @foreach ($listTutor as $tutor)
-                                                <option value="{{ $tutor->id }}">{{ $tutor->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold text-secondary">Deskripsi atau
-                                            Instruksi</label>
-                                        <textarea name="deskripsi" class="form-control" rows="3"
-                                            placeholder="Tulis deskripsi ringkas atau aturan kelas..."></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="btn btn-primary">Konfirmasi & Buat Kelas</button>
-                                </div>
+                                @method('DELETE')
+                                <button class="btn btn-outline-danger btn-sm rounded-3">
+                                    <i class="bi bi-trash-fill"></i>
+                                    Hapus
+                                </button>
                             </form>
                         </div>
                     </div>
                 </div>
-        
+            @empty
 
-                {{-- BERITA & INFORMASI ADMIN --}}
-                <div class="tab-pane fade" id="panel-berita" role="tabpanel">
-                    @if(Auth::user()->role == 'admin')
-                     @if(session('success_berita'))
-                    <div class="alert alert-success alert-dismissible fade show shadow-sm mt-5 mb-4 rounded-3">
-                        <i class="bi bi-check-circle-fill me-2"></i>
-                        {{ session('success_berita') }}
-
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert">
-                        </button>
-                    </div>
-                    @endif
-                    <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
-
-                        <h5 class="fw-bold text-dark">
-                            <i class="bi bi-megaphone-fill text-danger me-2"></i>
-                            Berita & Informasi
-                        </h5>
-
-                        <p class="text-muted small">
-                            Admin dapat membagikan pengumuman, informasi akademik, jadwal ujian,
-                            maupun berita penting kepada Tutor dan Siswa.
-                        </p>
-
-                        <button
-                        class="btn btn-primary rounded-3 shadow-sm"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modalTambahBerita">
-                        <i class="bi bi-plus-circle-fill me-2"></i>
-                        Tambah Berita
-                    </button>
-
-                    </div>
-                    <hr class="my-4">
-                    <h6 class="fw-bold mb-3">
-                        Daftar Berita
-                    </h6>
-                    @forelse($data_berita as $berita)
-                    <div class="card border-0 shadow rounded-4 mb-4 overflow-hidden">
-                        <div class="card-body p-4">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div>
-                                    <span class="badge bg-danger rounded-pill px-3 py-2 mb-3">
-                                        <i class="bi bi-megaphone-fill me-1"></i>
-                                        Pengumuman
-                                    </span>
-                                    <h4 class="fw-bold mb-2">
-                                        {{ $berita->judul }}
-                                    </h4>
-                                    <div class="text-muted small">
-                                        <i class="bi bi-person-circle"></i>
-                                        {{ $berita->nama_admin }}
-                                        <span class="mx-2">•</span>
-                                        <i class="bi bi-calendar-event"></i>
-                                        {{ \Carbon\Carbon::parse($berita->created_at)->format('d M Y H:i') }}
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <p class="text-secondary fs-6 mb-4" style="line-height:1.8">
-                                {{ $berita->isi }}
+                <div class="alert alert-warning rounded-4">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    Belum ada berita yang dipublikasikan.
+                </div>
+            @endforelse
+        @else
+            <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
+                <h4 class="fw-bold mb-4">
+                    <i class="bi bi-newspaper text-primary me-2"></i>
+                    Berita & Informasi PKBM
+                </h4>
+                @forelse($data_berita as $item)
+                    <div class="card border-0 shadow-sm rounded-4 mb-4">
+                        <div class="card-body">
+                            <h5 class="fw-bold">
+                                {{ $item->judul }}
+                            </h5>
+                            <small class="text-muted">
+                                {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}
+                            </small>
+                            <p class="mt-3">
+                                {{ Str::limit(strip_tags($item->isi), 200) }}
                             </p>
-                            <div class="d-flex justify-content-end gap-2">
-                                <form
-                                    action="{{ route('admin.berita.hapus',$berita->id) }}"
-                                    method="POST"
-                                    onsubmit="return confirm('Yakin ingin menghapus berita ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button
-                                        class="btn btn-outline-danger btn-sm rounded-3">
-                                        <i class="bi bi-trash-fill"></i>
-                                        Hapus
-                                    </button>
-                                </form>
-                            </div>
                         </div>
                     </div>
-                    @empty
-
-                    <div class="alert alert-warning rounded-4">
-                        <i class="bi bi-info-circle-fill me-2"></i>
-                        Belum ada berita yang dipublikasikan.
+                @empty
+                    <div class="alert alert-info">
+                        Belum ada berita.
                     </div>
-
-                    @endforelse
-                    @else
-                    <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
-        <h4 class="fw-bold mb-4">
-            <i class="bi bi-newspaper text-primary me-2"></i>
-            Berita & Informasi PKBM
-        </h4>
-        @forelse($data_berita as $item)
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
-                <div class="card-body">
-                    <h5 class="fw-bold">
-                        {{ $item->judul }}
-                    </h5>
-                    <small class="text-muted">
-                        {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}
-                    </small>
-                    <p class="mt-3">
-                        {{ Str::limit(strip_tags($item->isi),200) }}
-                    </p>
-                </div>
+                @endforelse
             </div>
-        @empty
-            <div class="alert alert-info">
-                Belum ada berita.
-            </div>
- 
-        @endforelse
-    </div>
-    @endif
+        @endif
     </div>
 
 
-            {{-- HALAMAN TUTOR --}}
-            <div class="tab-pane fade" id="panel-jadwal-tutor" role="tabpanel" aria-labelledby="tab-jadwal-tutor">
-                <div class="card border-0 shadow-sm p-4 mt-4 bg-white rounded">
-                    <h5 class="fw-bold text-dark mb-4 pb-2 border-bottom">
-                        <i class="bi bi-person-circle me-2 text-primary"></i>Profil Resmi Tutor
-                    </h5>
+    {{-- HALAMAN TUTOR --}}
+    <div class="tab-pane fade" id="panel-jadwal-tutor" role="tabpanel" aria-labelledby="tab-jadwal-tutor">
+        <div class="card border-0 shadow-sm p-4 mt-4 bg-white rounded">
+            <h5 class="fw-bold text-dark mb-4 pb-2 border-bottom">
+                <i class="bi bi-person-circle me-2 text-primary"></i>Profil Resmi Tutor
+            </h5>
 
-                    <div class="table-responsive">
-                        <table class="table table-borderless align-middle">
-                            <tbody>
-                                <tr class="border-bottom">
-                                    <td width="200" class="text-muted fw-semibold py-3">Nama Tutor:</td>
-                                    <td class="fw-bold text-dark py-3">{{ Auth::user()->name }}</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <td class="text-muted fw-semibold py-3">Email Akun:</td>
-                                    <td class="text-secondary py-3">{{ Auth::user()->email }}</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <td class="text-muted fw-semibold py-3">Bidang Keahlian:</td>
-                                    <td class="py-3">
-                                    @if (Auth::user()->bidang_keahlian)
-                                        <span class="badge bg-info-subtle text-info px-2 py-1 fw-semibold">
-                                            {{ Auth::user()->bidang_keahlian }}
-                                        </span>
-                                    @else
-                                        <span class="badge bg-secondary-subtle text-secondary px-2 py-1 fw-semibold">
-                                            Belum Diatur Admin
-                                        </span>
-                                    @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted fw-semibold py-3">No. HP / WhatsApp:</td>
-                                    <td class="text-secondary py-3">
-                                        {{ Auth::user()->no_whatsapp ?? 'Belum diisi oleh Admin' }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            {{-- KELAS ELEARNING --}}
-            <div class="tab-pane fade" id="panel-kelas-tutor">
-                <div class="card border-0 shadow-sm p-4 mt-4 bg-white rounded">
-                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
-                        <div>
-                            <h4 class="fw-bold text-dark mb-1">Ruang Kelas Pembelajaran</h4>
-                            <p class="text-muted small mb-0">Kelola ruang belajar virtual dan distribusikan materi
-                                bimbingan Anda di sini.</p>
-                        </div>
-                    </div>
-
-                    <h6 class="fw-bold text-secondary mb-3"><i
-                            class="bi bi-grid-3x3-gap-fill me-2 text-primary"></i>Daftar Kelas Aktif Anda</h6>
-                    <div id="konten-kelas-tutor" class="row g-3 mt-3">
-                    </div>
-
-                </div>
-
-                <div class="modal fade" id="modalUploadModulTutor" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <form action="#" method="POST" enctype="multipart/form-data"
-                            class="modal-content border-0 shadow">
-                            @csrf
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title fw-bold"><i class="bi bi-file-earmark-pdf me-2"></i>Upload
-                                    Modul Pembelajaran</h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold text-secondary">Judul Modul</label>
-                                    <input type="text" name="judul_modul" class="form-control"
-                                        placeholder="Contoh: Modul 2 - Teks Deskripsi" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold text-secondary">Pilih File Dokumen (Wajib
-                                        PDF)</label>
-                                    <input type="file" name="file_modul" class="form-control" accept=".pdf"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="modal-footer bg-light">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Mulai Upload</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="modalBuatTugasTutor" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <form action="#" method="POST" enctype="multipart/form-data"
-                            class="modal-content border-0 shadow">
-                            @csrf
-                            <div class="modal-header bg-success text-white">
-                                <h5 class="modal-title fw-bold"><i class="bi bi-pencil-square me-2"></i>Buat Tugas
-                                    Mandiri</h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold text-secondary">Judul / Nama Tugas</label>
-                                    <input type="text" name="judul_tugas" class="form-control"
-                                        placeholder="Contoh: Lembar Kerja Siswa 1" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold text-secondary">Batas Pengumpulan
-                                        (Deadline)</label>
-                                    <input type="datetime-local" name="deadline" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold text-secondary">Upload Berkas Soal (Format
-                                        Bebas / Opsional)</label>
-                                    <input type="file" name="file_tugas" class="form-control">
-                                </div>
-                            </div>
-                            <div class="modal-footer bg-light">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-success">Bagikan Tugas</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        {{-- MODAL TAMBAH BERITA --}}
-            <div class="modal fade" id="modalTambahBerita" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <form action="{{ route('admin.berita.simpan') }}" method="POST">
-                        @csrf
-                        <div class="modal-content border-0 shadow rounded-4">
-
-                            <div class="modal-header border-0 pb-0">
-                                <h5 class="modal-title fw-bold">
-                                    <i class="bi bi-megaphone-fill text-danger me-2"></i>
-                                    Publikasikan Berita Baru
-                                </h5>
-
-                                <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="modal">
-                                </button>
-                            </div>
-
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">
-                                        Judul Berita
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="judul"
-                                        class="form-control rounded-3"
-                                        placeholder="Contoh : Jadwal Ujian Semester Genap"
-                                        required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">
-                                        Isi Berita
-                                    </label>
-                                    <textarea
-                                        name="isi"
-                                        rows="6"
-                                        class="form-control rounded-3"
-                                        placeholder="Tuliskan isi pengumuman atau informasi akademik..."
-                                        required></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer border-0">
-                                <button
-                                    type="button"
-                                    class="btn btn-light rounded-3"
-                                    data-bs-dismiss="modal">
-                                    Batal
-                                </button>
-                                <button
-                                    type="submit"
-                                    class="btn btn-primary rounded-3">
-                                    <i class="bi bi-send-fill me-2"></i>
-                                    Publikasikan
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- HALAMAN SISWA -->
-            @if (Auth::user()->role == 'siswa')
-
-                <div class="tab-pane fade" id="panel-kelas-siswa" role="tabpanel">
-                    <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
-
-                        <h5 class="fw-bold mb-4">
-                            Kelas Pembelajaran
-                        </h5>
-                        <p>Total kelas: {{ count($data_kelas) }}</p>
-
-                        @forelse($data_kelas as $kelas)
-                            <div class="card shadow-sm border-0 rounded-4 mb-4">
-                                <div class="card-body">
-
-                                    <h4 class="fw-bold">
-                                        {{ $kelas->nama_kelas }}
-                                    </h4>
-
-                                    <p class="text-muted mb-2">
-                                        <i class="bi bi-person-badge-fill"></i>
-                                        Tutor : {{ $kelas->nama_tutor }}
-                                    </p>
-
-                                    <div class="mb-3">
-                                        <span class="badge bg-info">
-                                            <i class="bi bi-people-fill"></i>
-                                            {{ $kelas->jumlah_peserta }} Peserta
-                                        </span>
-                                    </div>
-
-                                    <p class="text-secondary">
-                                        {{ $kelas->deskripsi }}
-                                    </p>
-
-                                    @php
-                                        $sudahGabung = DB::table('peserta_kelas')
-                                            ->where('kelas_id', $kelas->id)
-                                            ->where('user_id', Auth::id())
-                                            ->exists();
-                                    @endphp
-
-                                    @if ($sudahGabung)
-                                        <a href="{{ url('/ruang-kelas/' . $kelas->id) }}" class="btn btn-success">
-                                            Masuk Kelas
-                                        </a>
-                                    @else
-                                        <button class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalGabung{{ $kelas->id }}">
-                                            Gabung Kelas
-                                        </button>
-                                    @endif
-
-                                </div>
-                            </div>
-
-                            <!-- MODAL GABUNG KELAS -->
-                            <div class="modal fade" id="modalGabung{{ $kelas->id }}" tabindex="-1">
-                                <div class="modal-dialog">
-                                    <form action="{{ url('/ruang-kelas/' . $kelas->id . '/verifikasi') }}"
-                                        method="POST">
-
-                                        @csrf
-
-                                        <div class="modal-content">
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">
-                                                    Gabung Kelas
-                                                </h5>
-                                            </div>
-
-                                            <div class="modal-body">
-
-                                                <h5>{{ $kelas->nama_kelas }}</h5>
-
-                                                <p class="text-muted">
-                                                    Tutor : {{ $kelas->nama_tutor }}
-                                                </p>
-
-                                                <div class="mb-3">
-                                                    <label>Password Kelas</label>
-
-                                                    <input type="password" name="password_masuk" class="form-control"
-                                                        placeholder="Masukkan Password Kelas" required>
-                                                </div>
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">
-                                                    Batal
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">
-                                                    Gabung
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="alert alert-warning">
-                                Belum ada kelas tersedia.
-                            </div>
-                        @endforelse
-                    </div>
-                </div>
-
-                {{-- PROFIL SISWA --}}
-            <div class="tab-pane fade" id="panel-profil-siswa">
-                <div class="card border-0 shadow rounded-4 mt-4">
-                <div class="card-body p-4">
-                <div class="row align-items-center">
-                    <div class="col-md-3 text-center">
-                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=0D6EFD&color=fff&size=200"
-                        class="rounded-circle shadow mb-3"
-                        width="170"
-                        height="170">
-                    <h5 class="fw-bold">
-                        {{ Auth::user()->name }}
-                    </h5>
-                    <span class="badge bg-success">
-                        Warga Belajar
-                    </span>
-                </div>
-                <div class="col-md-9">
-                    <h4 class="fw-bold mb-4">
-                        <i class="bi bi-person-circle text-success me-2"></i>
-                        Profil Saya
-                    </h4>
-                    <table class="table table-borderless">
-                        <tr>
-                            <th width="180">Nama Lengkap</th>
-                            <td>{{ Auth::user()->name }}</td>
+            <div class="table-responsive">
+                <table class="table table-borderless align-middle">
+                    <tbody>
+                        <tr class="border-bottom">
+                            <td width="200" class="text-muted fw-semibold py-3">Nama Tutor:</td>
+                            <td class="fw-bold text-dark py-3">{{ Auth::user()->name }}</td>
                         </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>{{ Auth::user()->email }}</td>
+                        <tr class="border-bottom">
+                            <td class="text-muted fw-semibold py-3">Email Akun:</td>
+                            <td class="text-secondary py-3">{{ Auth::user()->email }}</td>
                         </tr>
-                        <tr>
-                            <th>Role</th>
-                            <td>
-                                <span class="badge bg-primary">
-                                    {{ strtoupper(Auth::user()->role) }}
-                                </span>
+                        <tr class="border-bottom">
+                            <td class="text-muted fw-semibold py-3">Bidang Keahlian:</td>
+                            <td class="py-3">
+                                @if (Auth::user()->bidang_keahlian)
+                                    <span class="badge bg-info-subtle text-info px-2 py-1 fw-semibold">
+                                        {{ Auth::user()->bidang_keahlian }}
+                                    </span>
+                                @else
+                                    <span class="badge bg-secondary-subtle text-secondary px-2 py-1 fw-semibold">
+                                        Belum Diatur Admin
+                                    </span>
+                                @endif
                             </td>
                         </tr>
                         <tr>
-                            <th>Bergabung Sejak</th>
-                            <td>
-                                {{ \Carbon\Carbon::parse(Auth::user()->created_at)->translatedFormat('d F Y') }}
+                            <td class="text-muted fw-semibold py-3">No. HP / WhatsApp:</td>
+                            <td class="text-secondary py-3">
+                                {{ Auth::user()->no_whatsapp ?? 'Belum diisi oleh Admin' }}
                             </td>
                         </tr>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</div>
-                {{-- PANEL KELAS SAYA --}}
-                <div class="tab-pane fade" id="panel-kelas-saya" role="tabpanel">
-                    <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
-                        <h3 class="fw-bold mb-4"> Kelas Saya </h3>
-                        <p>Total kelas saya : {{ count($data_kelas_saya) }}</p>
-                        @forelse($data_kelas_saya as $kelas)
-                            <div class="card shadow-sm border-0 rounded-4 mb-4">
-                                <div class="card-body">
-                                    <h4 class="fw-bold">
-                                        {{ $kelas->nama_kelas }}
-                                    </h4>
 
-                                    <p class="text-muted mb-2">
-                                        <i class="bi bi-person-badge-fill"></i>
-                                        Tutor : {{ $kelas->nama_tutor }}
-                                    </p>
+    {{-- KELAS ELEARNING --}}
+    <div class="tab-pane fade" id="panel-kelas-tutor">
+        <div class="card border-0 shadow-sm p-4 mt-4 bg-white rounded">
+            <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+                <div>
+                    <h4 class="fw-bold text-dark mb-1">Ruang Kelas Pembelajaran</h4>
+                    <p class="text-muted small mb-0">Kelola ruang belajar virtual dan distribusikan materi
+                        bimbingan Anda di sini.</p>
+                </div>
+            </div>
 
-                                    <span class="badge bg-info mb-3">
-                                        <i class="bi bi-people-fill"></i>
-                                        {{ $kelas->jumlah_peserta }} Peserta
-                                    </span>
+            <h6 class="fw-bold text-secondary mb-3"><i class="bi bi-grid-3x3-gap-fill me-2 text-primary"></i>Daftar
+                Kelas Aktif Anda</h6>
+            <div id="konten-kelas-tutor" class="row g-3 mt-3">
+            </div>
 
-                                    <p class="text-secondary">
-                                        {{ $kelas->deskripsi }}
-                                    </p>
-                                    <a href="{{ url('/ruang-kelas/' . $kelas->id) }}" class="btn btn-success">
-                                        <i class="bi bi-box-arrow-in-right"></i>
-                                        Masuk Kelas
-                                    </a>
-                                </div>
-                            </div>
+        </div>
 
-                        @empty
+        <div class="modal fade" id="modalUploadModulTutor" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="#" method="POST" enctype="multipart/form-data"
+                    class="modal-content border-0 shadow">
+                    @csrf
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title fw-bold"><i class="bi bi-file-earmark-pdf me-2"></i>Upload
+                            Modul Pembelajaran</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Judul Modul</label>
+                            <input type="text" name="judul_modul" class="form-control"
+                                placeholder="Contoh: Modul 2 - Teks Deskripsi" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Pilih File Dokumen (Wajib
+                                PDF)</label>
+                            <input type="file" name="file_modul" class="form-control" accept=".pdf" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Mulai Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-                            <div class="alert alert-warning">
+        <div class="modal fade" id="modalBuatTugasTutor" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="#" method="POST" enctype="multipart/form-data"
+                    class="modal-content border-0 shadow">
+                    @csrf
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title fw-bold"><i class="bi bi-pencil-square me-2"></i>Buat Tugas
+                            Mandiri</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Judul / Nama Tugas</label>
+                            <input type="text" name="judul_tugas" class="form-control"
+                                placeholder="Contoh: Lembar Kerja Siswa 1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Batas Pengumpulan
+                                (Deadline)</label>
+                            <input type="datetime-local" name="deadline" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-secondary">Upload Berkas Soal (Format
+                                Bebas / Opsional)</label>
+                            <input type="file" name="file_tugas" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-success">Bagikan Tugas</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-                                Anda belum mengikuti kelas apapun.
+    {{-- MODAL TAMBAH BERITA --}}
+    <div class="modal fade" id="modalTambahBerita" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <form action="{{ route('admin.berita.simpan') }}" method="POST">
+                @csrf
+                <div class="modal-content border-0 shadow rounded-4">
 
-                            </div>
-                        @endforelse
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold">
+                            <i class="bi bi-megaphone-fill text-danger me-2"></i>
+                            Publikasikan Berita Baru
+                        </h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Judul Berita
+                            </label>
+                            <input type="text" name="judul" class="form-control rounded-3"
+                                placeholder="Contoh : Jadwal Ujian Semester Genap" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Isi Berita
+                            </label>
+                            <textarea name="isi" rows="6" class="form-control rounded-3"
+                                placeholder="Tuliskan isi pengumuman atau informasi akademik..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">
+                            Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary rounded-3">
+                            <i class="bi bi-send-fill me-2"></i>
+                            Publikasikan
+                        </button>
                     </div>
                 </div>
-            @endif
-            
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    function muatKelasTutor() {
-                        fetch('/api/ambil-kelas-tutor')
-                            .then(response => response.json())
-                            .then(data => {
-                                const wadah = document.getElementById('konten-kelas-tutor');
-                                wadah.innerHTML = ''; // Bersihkan kontainer
+            </form>
+        </div>
+    </div>
 
-                                if (data.length === 0) {
-                                    wadah.innerHTML = `
+    <!-- HALAMAN SISWA -->
+    @if (Auth::user()->role == 'siswa')
+
+        <div class="tab-pane fade" id="panel-kelas-siswa" role="tabpanel">
+            <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
+
+                <h5 class="fw-bold mb-4">
+                    Kelas Pembelajaran
+                </h5>
+                <p>Total kelas: {{ count($data_kelas) }}</p>
+
+                @forelse($data_kelas as $kelas)
+                    <div class="card shadow-sm border-0 rounded-4 mb-4">
+                        <div class="card-body">
+
+                            <h4 class="fw-bold">
+                                {{ $kelas->nama_kelas }}
+                            </h4>
+
+                            <p class="text-muted mb-2">
+                                <i class="bi bi-person-badge-fill"></i>
+                                Tutor : {{ $kelas->nama_tutor }}
+                            </p>
+
+                            <div class="mb-3">
+                                <span class="badge bg-info">
+                                    <i class="bi bi-people-fill"></i>
+                                    {{ $kelas->jumlah_peserta }} Peserta
+                                </span>
+                            </div>
+
+                            <p class="text-secondary">
+                                {{ $kelas->deskripsi }}
+                            </p>
+
+                            @php
+                                $sudahGabung = DB::table('peserta_kelas')
+                                    ->where('kelas_id', $kelas->id)
+                                    ->where('user_id', Auth::id())
+                                    ->exists();
+                            @endphp
+
+                            @if ($sudahGabung)
+                                <a href="{{ url('/ruang-kelas/' . $kelas->id) }}" class="btn btn-success">
+                                    Masuk Kelas
+                                </a>
+                            @else
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalGabung{{ $kelas->id }}">
+                                    Gabung Kelas
+                                </button>
+                            @endif
+
+                        </div>
+                    </div>
+
+                    <!-- MODAL GABUNG KELAS -->
+                    <div class="modal fade" id="modalGabung{{ $kelas->id }}" tabindex="-1">
+                        <div class="modal-dialog">
+                            <form action="{{ url('/ruang-kelas/' . $kelas->id . '/verifikasi') }}" method="POST">
+
+                                @csrf
+
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            Gabung Kelas
+                                        </h5>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <h5>{{ $kelas->nama_kelas }}</h5>
+
+                                        <p class="text-muted">
+                                            Tutor : {{ $kelas->nama_tutor }}
+                                        </p>
+
+                                        <div class="mb-3">
+                                            <label>Password Kelas</label>
+
+                                            <input type="password" name="password_masuk" class="form-control"
+                                                placeholder="Masukkan Password Kelas" required>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Batal
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            Gabung
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                @empty
+                    <div class="alert alert-warning">
+                        Belum ada kelas tersedia.
+                    </div>
+                @endforelse
+            </div>
+        </div>
+
+        {{-- PROFIL SISWA --}}
+        <div class="tab-pane fade" id="panel-profil-siswa">
+            <div class="card border-0 shadow rounded-4 mt-4">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-center">
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=0D6EFD&color=fff&size=200"
+                                class="rounded-circle shadow mb-3" width="170" height="170">
+                            <h5 class="fw-bold">
+                                {{ Auth::user()->name }}
+                            </h5>
+                            <span class="badge bg-success">
+                                Warga Belajar
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <h4 class="fw-bold mb-4">
+                                <i class="bi bi-person-circle text-success me-2"></i>
+                                Profil Saya
+                            </h4>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th width="180">Nama Lengkap</th>
+                                    <td>{{ Auth::user()->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ Auth::user()->email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Role</th>
+                                    <td>
+                                        <span class="badge bg-primary">
+                                            {{ strtoupper(Auth::user()->role) }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Bergabung Sejak</th>
+                                    <td>
+                                        {{ \Carbon\Carbon::parse(Auth::user()->created_at)->translatedFormat('d F Y') }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- PANEL KELAS SAYA --}}
+        <div class="tab-pane fade" id="panel-kelas-saya" role="tabpanel">
+            <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
+                <h3 class="fw-bold mb-4"> Kelas Saya </h3>
+                <p>Total kelas saya : {{ count($data_kelas_saya) }}</p>
+                @forelse($data_kelas_saya as $kelas)
+                    <div class="card shadow-sm border-0 rounded-4 mb-4">
+                        <div class="card-body">
+                            <h4 class="fw-bold">
+                                {{ $kelas->nama_kelas }}
+                            </h4>
+
+                            <p class="text-muted mb-2">
+                                <i class="bi bi-person-badge-fill"></i>
+                                Tutor : {{ $kelas->nama_tutor }}
+                            </p>
+
+                            <span class="badge bg-info mb-3">
+                                <i class="bi bi-people-fill"></i>
+                                {{ $kelas->jumlah_peserta }} Peserta
+                            </span>
+
+                            <p class="text-secondary">
+                                {{ $kelas->deskripsi }}
+                            </p>
+                            <a href="{{ url('/ruang-kelas/' . $kelas->id) }}" class="btn btn-success">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                Masuk Kelas
+                            </a>
+                        </div>
+                    </div>
+
+                @empty
+
+                    <div class="alert alert-warning">
+
+                        Anda belum mengikuti kelas apapun.
+
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    @endif
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function muatKelasTutor() {
+                fetch('/api/ambil-kelas-tutor')
+                    .then(response => response.json())
+                    .then(data => {
+                        const wadah = document.getElementById('konten-kelas-tutor');
+                        wadah.innerHTML = ''; // Bersihkan kontainer
+
+                        if (data.length === 0) {
+                            wadah.innerHTML = `
                                             <div class="col-12 text-center py-5">
                                                 <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" alt="Kosong" style="width: 100px; opacity: 0.5;" class="mb-3">
                                                 <h5 class="fw-bold text-dark mb-1">Belum Ada Kelas Aktif</h5>
                                                 <p class="text-muted small">Mulai perjalanan mengajar Anda dengan menekan tombol "Buat Kelas Baru" di atas.</p>
                                             </div>`;
-                                    return;
-                                }
+                            return;
+                        }
 
-                                data.forEach(kelas => {
-                                    wadah.innerHTML += `
+                        data.forEach(kelas => {
+                            wadah.innerHTML += `
                                             <div class="col-md-4">
                                                 <div class="card border-0 shadow-sm rounded-4 h-100">
                                                     <div class="card-body p-4 d-flex flex-column justify-content-between">
@@ -1520,40 +1445,40 @@
                                                     </div>
                                                 </div>
                                             </div>`;
-                                });
-                            });
-                    }
+                        });
+                    });
+            }
 
-                    // Jalankan fungsi saat halaman pertama kali dibuka
-                    muatKelasTutor();
-                });
-            </script>
-            <script>
-                const password = document.getElementById('password');
-                const error = document.getElementById('passwordError');
+            // Jalankan fungsi saat halaman pertama kali dibuka
+            muatKelasTutor();
+        });
+    </script>
+    <script>
+        const password = document.getElementById('password');
+        const error = document.getElementById('passwordError');
 
-                password.addEventListener('input', function() {
-                    if (this.value.length > 0 && this.value.length < 4) {
-                        this.classList.add('is-invalid');
-                        error.textContent = 'Password minimal 4 karakter.';
-                    } else {
-                        this.classList.remove('is-invalid');
-                        error.textContent = '';
-                    }
-                });
-            </script>
-            <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                if(window.location.hash){
-                    const trigger = document.querySelector(
-                        'button[data-bs-target="' + window.location.hash + '"]'
-                    );
-                    if(trigger){
-                        new bootstrap.Tab(trigger).show();
-                    }
+        password.addEventListener('input', function() {
+            if (this.value.length > 0 && this.value.length < 4) {
+                this.classList.add('is-invalid');
+                error.textContent = 'Password minimal 4 karakter.';
+            } else {
+                this.classList.remove('is-invalid');
+                error.textContent = '';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.location.hash) {
+                const trigger = document.querySelector(
+                    'button[data-bs-target="' + window.location.hash + '"]'
+                );
+                if (trigger) {
+                    new bootstrap.Tab(trigger).show();
                 }
-            });
-            </script>
+            }
+        });
+    </script>
 </body>
 
 </html>
