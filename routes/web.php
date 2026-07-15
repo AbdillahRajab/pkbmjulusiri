@@ -89,6 +89,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
     Route::delete('/admin/berita/{id}/hapus', [AdminController::class,'hapusBerita'])
     ->name('admin.berita.hapus');
 
+
     // Halaman edit berita
     Route::get('/admin/berita/{id}/edit', [AdminController::class, 'editBerita'])
     ->name('admin.berita.edit');

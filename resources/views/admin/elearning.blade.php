@@ -479,8 +479,7 @@
                     </div>
                 </div>
 
-
-                {{-- TABEL DATA USER --}}
+{{-- TABEL DATA USER --}}
 
                 <div class="tab-pane fade" id="panel-user" role="tabpanel">
                     <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
@@ -655,6 +654,8 @@
                         </div>
                     </div>
                 </div>
+                
+
                 <!-- TABEL DATA PENDAFTAR ) -->
                 <div class="tab-pane fade" id="panel-pendaftar" role="tabpanel">
                     <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
@@ -789,7 +790,14 @@
                         <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-people-fill text-primary me-2"></i>Tabel
                             Data Warga Belajar / Siswa</h5>
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover align-middle">
+                             <button
+                                class="btn btn-success"
+                                data-bs-toggle="modal"
+                                data-bs-target="#importExcel">
+                                <i class="bi bi-file-earmark-excel"></i>
+                                Import Excel
+                            </button>
+                                <table class="table table-striped table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
                                         <th>No</th>
