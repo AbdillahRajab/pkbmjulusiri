@@ -89,7 +89,9 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
     Route::post('/admin/import-siswa', [AdminController::class, 'importSiswa'])
         ->name('admin.siswa.import.proses');
         
-
+    Route::post('/admin/siswa/{id}/aktifkan', [AdminController::class, 'aktifkanAkun'])
+        ->name('admin.siswa.aktifkan');
+        
     Route::post('/admin/berita/simpan', [AdminController::class, 'simpanBerita'])
     ->name('admin.berita.simpan');
 

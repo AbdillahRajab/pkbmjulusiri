@@ -10,6 +10,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\SiswaImport;
 use App\Models\Siswa;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -240,5 +241,37 @@ public function importSiswa(Request $request)
     Excel::import(new SiswaImport, $request->file('file'));
 
     return back()->with('success', 'Import berhasil.');
+}
+public function aktifkanAkun($id)
+{
+    $siswa = Siswa::findOrFail($id);
+
+    // Jika akun sudah pernah dibuat
+    if ($siswa->user_id) {
+        return back()->with('error', 'Akun siswa sudah aktif.');
+    }
+
+    // Email sementara berdasarkan NIS
+    $email = $siswa->nis . '@pkbmjulusiri.id';
+
+    // Cek jika email sudah dipakai
+    if (User::where('email', $email)->exists()) {
+        return back()->with('error', 'Email sudah digunakan.');
+    }
+
+    // Buat akun user
+    $user = User::create([
+        'name'     => $siswa->nama,
+        'email'    => $email,
+        'password' => Hash::make($siswa->nis),
+        'role'     => 'siswa',
+    ]);
+
+    // Hubungkan ke tabel siswas
+    $siswa->user_id = $user->id;
+    $siswa->status_akun = 1;
+    $siswa->save();
+
+    return back()->with('success', 'Akun siswa berhasil diaktifkan.');
 }
 }

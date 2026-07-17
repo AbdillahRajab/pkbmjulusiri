@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pendaftaran;
+use App\Models\Siswa;
+use App\Models\User;
 
 class PendaftaranController extends Controller
 {
@@ -136,13 +138,24 @@ public function userUpdate(Request $request, $id)
 // Fungsi Menghapus Akun User (Destroy)
 public function userDestroy($id)
 {
-    $user = \App\Models\User::findOrFail($id);
-    $namaUser = $user->name;
 
-    // Eksekusi hapus akun
+    $user = User::findOrFail($id);
+
+    // Jika user adalah siswa
+    if ($user->role == 'siswa') {
+
+        $siswa = Siswa::where('user_id', $user->id)->first();
+
+        if ($siswa) {
+            $siswa->user_id = null;
+            $siswa->status_akun = 0;
+            $siswa->save();
+        }
+    }
+
     $user->delete();
 
-    return redirect()->back()->with('success', 'User ' . $namaUser . ' berhasil dihapus dari sistem!');
+    return back()->with('success', 'Akun berhasil dihapus.');
 }
 
 }

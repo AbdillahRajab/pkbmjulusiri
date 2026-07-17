@@ -566,8 +566,8 @@
                                                     Admin</option>
                                                 <option value="tutor" {{ $usr->role == 'tutor' ? 'selected' : '' }}>
                                                     Tutor</option>
-                                                {{-- <option value="siswa" {{ $usr->role == 'siswa' ? 'selected' : '' }}>
-                                                    Siswa</option> --}}
+                                                <option value="siswa" {{ $usr->role == 'siswa' ? 'selected' : '' }}>
+                                                    Siswa</option>
                                             </select>
                                         </div>
                                     </div>
@@ -617,7 +617,7 @@
                                         <select name="role" class="form-select">
                                             <option value="admin">Admin</option>
                                             <option value="tutor">Tutor</option>
-                                            {{-- <option value="tutor">Siswa</option> --}}
+                                            <option value="tutor">Siswa</option>
                                         </select>
                                     </div>
                                 </div>
@@ -839,11 +839,14 @@
                         <i class="bi bi-eye-fill"></i>
                     </a>
                         @if($s->status_akun == 0)
-                            <a href="#"
-                            class="btn btn-success btn-sm"
-                            title="Aktifkan Akun">
+                        <form action="{{ route('admin.siswa.aktifkan', $s->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit"
+                                    class="btn btn-success btn-sm"
+                                    title="Aktifkan Akun">
                                 <i class="bi bi-person-check-fill"></i>
-                            </a>
+                            </button>
+                        </form>
                         @else
                             <span class="badge bg-success">
                                 Aktif
