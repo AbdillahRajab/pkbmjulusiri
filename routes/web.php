@@ -83,6 +83,13 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
     // Rute untuk memproses Hapus data User
     Route::delete('/admin/user/{id}/delete', [App\Http\Controllers\PendaftaranController::class, 'userDestroy'])->name('admin.user.destroy');
 
+    Route::get('/admin/import-siswa', [AdminController::class, 'formImportSiswa'])
+        ->name('admin.siswa.import');
+
+    Route::post('/admin/import-siswa', [AdminController::class, 'importSiswa'])
+        ->name('admin.siswa.import.proses');
+        
+
     Route::post('/admin/berita/simpan', [AdminController::class, 'simpanBerita'])
     ->name('admin.berita.simpan');
 

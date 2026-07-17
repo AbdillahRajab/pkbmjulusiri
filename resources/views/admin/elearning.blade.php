@@ -566,8 +566,8 @@
                                                     Admin</option>
                                                 <option value="tutor" {{ $usr->role == 'tutor' ? 'selected' : '' }}>
                                                     Tutor</option>
-                                                <option value="siswa" {{ $usr->role == 'siswa' ? 'selected' : '' }}>
-                                                    Siswa</option>
+                                                {{-- <option value="siswa" {{ $usr->role == 'siswa' ? 'selected' : '' }}>
+                                                    Siswa</option> --}}
                                             </select>
                                         </div>
                                     </div>
@@ -617,7 +617,7 @@
                                         <select name="role" class="form-select">
                                             <option value="admin">Admin</option>
                                             <option value="tutor">Tutor</option>
-                                            <option value="siswa">Siswa</option>
+                                            {{-- <option value="tutor">Siswa</option> --}}
                                         </select>
                                     </div>
                                 </div>
@@ -754,45 +754,209 @@
     </div>
     @endif
 
-    <!-- TABEL DATA SISWA -->
-    <div class="tab-pane fade" id="panel-siswa" role="tabpanel">
-        <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
-            <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-people-fill text-primary me-2"></i>Tabel
-                Data Warga Belajar / Siswa</h5>
-            <div class="table-responsive">
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importExcel">
-                    <i class="bi bi-file-earmark-excel"></i>Import File Excel
+<!-- TABEL DATA SISWA -->
+<div class="tab-pane fade" id="panel-siswa" role="tabpanel">
+    <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-dark mb-0">
+                <i class="bi bi-people-fill text-primary me-2"></i>
+                Tabel Data Warga Belajar
+            </h5>
+
+            <a href="{{ route('admin.siswa.import') }}" class="btn btn-success">
+                <i class="bi bi-file-earmark-excel"></i>
+                Import File Excel
+            </a>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-primary">
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIS</th>
+                    <th>JK</th>
+                    <th>Alamat</th>
+                    <th>Tgl Lahir</th>
+                    <th>Kelas</th>
+                    <th>Status Akun</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+                <tbody>
+
+                @forelse($data_siswa as $key => $s)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $s->nama }}</td>
+                    <td>{{ $s->nis }}</td>
+                    <td>{{ $s->jenis_kelamin }}</td>
+                    <td>{{ $s->alamat }}</td>
+                    <td>
+                        @if($s->tgl_lahir)
+                            {{ \Carbon\Carbon::parse($s->tgl_lahir)->format('d-m-Y') }}
+                        @endif
+                    </td>
+                    <td>{{ $s->kelas }}</td>
+                    <td>
+                    @if($s->status_akun)
+                        <span class="badge bg-success">
+                            Aktif
+                        </span>
+                    @else
+                        <span class="badge bg-danger">
+                            Belum Aktif
+                        </span>
+                    @endif
+                </td>
+                    <td class="text-center">
+                    <a href="#"
+                        class="btn btn-info btn-sm btn-detail"
+                        data-bs-toggle="modal"
+                        data-bs-target="#detailSiswa"
+
+                        data-nama="{{ $s->nama }}"
+                        data-nis="{{ $s->nis }}"
+                        data-jk="{{ $s->jenis_kelamin }}"
+                        data-tempat="{{ $s->tempat_lahir }}"
+                        data-tgl="{{ $s->tgl_lahir }}"
+                        data-nik="{{ $s->nik }}"
+                        data-agama="{{ $s->agama }}"
+                        data-alamat="{{ $s->alamat }}"
+                        data-kelurahan="{{ $s->kelurahan_desa }}"
+                        data-kecamatan="{{ $s->kecamatan }}"
+                        data-ayah="{{ $s->nama_ayah }}"
+                        data-nikayah="{{ $s->nik_ayah }}"
+                        data-ibu="{{ $s->nama_ibu }}"
+                        data-nikibu="{{ $s->nik_ibu }}"
+                        data-kelas="{{ $s->kelas }}"
+                        data-status="{{ $s->status_akun }}"
+
+                        title="Detail">
+                        <i class="bi bi-eye-fill"></i>
+                    </a>
+                        @if($s->status_akun == 0)
+                            <a href="#"
+                            class="btn btn-success btn-sm"
+                            title="Aktifkan Akun">
+                                <i class="bi bi-person-check-fill"></i>
+                            </a>
+                        @else
+                            <span class="badge bg-success">
+                                Aktif
+                            </span>
+                        @endif
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="8" class="text-center">
+                        Belum ada data siswa.
+                    </td>
+                </tr>
+                @endforelse
+           </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<!-- ================= MODAL DETAIL SISWA ================= -->
+
+<div class="modal fade" id="detailSiswa" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    Detail Data Warga Belajar
+                </h5>
+                <button class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
                 </button>
-                <table class="table table-striped table-hover align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Siswa</th>
-                            <th>Alamat Email</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($data_siswa as $key => $s)
-                            <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td class="fw-bold text-dark">{{ $s->name }}</td>
-                                <td>{{ $s->email }}</td>
-                                <td><span class="badge bg-primary">Siswa</span></td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center text-muted py-3">Belum ada akun
-                                    siswa.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="35%">Nama</th>
+                        <td id="detailNama"></td>
+                    </tr>
+                    <tr>
+                        <th>NIS</th>
+                        <td id="detailNis"></td>
+                    </tr>
+                    <tr>
+                        <th>Jenis Kelamin</th>
+                        <td id="detailJk"></td>
+                    </tr>
+                    <tr>
+                        <th>Tempat Lahir</th>
+                        <td id="detailTempat"></td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Lahir</th>
+                        <td id="detailTgl"></td>
+                    </tr>
+                    <tr>
+                        <th>NIK</th>
+                        <td id="detailNik"></td>
+                    </tr>
+                    <tr>
+                        <th>Agama</th>
+                        <td id="detailAgama"></td>
+                    </tr>
+                    <tr>
+                        <th>Alamat</th>
+                        <td id="detailAlamat"></td>
+                    </tr>
+                    <tr>
+                        <th>Kelurahan</th>
+                        <td id="detailKelurahan"></td>
+                    </tr>
+                    <tr>
+                        <th>Kecamatan</th>
+                        <td id="detailKecamatan"></td>
+                    </tr>
+                    <tr>
+                        <th>Nama Ayah</th>
+                        <td id="detailAyah"></td>
+                    </tr>
+                    <tr>
+                        <th>NIK Ayah</th>
+                        <td id="detailNikAyah"></td>
+                    </tr>
+                    <tr>
+                        <th>Nama Ibu</th>
+                        <td id="detailIbu"></td>
+                    </tr>
+                    <tr>
+                        <th>NIK Ibu</th>
+                        <td id="detailNikIbu"></td>
+                    </tr>
+                    <tr>
+                        <th>Kelas</th>
+                        <td id="detailKelas"></td>
+                    </tr>
+                    <tr>
+                        <th>Status Akun</th>
+                        <td id="detailStatus"></td>
+                    </tr>
                 </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    Tutup
+                </button>
             </div>
         </div>
     </div>
+</div>
 
-    {{-- Wadah Panel untuk Kelola Akademik --}}
+
+    {{-- PANEL KELAS --}}
     <div class="tab-pane fade" id="panel-kelas">
         @if (session('success_kelas'))
             <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
@@ -1397,11 +1561,8 @@
                     </div>
 
                 @empty
-
                     <div class="alert alert-warning">
-
                         Anda belum mengikuti kelas apapun.
-
                     </div>
                 @endforelse
             </div>
@@ -1478,6 +1639,38 @@
             }
         });
     </script>
+
 </body>
 
 </html>
+<script>
+document.querySelectorAll('.btn-detail').forEach(function(btn){
+    btn.addEventListener('click',function(){
+        document.getElementById('detailNama').innerText=this.dataset.nama;
+        document.getElementById('detailNis').innerText=this.dataset.nis;
+        document.getElementById('detailJk').innerText=this.dataset.jk;
+        document.getElementById('detailTempat').innerText=this.dataset.tempat;
+        document.getElementById('detailTgl').innerText=this.dataset.tgl;
+        document.getElementById('detailNik').innerText=this.dataset.nik;
+        document.getElementById('detailAgama').innerText=this.dataset.agama;
+        document.getElementById('detailAlamat').innerText=this.dataset.alamat;
+        document.getElementById('detailKelurahan').innerText=this.dataset.kelurahan;
+        document.getElementById('detailKecamatan').innerText=this.dataset.kecamatan;
+        document.getElementById('detailAyah').innerText=this.dataset.ayah;
+        document.getElementById('detailNikAyah').innerText=this.dataset.nikayah;
+        document.getElementById('detailIbu').innerText=this.dataset.ibu;
+        document.getElementById('detailNikIbu').innerText=this.dataset.nikibu;
+        document.getElementById('detailKelas').innerText=this.dataset.kelas;
+
+        if(this.dataset.status==1){
+            document.getElementById('detailStatus').innerHTML='<span class="badge bg-success">Aktif</span>';
+        }else{
+            document.getElementById('detailStatus').innerHTML='<span class="badge bg-secondary">Belum Aktif</span>';
+
+        }
+
+    });
+
+});
+
+</script>

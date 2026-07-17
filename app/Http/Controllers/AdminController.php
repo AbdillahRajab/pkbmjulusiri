@@ -7,32 +7,19 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\SiswaImport;
+use App\Models\Siswa;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        // 1. AUTO-UPGRADE AKUN UTAMA ABDILLAH
-        if (auth()->check() && auth()->user()->email === 'abdipkp26@gmail.com' && auth()->user()->role !== 'admin') {
-            $userUtama = User::find(auth()->id());
-            if ($userUtama) {
-                $userUtama->role = 'admin';
-                $userUtama->save();
-                auth()->user()->refresh(); 
-            }
-        }
 
-        // 2. PEMISAHAN DATA DARI TABEL USERS
-        // $data_siswa = User::where('role', 'siswa')->orderBy('id', 'desc')->get();
-        // $data_tutor = User::where('role', 'tutor')->orderBy('id', 'desc')->get();
-        // $data_admin = User::where('role', 'admin')->orderBy('id', 'desc')->get();
-        // $data_user = User::orderBy('id', 'desc')->get();
-        // return view('admin.elearning', compact('data_user'));
-        $data_user = User::orderBy('id', 'desc')->get();
 
-$data_siswa = User::where('role', 'siswa')
-    ->orderBy('id', 'desc')
-    ->get();
+$data_user = User::orderBy('id', 'desc')->get();
+
+$data_siswa = Siswa::orderBy('id', 'desc')->get();
 
 $data_tutor = User::where('role', 'tutor')
     ->orderBy('id', 'desc')
@@ -239,5 +226,19 @@ public function cetakPendaftaran($id)
     return $pdf->stream(
         'Formulir-'.$pendaftar->nama.'.pdf'
     );
+}
+public function formImportSiswa()
+{
+    return view('admin.import_siswa');
+}
+public function importSiswa(Request $request)
+{
+    $request->validate([
+        'file' => 'required|mimes:xlsx,xls'
+    ]);
+
+    Excel::import(new SiswaImport, $request->file('file'));
+
+    return back()->with('success', 'Import berhasil.');
 }
 }
