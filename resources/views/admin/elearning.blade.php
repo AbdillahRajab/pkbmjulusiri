@@ -318,16 +318,69 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div
-                                class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
+                            <div class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">TOTAL ADMIN</small>
                                     <h3 class="fw-bold mb-0 text-warning">{{ $total_admin }} User</h3>
                                 </div>
-                                <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-3"><i
-                                        class="bi bi-shield-lock fs-3"></i></div>
+                                <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-3"><i class="bi bi-shield-lock fs-3"></i></div>
+                            </div>
+                                </div>
+                            <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-0 shadow-sm rounded-4 h-100">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="text-muted fw-bold text-uppercase small">
+                                            Total Kelas
+                                        </div>
+                                        <div class="fs-1 fw-bold text-primary">
+                                            {{ $total_kelas }}
+                                        </div>
+                                        <small class="text-secondary">
+                                            Kelas Aktif
+                                        </small>
+                                    </div>
+                                    <div class="bg-primary bg-opacity-10 rounded-4 p-3">
+                                        <i class="bi bi-journal-bookmark-fill text-primary fs-2"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm rounded-4 h-100">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="text-muted fw-bold text-uppercase small">
+                                    Total Berita
+                                </div>
+
+                                <div class="fs-1 fw-bold text-success">
+                                    {{ $total_berita }}
+                                </div>
+
+                                <small class="text-secondary">
+                                    Berita Dipublikasikan
+                                </small>
+                            </div>
+
+                            <div class="bg-success bg-opacity-10 rounded-4 p-3">
+                                <i class="bi bi-newspaper text-success fs-2"></i>
+                            </div>
+
+                        </div>
                     </div>
+                </div>
+                    </div>
+                    @endif
+                @if(Auth::user()->role == 'admin')
+                <div class="card border-0 shadow-sm rounded-4 mt-4">
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-4">
+                            <i class="bi bi-bar-chart-fill text-primary me-2"></i>
+                            Grafik Statistik Portal PKBM JULU SIRI
+                        </h5>
+                        <canvas id="grafikStatistik" height="90"></canvas>
+                    </div>
+                </div>
                 @endif
             </div>
 
@@ -713,9 +766,9 @@
 
                                                     </form>
                                                 </form>
-                        </div>
-                        </td>
-                        </tr>
+                                        </div>
+                                    </td>
+                            </tr>
                     @empty
                         <tr>
                             <td colspan="5" class="text-center text-muted py-3">Belum ada data
@@ -769,10 +822,17 @@
                 Import File Excel
             </a>
         </div>
-
+    <div class="row mb-3">
+        <div class="col-md-5">
+            <input
+                type="text"
+                id="cariSiswa"
+                class="form-control"
+                placeholder="🔍 Cari berdasarkan Nama, NIS atau Kelas...">
+        </div>
+    </div>
         <div class="table-responsive">
-
-            <table class="table table-bordered table-hover align-middle">
+            <table id="tabelSiswa" class="table table-bordered table-hover align-middle">
                 <thead class="table-primary">
                 <tr>
                     <th>No</th>
@@ -786,8 +846,7 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
-                <tbody>
-
+               <tbody id="bodySiswa">
                 @forelse($data_siswa as $key => $s)
                 <tr>
                     <td>{{ $key + 1 }}</td>
@@ -1642,7 +1701,87 @@
             }
         });
     </script>
-
+<script>
+document.getElementById('cariSiswa').addEventListener('keyup', function () {
+    let keyword = this.value.toLowerCase();
+    let rows = document.querySelectorAll('#bodySiswa tr');
+    rows.forEach(function(row){
+        let nama  = row.cells[1].innerText.toLowerCase();
+        let nis   = row.cells[2].innerText.toLowerCase();
+        let kelas = row.cells[6].innerText.toLowerCase();
+        if (
+            nama.includes(keyword) ||
+            nis.includes(keyword) ||
+            kelas.includes(keyword)
+        ){
+            row.style.display = "";
+        }else{
+            row.style.display = "none";
+        }
+    });
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('grafikStatistik');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+            'Pendaftar',
+            'Warga Belajar',
+            'Tutor',
+            'Admin',
+            'Kelas',
+            'Berita'
+        ],
+        datasets: [{
+            label: 'Jumlah Data',
+            data: [
+                {{ $total_pendaftar }},
+                {{ $total_siswa }},
+                {{ $total_tutor }},
+                {{ $total_admin }},
+                {{ $total_kelas }},
+                {{ $total_berita }}
+            ],
+            backgroundColor: [
+                '#ef4444',
+                '#2563eb',
+                '#10b981',
+                '#f59e0b',
+                '#8b5cf6',
+                '#06b6d4'
+            ],
+            borderRadius: 8,
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Statistik Portal PKBM JULU SIRI Tahun {{ date("Y") }}',
+                font: {
+                    size: 18
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    precision: 0
+                }
+            }
+        }
+    }
+});
+</script>
 </body>
 
 </html>
