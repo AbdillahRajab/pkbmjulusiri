@@ -27,13 +27,11 @@ class PendaftaranController extends Controller
         ]);
 
         // 2. Upload file gambar ke folder public storage
-        // Upload ke Supabase
         $ktpPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ktp'));
         $kkPath = Storage::disk('s3')->putFile('berkas', $request->file('file_kk'));
         $ijazahPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ijazah'));
         $aktaPath = Storage::disk('s3')->putFile('berkas', $request->file('file_akta'));
 
-        // DEBUG (sementara)
         dd([
             'ktp' => $ktpPath,
             'kk' => $kkPath,
@@ -42,16 +40,16 @@ class PendaftaranController extends Controller
         ]);
         
         // 3. Simpan ke Database lewat Model Pendaftaran (yang dibaca Admin)
-        Pendaftaran::create([
-            'nama'        => $request->name,          // Input name="name"
-            'paket'       => $request->program_paket, // Input name="program_paket"
-            'nohp'        => $request->no_hp,         // Input name="no_hp"
-            'file_ktp'    => $ktpPath,
-            'file_kk'     => $kkPath,
-            'file_ijazah' => $ijazahPath,
-            'file_akta'   => $aktaPath,
-            'status'      => 'Pending', // Langsung masuk antrean Admin
-        ]);
+        // Pendaftaran::create([
+        //     'nama'        => $request->name,          // Input name="name"
+        //     'paket'       => $request->program_paket, // Input name="program_paket"
+        //     'nohp'        => $request->no_hp,         // Input name="no_hp"
+        //     'file_ktp'    => $ktpPath,
+        //     'file_kk'     => $kkPath,
+        //     'file_ijazah' => $ijazahPath,
+        //     'file_akta'   => $aktaPath,
+        //     'status'      => 'Pending', // Langsung masuk antrean Admin
+        // ]);
 
         return redirect('/')->with('sukses_pendaftaran', 'Silakan tunggu verifikasi/konfirmasi dari Admin PKBM JULU\ SIRI\. Data Anda sedang dalam antrean.');
     }
