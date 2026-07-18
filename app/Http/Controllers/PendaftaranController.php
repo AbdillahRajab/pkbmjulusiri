@@ -26,19 +26,15 @@ class PendaftaranController extends Controller
             'file_akta'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+                dd(config('filesystems.disks.s3'));
+
         // 2. Upload file gambar ke folder public storage
         $ktpPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ktp'));
         $kkPath = Storage::disk('s3')->putFile('berkas', $request->file('file_kk'));
         $ijazahPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ijazah'));
         $aktaPath = Storage::disk('s3')->putFile('berkas', $request->file('file_akta'));
 
-        dd([
-            'ktp' => $ktpPath,
-            'kk' => $kkPath,
-            'ijazah' => $ijazahPath,
-            'akta' => $aktaPath,
-        ]);
-        
+
         // 3. Simpan ke Database lewat Model Pendaftaran (yang dibaca Admin)
         Pendaftaran::create([
             'nama'        => $request->name,          // Input name="name"
