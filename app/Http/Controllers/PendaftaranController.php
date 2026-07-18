@@ -20,10 +20,10 @@ class PendaftaranController extends Controller
             'no_hp'          => 'required|string',
             'sekolah_asal'   => 'nullable|string',
             'tahun_keluar'   => 'nullable|string',
-            'file_ktp'       => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'file_kk'        => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'file_ijazah'    => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'file_akta'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'file_ktp'       => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'file_kk'        => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'file_ijazah'    => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'file_akta'      => 'required|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
 
