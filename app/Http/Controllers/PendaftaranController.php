@@ -26,8 +26,8 @@ class PendaftaranController extends Controller
             'file_akta'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-                dd(config('filesystems.disks.s3'));
-
+        dd(config('filesystems.disks.s3'));
+        
         // 2. Upload file gambar ke folder public storage
         $ktpPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ktp'));
         $kkPath = Storage::disk('s3')->putFile('berkas', $request->file('file_kk'));
