@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pendaftaran;
 use App\Models\Siswa;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class PendaftaranController extends Controller
 {
@@ -26,10 +27,10 @@ class PendaftaranController extends Controller
         ]);
 
         // 2. Upload file gambar ke folder public storage
-        $ktpPath    = $request->file('file_ktp')->store('berkas', 'public');
-        $kkPath     = $request->file('file_kk')->store('berkas', 'public');
-        $ijazahPath = $request->file('file_ijazah')->store('berkas', 'public');
-        $aktaPath   = $request->file('file_akta')->store('berkas', 'public');
+        $ktpPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ktp'));
+        $kkPath = Storage::disk('s3')->putFile('berkas', $request->file('file_kk'));
+        $ijazahPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ijazah'));
+        $aktaPath = Storage::disk('s3')->putFile('berkas', $request->file('file_akta'));
 
         // 3. Simpan ke Database lewat Model Pendaftaran (yang dibaca Admin)
         Pendaftaran::create([

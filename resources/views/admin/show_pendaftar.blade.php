@@ -314,39 +314,26 @@
                     border-danger
                     @endif
                     ">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="fs-3 text-secondary"><i class="{{ $info['icon'] }}"></i></div>
-                                <div>
-                                    <span class="fw-bold d-block text-dark small" style="line-height: 1.2;">{{ $info['label'] }}</span>
-                                    @if($pendaftar->$field)
-                                    <span class="badge bg-success rounded-pill">
-                                        <i class="bi bi-check-circle-fill me-1"></i>
-                                        Sudah Upload
-                                    </span>
-                                    @else
-                                    <span class="badge bg-danger rounded-pill">
-                                        <i class="bi bi-x-circle-fill me-1"></i>
-                                        Belum Upload
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-                            
-                            @if($pendaftar->$field)
-                                <a href="{{ asset('storage/' . $pendaftar->$field) }}" target="_blank" class="btn btn-sm {{ $info['color'] }} rounded-pill px-3 shadow-sm fw-bold text-xs">
-                                    <i class="bi bi-eye-fill me-1"></i>Lihat File
-                                </a>
-                            @else
-                                <span class="badge bg-light text-muted border rounded-pill px-3 py-2 text-xs">Kosong</span>
-                            @endif
-                        </div>
+                    <div class="d-flex align-items-center gap-2">
+                         <div class="fs-3 text-secondary"><i class="{{ $info['icon'] }}"></i></div>
+                    <div>
+                     <span class="fw-bold d-block text-dark small" style="line-height: 1.2;">{{ $info['label'] }}</span>
+                    @if($pendaftar->$field)
+                        <a href="{{ config('app.supabase_url') }}/storage/v1/object/public/{{ env('SUPABASE_BUCKET') }}/{{ $pendaftar->$field }}"
+                        target="_blank"
+                        class="btn btn-sm {{ $info['color'] }} rounded-pill px-3 shadow-sm fw-bold text-xs">
+                            <i class="bi bi-eye-fill me-1"></i> Lihat File
+                        </a>
+                    @else
+                        <span class="badge bg-light text-muted border rounded-pill px-3 py-2 text-xs">
+                            Kosong
+                        </span>
+                    @endif
+                    </div>
                     @endforeach
-                </div>
-                
-                <p class="text-muted small mb-4">Pastikan seluruh dokumen sesuai dengan identitas calon siswa sebelum proses verifikasi dan pembuatan akun dilakukan.</p>
-
+                        </div>
+                            <p class="text-muted small mb-4">Pastikan seluruh dokumen sesuai dengan identitas calon siswa sebelum proses verifikasi dan pembuatan akun dilakukan.</p>
+                        </div>
+                 </div>
             </div>
-        </div>
-
-    </div>
-</div>
+     </div>

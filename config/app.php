@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'supabase_url' => env('SUPABASE_URL'),
 ];

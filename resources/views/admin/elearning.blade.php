@@ -24,7 +24,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Portal E-Learning - PKBM JULU SIRI</title>
+    <title>Dashboard E-Learning - PKBM JULU SIRI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
@@ -376,7 +376,7 @@
                     <div class="card-body">
                         <h5 class="fw-bold mb-4">
                             <i class="bi bi-bar-chart-fill text-primary me-2"></i>
-                            Grafik Statistik Portal PKBM JULU SIRI
+                            Grafik Statistik PKBM JULU SIRI
                         </h5>
                         <canvas id="grafikStatistik" height="90"></canvas>
                     </div>
@@ -1765,7 +1765,7 @@ new Chart(ctx, {
             },
             title: {
                 display: true,
-                text: 'Statistik Portal PKBM JULU SIRI Tahun {{ date("Y") }}',
+                text: 'Statistik PKBM JULU SIRI Tahun {{ date("Y") }}',
                 font: {
                     size: 18
                 }
