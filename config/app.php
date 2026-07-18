@@ -124,4 +124,6 @@ return [
     ],
 
     'supabase_url' => env('SUPABASE_URL'),
+
+    'supabase_bucket' => env('SUPABASE_BUCKET'),
 ];

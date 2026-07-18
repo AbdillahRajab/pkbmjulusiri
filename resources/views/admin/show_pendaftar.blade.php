@@ -256,6 +256,7 @@
             </div>
         </div>
 
+        
         <!-- BAGIAN KANAN: Berkas Lampiran Dokumen -->
                 <div class="col-lg-4">
                     <div class="card form-box p-4">
@@ -300,40 +301,84 @@
                 <div class="form-section-title mb-3"><i class="bi bi-folder2-open text-warning me-2"></i>Berkas Persyaratan Pendaftaran</div>
                 <p class="text-muted small mb-4">Seluruh dokumen berikut diunggah oleh calon siswa saat melakukan pendaftaran online dan dapat diperiksa oleh Admin sebelum proses verifikasi.</p>
 
-                <div class="d-flex flex-column gap-3">
-                    @foreach([
-                        'file_ktp' => ['label' => 'KTP Pendaftar / Orang Tua', 'icon' => 'bi-card-image', 'color' => 'btn-primary'],
-                        'file_kk' => ['label' => 'Kartu Keluarga (KK)', 'icon' => 'bi-file-earmark-person', 'color' => 'btn-info text-white'],
-                        'file_ijazah' => ['label' => 'Ijazah Terakhir', 'icon' => 'bi-file-earmark-medical', 'color' => 'btn-success'],
-                        'file_akta' => ['label' => 'Akta Kelahiran', 'icon' => 'bi-file-earmark-text', 'color' => 'btn-violet text-white']
-                    ] as $field => $info)
-                        <div class="card-berkas p-3 shadow-sm border-start border-5
-                    @if($pendaftar->$field)
-                    border-success
-                    @else
-                    border-danger
-                    @endif
-                    ">
-                    <div class="d-flex align-items-center gap-2">
-                         <div class="fs-3 text-secondary"><i class="{{ $info['icon'] }}"></i></div>
-                    <div>
-                     <span class="fw-bold d-block text-dark small" style="line-height: 1.2;">{{ $info['label'] }}</span>
-                    @if($pendaftar->$field)
-                        <a href="{{ config('app.supabase_url') }}/storage/v1/object/public/{{ env('SUPABASE_BUCKET') }}/{{ $pendaftar->$field }}"
-                        target="_blank"
-                        class="btn btn-sm {{ $info['color'] }} rounded-pill px-3 shadow-sm fw-bold text-xs">
-                            <i class="bi bi-eye-fill me-1"></i> Lihat File
-                        </a>
-                    @else
-                        <span class="badge bg-light text-muted border rounded-pill px-3 py-2 text-xs">
-                            Kosong
-                        </span>
-                    @endif
+              <div class="d-flex flex-column gap-3">
+
+                @php
+                    $berkas = [
+                        'file_ktp' => [
+                            'label' => 'KTP Pendaftar / Orang Tua',
+                            'icon'  => 'bi-card-image',
+                            'color' => 'btn-primary'
+                        ],
+                        'file_kk' => [
+                            'label' => 'Kartu Keluarga (KK)',
+                            'icon'  => 'bi-file-earmark-person',
+                            'color' => 'btn-info text-white'
+                        ],
+                        'file_ijazah' => [
+                            'label' => 'Ijazah Terakhir',
+                            'icon'  => 'bi-file-earmark-medical',
+                            'color' => 'btn-success'
+                        ],
+                        'file_akta' => [
+                            'label' => 'Akta Kelahiran',
+                            'icon'  => 'bi-file-earmark-text',
+                            'color' => 'btn-secondary'
+                        ],
+                    ];
+                @endphp
+
+                @foreach($berkas as $field => $info)
+
+                    <div class="card shadow-sm border-start border-5 {{ $pendaftar->$field ? 'border-success' : 'border-danger' }}">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+
+                            <div class="d-flex align-items-center">
+                                <i class="bi {{ $info['icon'] }} fs-2 text-secondary me-3"></i>
+
+                                <div>
+                                    <div class="fw-bold">
+                                        {{ $info['label'] }}
+                                    </div>
+
+                                    @if($pendaftar->$field)
+                                        <small class="text-success">
+                                            Berkas tersedia
+                                        </small>
+                                    @else
+                                        <small class="text-danger">
+                                            Berkas belum diunggah
+                                        </small>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div>
+                                @if($pendaftar->$field)
+
+                                   <a href="{{ config('app.supabase_url') }}/storage/v1/object/public/{{ config('app.supabase_bucket') }}/{{ $pendaftar->$field }}"
+                                    target="_blank"
+                                    class="btn btn-sm {{ $info['color'] }}">
+
+                                        <i class="bi bi-eye-fill"></i>
+                                        Lihat File
+
+                                    </a>
+                                @else
+                                    <span class="badge bg-secondary">
+                                        Kosong
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    @endforeach
-                        </div>
-                            <p class="text-muted small mb-4">Pastikan seluruh dokumen sesuai dengan identitas calon siswa sebelum proses verifikasi dan pembuatan akun dilakukan.</p>
-                        </div>
+
+                @endforeach
+            </div>
+            <p class="text-muted small mt-4">
+                Pastikan seluruh dokumen sesuai dengan identitas calon siswa sebelum proses verifikasi dan pembuatan akun dilakukan.
+            </p>
+            </div>
                  </div>
             </div>
      </div>
