@@ -354,7 +354,12 @@
                             </div>
 
                             <div>
-                                @if($pendaftar->$field)
+                                {{ $field }}
+                                <br>
+                                {{ $pendaftar->$field }}
+                                <hr>
+
+                                @if(!empty($pendaftar->$field))
 
                                    <a href="{{ config('app.supabase_url') }}/storage/v1/object/public/{{ config('app.supabase_bucket') }}/{{ $pendaftar->$field }}"
                                     target="_blank"
