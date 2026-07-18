@@ -33,12 +33,12 @@ class PendaftaranController extends Controller
         $ijazahPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ijazah'));
         $aktaPath = Storage::disk('s3')->putFile('berkas', $request->file('file_akta'));
 
-        dd([
-            'ktp' => $ktpPath,
-            'kk' => $kkPath,
-            'ijazah' => $ijazahPath,
-            'akta' => $aktaPath,
-        ]);
+        // dd([
+        //     'ktp' => $ktpPath,
+        //     'kk' => $kkPath,
+        //     'ijazah' => $ijazahPath,
+        //     'akta' => $aktaPath,
+        // ]);
         
         // 3. Simpan ke Database lewat Model Pendaftaran (yang dibaca Admin)
         Pendaftaran::create([
