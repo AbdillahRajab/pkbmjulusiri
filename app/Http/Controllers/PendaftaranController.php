@@ -48,7 +48,7 @@ class PendaftaranController extends Controller
 
         $cek = Pendaftaran::latest()->first();
 
-        dd($cek);
+        dd($cek->toArray());
         
         return redirect('/')->with('sukses_pendaftaran', 'Silakan tunggu verifikasi/konfirmasi dari Admin PKBM JULU\ SIRI\. Data Anda sedang dalam antrean.');
     }
