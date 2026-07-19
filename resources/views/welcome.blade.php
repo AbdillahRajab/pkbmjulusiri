@@ -792,35 +792,9 @@
                             </div>
                         </div>
 
-                        <!-- BAGIAN B: DATA ORANG TUA / WALI -->
-                        <div class="form-section-title">B. Data Orang Tua / Wali</div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label small fw-bold text-secondary">Nama Ayah Kandung <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" name="nama_ayah" class="form-control form-control-sm"
-                                    placeholder="Nama Ayah" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-bold text-secondary">Nama Ibu Kandung <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" name="nama_ibu" class="form-control form-control-sm"
-                                    placeholder="Nama Ibu" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-bold text-secondary">Pekerjaan Orang Tua</label>
-                                <input type="text" name="pekerjaan_ortu" class="form-control form-control-sm"
-                                    placeholder="Contoh: Buruh, Tani, PNS, Wiraswasta">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-bold text-secondary">No. HP Orang Tua / Wali</label>
-                                <input type="text" name="no_hp_ortu" class="form-control form-control-sm"
-                                    placeholder="Nomor kontak aktif">
-                            </div>
-                        </div>
-
-                        <!-- BAGIAN C: ASAL SEKOLAH SEBELUMNYA -->
-                        <div class="form-section-title mt-3 fw-bold text-dark">C. Asal Sekolah & Berkas Pendidikan
+                       
+                        <!-- BAGIAN B: ASAL SEKOLAH SEBELUMNYA -->
+                        <div class="form-section-title mt-3 fw-bold text-dark">B. Asal Sekolah & Berkas Pendidikan
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
