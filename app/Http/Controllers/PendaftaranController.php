@@ -18,6 +18,10 @@ class PendaftaranController extends Controller
             'name'           => 'required|string|max:255',
             'program_paket'  => 'required|string',
             'no_hp'          => 'required|string',
+            'tempat_lahir'  => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|string|max:30',
+            'alamat'        => 'required|string',
             'sekolah_asal'   => 'nullable|string',
             'tahun_keluar'   => 'nullable|string',
             'file_ktp'       => 'required|image|mimes:jpeg,png,jpg|max:5120',
@@ -36,19 +40,26 @@ class PendaftaranController extends Controller
         
         // 3. Simpan ke Database lewat Model Pendaftaran (yang dibaca Admin)
         Pendaftaran::create([
-            'nama'        => $request->name,          // Input name="name"
-            'paket'       => $request->program_paket, // Input name="program_paket"
-            'nohp'        => $request->no_hp,         // Input name="no_hp"
-            'file_ktp'    => $ktpPath,
-            'file_kk'     => $kkPath,
-            'file_ijazah' => $ijazahPath,
-            'file_akta'   => $aktaPath,
-            'status'      => 'Pending', // Langsung masuk antrean Admin
+        
+            'nama'            => $request->name,
+            'paket'           => $request->program_paket,
+            'nohp'            => $request->no_hp,
+        
+            'tempat_lahir'    => $request->tempat_lahir,
+            'tanggal_lahir'   => $request->tanggal_lahir,
+            'jenis_kelamin'   => $request->jenis_kelamin,
+            'alamat'          => $request->alamat,
+        
+            'sekolah_asal'    => $request->sekolah_asal,
+            'tahun_keluar'    => $request->tahun_keluar,
+        
+            'file_ktp'        => $ktpPath,
+            'file_kk'         => $kkPath,
+            'file_ijazah'     => $ijazahPath,
+            'file_akta'       => $aktaPath,
+        
+            'status'          => 'Pending',
         ]);
-
-        $cek = Pendaftaran::latest()->first();
-
-        dd($cek->toArray());
         
         return redirect('/')->with('sukses_pendaftaran', 'Silakan tunggu verifikasi/konfirmasi dari Admin PKBM JULU\ SIRI\. Data Anda sedang dalam antrean.');
     }
