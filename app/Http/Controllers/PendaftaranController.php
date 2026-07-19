@@ -40,24 +40,43 @@ class PendaftaranController extends Controller
         
         // 3. Simpan ke Database lewat Model Pendaftaran (yang dibaca Admin)
         Pendaftaran::create([
+<<<<<<< HEAD
 
             'nama'            => $request->name,
             'paket'           => $request->program_paket,
             'nohp'            => $request->no_hp,
 
+=======
+        
+            'nama'            => $request->name,
+            'paket'           => $request->program_paket,
+            'nohp'            => $request->no_hp,
+        
+>>>>>>> f68b74ec00108b0aeaf2ed71c98dd9a9a21249c6
             'tempat_lahir'    => $request->tempat_lahir,
             'tanggal_lahir'   => $request->tanggal_lahir,
             'jenis_kelamin'   => $request->jenis_kelamin,
             'alamat'          => $request->alamat,
+<<<<<<< HEAD
 
             'sekolah_asal'    => $request->sekolah_asal,
             'tahun_keluar'    => $request->tahun_keluar,
 
+=======
+        
+            'sekolah_asal'    => $request->sekolah_asal,
+            'tahun_keluar'    => $request->tahun_keluar,
+        
+>>>>>>> f68b74ec00108b0aeaf2ed71c98dd9a9a21249c6
             'file_ktp'        => $ktpPath,
             'file_kk'         => $kkPath,
             'file_ijazah'     => $ijazahPath,
             'file_akta'       => $aktaPath,
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> f68b74ec00108b0aeaf2ed71c98dd9a9a21249c6
             'status'          => 'Pending',
         ]);
         
