@@ -20,10 +20,10 @@ class PendaftaranController extends Controller
             'no_hp'          => 'required|string',
             'sekolah_asal'   => 'nullable|string',
             'tahun_keluar'   => 'nullable|string',
-            'file_ktp'       => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'file_kk'        => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'file_ijazah'    => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'file_akta'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'file_ktp'       => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'file_kk'        => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'file_ijazah'    => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'file_akta'      => 'required|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
 
@@ -33,12 +33,6 @@ class PendaftaranController extends Controller
         $ijazahPath = Storage::disk('s3')->putFile('berkas', $request->file('file_ijazah'));
         $aktaPath = Storage::disk('s3')->putFile('berkas', $request->file('file_akta'));
 
-        dd([
-            'ktp' => $ktpPath,
-            'kk' => $kkPath,
-            'ijazah' => $ijazahPath,
-            'akta' => $aktaPath,
-        ]);
         
         // 3. Simpan ke Database lewat Model Pendaftaran (yang dibaca Admin)
         Pendaftaran::create([
@@ -52,6 +46,10 @@ class PendaftaranController extends Controller
             'status'      => 'Pending', // Langsung masuk antrean Admin
         ]);
 
+        $cek = Pendaftaran::latest()->first();
+
+        dd($cek);
+        
         return redirect('/')->with('sukses_pendaftaran', 'Silakan tunggu verifikasi/konfirmasi dari Admin PKBM JULU\ SIRI\. Data Anda sedang dalam antrean.');
     }
     // 1. Fungsi Mengubah Status Verifikasi (Setuju / Tolak)
@@ -87,19 +85,34 @@ public function update(Request $request, $id)
     $pendaftar = Pendaftaran::findOrFail($id);
 
     $request->validate([
-        'nama'  => 'required|string|max:255',
-        'paket' => 'required|string',
-        'nohp'  => 'required|string',
+        'nama'            => 'required|string|max:255',
+        'paket'           => 'required|string',
+        'nohp'            => 'required|string',
+
+        'tempat_lahir'    => 'nullable|string|max:100',
+        'tanggal_lahir'   => 'nullable|date',
+        'jenis_kelamin'   => 'nullable|string|max:20',
+        'alamat'          => 'nullable|string',
+
+        'status'          => 'required|string',
     ]);
 
     $pendaftar->update([
-        'nama'  => $request->nama,
-        'paket' => $request->paket,
-        'nohp'  => $request->nohp,
+
+        'nama'            => $request->nama,
+        'paket'           => $request->paket,
+        'nohp'            => $request->nohp,
+
+        'tempat_lahir'    => $request->tempat_lahir,
+        'tanggal_lahir'   => $request->tanggal_lahir,
+        'jenis_kelamin'   => $request->jenis_kelamin,
+        'alamat'          => $request->alamat,
+
+        'status'          => $request->status,
     ]);
 
-    // Mengunci pengalihan langsung ke halaman tabel admin utama
-    return redirect('/elearning')->with('status_update', 'Perubahan data formulir ' . $pendaftar->nama . ' telah berhasil disimpan!');
+    return redirect('/elearning')
+        ->with('status_update', 'Perubahan data formulir '.$pendaftar->nama.' telah berhasil disimpan!');
 }
 public function destroy($id)
 {
