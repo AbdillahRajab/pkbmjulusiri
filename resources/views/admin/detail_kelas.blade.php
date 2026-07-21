@@ -277,6 +277,24 @@
                                         Download Materi
                                     </a>
                                     @endif
+                                    @if(Auth::user()->role == 'tutor')
+
+                                    <form action="{{ url('/materi/'.$item->id.'/hapus') }}"
+                                        method="POST"
+                                        class="d-inline"
+                                        onsubmit="return confirm('Yakin ingin menghapus materi ini?')">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i>
+                                            Hapus
+                                        </button>
+
+                                    </form>
+
+                                    @endif
                                 </div>
                             </div>
 
@@ -356,7 +374,20 @@
                                                         Lihat Pengumpulan
 
                                                     </button>
+                                                <form action="{{ url('/materi/'.$item->id.'/hapus') }}"
+                                                    method="POST"
+                                                    class="d-inline"
+                                                    onsubmit="return confirm('Yakin ingin menghapus materi ini?')">
 
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button class="btn btn-danger btn-sm">
+                                                        <i class="bi bi-trash"></i>
+                                                        Hapus
+                                                    </button>
+
+                                                </form>
                                                 @endif
 
                                                 {{-- HALAMAN CARD TGS SISWA --}}

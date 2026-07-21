@@ -20,7 +20,7 @@ class AdminController extends Controller
 
 $data_user = User::orderBy('id', 'desc')->get();
 
-$data_siswa = Siswa::orderBy('id', 'desc')->get();
+
 
 $data_tutor = User::where('role', 'tutor')
     ->orderBy('id', 'desc')
@@ -29,7 +29,8 @@ $data_tutor = User::where('role', 'tutor')
 $data_admin = User::where('role', 'admin')
     ->orderBy('id', 'desc')
     ->get();
-
+    
+$data_siswa = Siswa::orderBy('id', 'desc')->get();
 
         // 3. DATA FORMULIR PENDAFTARAN
         try {

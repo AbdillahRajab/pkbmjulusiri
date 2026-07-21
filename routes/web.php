@@ -8,6 +8,8 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Siswa;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,18 @@ use Illuminate\Support\Facades\Auth;
 |--------------------------------------------------------------------------
 */
 Route::get('/', function () {
-    return view('welcome');
+
+    $jumlahSiswa = Siswa::count();
+
+    $jumlahTutor = User::where('role','tutor')->count();
+
+    $jumlahKelas = DB::table('kelas')->count();
+
+    return view('welcome', compact(
+        'jumlahSiswa',
+        'jumlahTutor',
+        'jumlahKelas'
+    ));
 });
 
 // Tampilan Halaman Formulir Pendaftaran Publik
@@ -363,4 +376,35 @@ Route::post('/tutor/{id}/update', function ($id) {
 
 return back()->with('success_tutor', 'Profil tutor berhasil diperbarui.');
 
+});
+Route::delete('/materi/{id}/hapus', function ($id) {
+
+    $materi = DB::table('materi_kelas')->where('id', $id)->first();
+
+    if ($materi) {
+
+        // Hapus file materi
+        if (!empty($materi->file_path) && file_exists(public_path($materi->file_path))) {
+            unlink(public_path($materi->file_path));
+        }
+
+        // Hapus file soal
+        if (!empty($materi->file_soal) && file_exists(public_path($materi->file_soal))) {
+            unlink(public_path($materi->file_soal));
+        }
+
+        // Jika ini tugas, hapus data pengumpulan siswa
+        if ($materi->tipe == 'tugas') {
+            DB::table('pengumpulan_tugas')
+                ->where('materi_id', $id)
+                ->delete();
+        }
+
+        // Hapus materi/tugas
+        DB::table('materi_kelas')
+            ->where('id', $id)
+            ->delete();
+    }
+
+    return back()->with('success', 'Materi berhasil dihapus.');
 });

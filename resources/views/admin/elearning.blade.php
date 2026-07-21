@@ -619,8 +619,8 @@
                                                     Admin</option>
                                                 <option value="tutor" {{ $usr->role == 'tutor' ? 'selected' : '' }}>
                                                     Tutor</option>
-                                                <option value="siswa" {{ $usr->role == 'siswa' ? 'selected' : '' }}>
-                                                    Siswa</option>
+                                                {{-- <option value="siswa" {{ $usr->role == 'siswa' ? 'selected' : '' }}>
+                                                    Siswa</option> --}}
                                             </select>
                                         </div>
                                     </div>
@@ -670,7 +670,7 @@
                                         <select name="role" class="form-select">
                                             <option value="admin">Admin</option>
                                             <option value="tutor">Tutor</option>
-                                            <option value="tutor">Siswa</option>
+                                            {{-- <option value="tutor">Siswa</option> --}}
                                         </select>
                                     </div>
                                 </div>
@@ -701,11 +701,15 @@
                                     </div>
                                 @endif
                                 @if (session('success_pendaftar'))
-                                    <div class="alert alert-success alert-dismissible fade show mb-3" role="alert"
-                                        style="color: #155724; background-color: #d4edda; border-color: #c3e6cb; padding: 12px; border-radius: 6px;">
+                                    <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
                                         <strong>Sukses!</strong> {{ session('success_pendaftar') }}
-                                        <a href="{{ url()->current() }}" class="btn-close"
-                                            style="float: right; text-decoration: none; font-size: 20px; font-weight: bold; opacity: .5; color: #000; line-height: 0.8;">×</a>
+
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="alert"
+                                            aria-label="Close">
+                                        </button>
                                     </div>
                                 @endif
                                 <thead class="table-dark">

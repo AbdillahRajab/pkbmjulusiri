@@ -87,6 +87,214 @@
             background-color: #ffffff !important;
             opacity: 1;
             border-radius: 8px 8px 0 0;
+        }
+        @media(max-width:576px){
+            .hero-banner{
+                min-height: 140vh;
+                align-items: flex-start !important;
+            }
+            .hero-banner .container{
+                padding-top: 20px !important;
+            }
+        }
+        @media (max-width:576px){
+
+            #kontak-kantor .card{
+                margin-bottom:20px;
+            }
+
+            #kontak-kantor iframe{
+                width:100% !important;
+                min-height:250px !important;
+            }
+
+            #kontak-kantor h4{
+                font-size:1.3rem;
+            }
+
+            #kontak-kantor .fs-5{
+                font-size:1rem !important;
+            }
+
+            #kontak-kantor .bg-success,
+            #kontak-kantor .bg-primary{
+                width:45px !important;
+                height:45px !important;
+            }
+
+        }
+        /* RESPONSIVE MOBILE */
+        @media (max-width:768px){
+        .display-3{
+            font-size:2rem !important;
+        }
+        .display-5{
+            font-size:1.5rem !important;
+        }
+        .lead{
+            font-size:1rem !important;
+        }
+        .position-relative.vh-100{
+            min-height:100vh;
+            padding:100px 20px;
+        }
+        }
+        @media(max-width:768px){
+        .navbar-brand img{
+            height:40px !important;
+        }
+        .navbar-brand span{
+            font-size:1rem !important;
+        }
+        .navbar-brand small{
+            display:none;
+        }
+        }
+        @media(max-width:768px){
+        .navbar .d-flex{
+            flex-direction:column;
+            width:100%;
+        }
+        .navbar .btn{
+            width:100%;
+        }
+        }
+        .card-img-top{
+        height:240px;
+        object-fit:cover;
+        }
+        @media(max-width:768px){
+        .card-img-top{
+        height:180px;
+        }
+        }
+        .card{
+        transition:.3s;
+        }
+        .card:hover{
+        transform:translateY(-6px);
+        box-shadow:0 15px 30px rgba(0,0,0,.15);
+        }
+        @media(max-width:768px){
+        .section-padding{
+        padding:45px 0;
+        }
+        }
+        @media (max-width:768px){
+
+        .display-3{
+            font-size:2rem!important;
+        }
+        .display-5{
+            font-size:1.5rem!important;
+        }
+        .lead{
+            font-size:.95rem!important;
+        }
+        .section-padding{
+            padding:45px 0;
+        }
+        .navbar-brand img{
+            height:40px!important;
+        }
+        .navbar-brand span{
+            font-size:1rem!important;
+        }
+        .navbar-brand small{
+            display:none;
+        }
+        .navbar .d-flex{
+            flex-direction:column;
+            width:100%;
+            margin-top:15px;
+        }
+        .navbar .btn{
+            width:100%;
+        }
+        .card-img-top{
+            height:180px;
+        }
+        }
+        /* ================= NAVBAR MOBILE ================= */
+        @media (max-width:768px){
+        .navbar-collapse{
+            background:#0b3c68;
+            margin-top:15px;
+            padding:15px;
+            border-radius:12px;
+        }
+        .navbar-nav{
+            text-align:center;
+        }
+        .nav-item{
+            margin-bottom:8px;
+        }
+        .dropdown-menu{
+            text-align:center;
+        }
+        }
+        .card-img-top{
+            transition:.4s;
+        }
+
+        .card:hover .card-img-top{
+            transform:scale(1.05);
+        }
+        .card{
+            border-radius:18px;
+            overflow:hidden;
+        }
+        .shadow-sm{
+            box-shadow:0 8px 20px rgba(0,0,0,.08)!important;
+        }
+        /* ================= HERO STATISTICS ================= */
+            .hero-stat {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 12px 8px;
+        }
+
+        .hero-stat i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .hero-stat h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+            font-weight: 700;
+        }
+
+        .hero-stat small {
+            font-size: 0.75rem;
+        }
+        @media(max-width:768px){
+        .hero-stat{
+            padding:15px;
+        }
+        .hero-stat h3{
+            font-size:24px;
+        }
+        .hero-stat i{
+            font-size:28px;
+        }
+        }
+    @media(max-width:576px){
+        .hero-stat{
+            padding: 8px 5px;
+            border-radius: 10px;
+        }
+        .hero-stat i{
+            font-size:1.2rem;
+        }
+        .hero-stat h3{
+            font-size:1.1rem;
+        }
+        .hero-stat small{
+            font-size:0.65rem;
+        }
+    }
     </style>
 </head>
 
@@ -162,9 +370,8 @@
                                     <i class="bi bi-geo-alt-fill me-2"></i> Lokasi
                                 </a>
                             </li>
-                        </ul>
                     </li>
-
+                </ul>
                     <!-- TOMBOL NAVIGASI KANAN -->
                     <div class="d-flex gap-2 justify-content-center">
                         <button type="button"
@@ -175,7 +382,7 @@
                         <button type="button"
                             class="btn btn-outline-light btn-sm px-3 rounded-pill d-flex align-items-center"
                             data-bs-toggle="modal" data-bs-target="#modalLoginRegister">
-                            <i class="bi bi-box-arrow-in-right me-1"></i> Login / Registrasi Akun
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Login/Masuk
                         </button>
                     </div>
             </div>
@@ -208,27 +415,27 @@
         </div>
     @endif
     <!-- HERO BANNER -->
-    <div class="position-relative w-100 vh-100 d-flex align-items-center justify-content-center text-center text-white"
-        style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset('images/fto julusiri.jpeg') }}') no-repeat center center; background-size: cover;">
+    <div class="hero-banner position-relative w-100 d-flex align-items-center justify-content-center text-center text-white"
+        style="min-height: 120vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ asset('images/julusiri.jpeg') }}') no-repeat center center; background-size: cover;">
 
         <!-- Konten Teks Tepat di Tengah-Tengah Gambar -->
-        <div class="container px-4 d-flex flex-column align-items-center justify-content-center">
+        <div class="container px-4 d-flex flex-column align-items-center justify-content-center py-5">
 
 
-            <h1 class="display-5 fw-bold mb-5 text-white tracking-wide text-shadow"
+            <h1 class="display-5 fw-bold mb-3 text-white tracking-wide text-shadow"
                 style="text-shadow: 2px 2px 4px rgba(255, 153, 0, 0.7);">
                 Selamat Datang Di Website
             </h1>
 
             <!-- Judul Utama PKBM (Style Center) -->
-            <h1 class="display-3 fw-bold mb-3 text-white tracking-wide text-shadow"
+            <h1 class="display-4 fw-bold mb-3 text-white tracking-wide text-shadow"
                 style="text-shadow: 2px 2px 3px rgba(0,0,0,0.7);">
                 PKBM JULU SIRI
             </h1>
 
             <!-- Deskripsi Singkat (Style Center) -->
             <p class="lead mb-4 mx-auto text-light"
-                style="max-width: 700px; font-size: 1.25rem; text-shadow: 1px 1px 4px rgba(0,0,0,0.6);">
+                style="max-width:700px; font-size:1rem; text-shadow: 1px 1px 4px rgba(0,0,0,0.6);">
                 Membangun Masa Depan Melalui Pendidikan Kesetaraan yang Berkualitas, Kreatif, dan Mandiri.
             </p>
 
@@ -238,17 +445,44 @@
                     <i class="bi bi-info-circle me-1"></i> Jelajahi Selengkapnya
                 </a>
             </div>
+            {{-- STATISKTIK WELCOME --}}
+            <div class="w-100 mt-3">
+                <div class="row justify-content-center text-center g-3">
 
-        </div>
+                    <div class="col-6 col-md-3 px-2">
+                    <div class="hero-stat">
+                        <i class="bi bi-mortarboard-fill"></i>
+                        <h3>{{ $jumlahSiswa }}</h3>
+                        <small>Warga Belajar</small>
+                    </div>
+                    </div>
 
-        <!-- Ikon Panah Petunjuk Scroll (Style Center di bawah) -->
-        <div
-            class="position-absolute bottom-0 start-50 translate-middle-x mb-4 animate__animated animate__bounce animate__infinite">
-            <a href="#fasilitas" class="text-white text-decoration-none opacity-75">
-                <small class="d-block text-uppercase tracking-wider mb-1" style="font-size: 0.7rem;">Scroll
-                    Kebawah</small>
-                <i class="bi bi-chevron-double-down fs-5"></i>
-            </a>
+                    <div class="col-6 col-md-3 px-2">
+                        <div class="hero-stat">
+                            <i class="bi bi-person-workspace"></i>
+                            <h3>{{ $jumlahTutor }}</h3>
+                            <small>Tutor</small>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 px-2">
+                        <div class="hero-stat">
+                            <i class="bi bi-journal-bookmark-fill"></i>
+                            <h3>{{ $jumlahKelas }}</h3>
+                            <small>Kelas Aktif</small>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 px-2">
+                        <div class="hero-stat">
+                            <i class="bi bi-award-fill"></i>
+                            <h3>2019</h3>
+                            <small>Berdiri</small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
     </header>
@@ -291,21 +525,66 @@
                 </div>
             </div>
 
-            <div class="row g-3 mt-4">
-                <div class="col-md-4 col-sm-6">
-                    <img src="{{ asset('images/ruangan julusiri.jpeg') }}" alt="Lingkungan Belajar PKBM Julu Siri"
-                        class="img-fluid rounded shadow">
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <img src="{{ asset('images/halaman julusiri.jpeg') }}" alt="Lingkungan Belajar PKBM Julu Siri"
-                        class="img-fluid rounded shadow">
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <img src="{{ asset('images/julusiri fto.webp') }}" alt="Lingkungan Belajar PKBM Julu Siri"
-                        class="img-fluid rounded shadow">
+          <div class="row g-4 mt-4">
+
+            <div class="col-md-4 col-sm-6">
+                <div class="card border-0 shadow h-100">
+                    <img src="{{ asset('images/kantorr.jpeg') }}"
+                        alt="Kantor PKBM Julu Siri"
+                        class="card-img-top">
+
+                    <div class="card-body text-center">
+                        <h6 class="fw-bold mb-2">
+                            Kantor PKBM Julu Siri
+                        </h6>
+
+                        <p class="text-muted small mb-0">
+                            Kantor pelayanan administrasi, pusat informasi, dan tempat koordinasi
+                            kegiatan pendidikan kesetaraan PKBM Julu Siri.
+                        </p>
+                    </div>
                 </div>
             </div>
-    </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="card border-0 shadow h-100">
+                    <img src="{{ asset('images/halaman julusiri.jpeg') }}"
+                        alt="Halaman PKBM Julu Siri"
+                        class="card-img-top">
+
+                    <div class="card-body text-center">
+                        <h6 class="fw-bold mb-2">
+                            Halaman PKBM
+                        </h6>
+
+                        <p class="text-muted small mb-0">
+                            Area lingkungan belajar yang bersih dan nyaman untuk mendukung
+                            aktivitas warga belajar maupun kegiatan bersama.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="card border-0 shadow h-100">
+                    <img src="{{ asset('images/kelas pkbm.jpeg') }}"
+                        alt="Ruang Kelas PKBM"
+                        class="card-img-top">
+
+                    <div class="card-body text-center">
+                        <h6 class="fw-bold mb-2">
+                            Ruang Kelas Pembelajaran
+                        </h6>
+
+                        <p class="text-muted small mb-0">
+                            Ruang belajar yang digunakan untuk kegiatan tatap muka, diskusi,
+                            pembelajaran, dan evaluasi peserta didik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <!-- SEKSI PROFIL -->
@@ -325,7 +604,7 @@
 
                         <div class="card border-0 shadow-sm p-4 p-md-5"
                             style="border-radius: 15px; background: #ffffff;">
-                            <div class="row align-items-center border-bottom pb-2">
+                            <div class="row align-items-center border-bottom pb-3 mb-3">
                                 <div class="col-sm-4 text-muted small fw-bold text-uppercase tracking-wider">
                                     <i class="bi bi-bookmark-star me-2 text-primary"></i>Nama Lembaga
                                 </div>
@@ -372,6 +651,9 @@
 
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- SEKSI VISI & MISI -->
@@ -424,7 +706,7 @@
                     <div class="p-4 border rounded bg-white shadow-sm h-100">
                         <i class="bi bi-person-vcard-fill display-4 text-success mb-3 d-block"></i>
                         <h5 class="fw-bold mb-1 text-dark">Sekretaris</h5>
-                        <p class="small text-muted mb-0">[RAYUS, S.Pd]</p>
+                        <p class="small text-muted mb-0">[ANDI RISYDAH RESTU PUTRI]</p>
                     </div>
                 </div>
 
@@ -434,7 +716,7 @@
                         style="border-top: 4px solid #0b3c68 !important;">
                         <i class="bi bi-person-workspace display-4 text-primary mb-3 d-block"></i>
                         <h5 class="fw-bold mb-1 text-dark">Ketua PKBM</h5>
-                        <p class="small text-muted mb-0">[SAIFUL, S.Pd]</p>
+                        <p class="small text-muted mb-0">[SAIFUL, S.Pd.]</p>
                     </div>
                 </div>
 
@@ -443,7 +725,7 @@
                     <div class="p-4 border rounded bg-white shadow-sm h-100">
                         <i class="bi bi-wallet2 display-4 text-warning mb-3 d-block"></i>
                         <h5 class="fw-bold mb-1 text-dark">Bendahara</h5>
-                        <p class="small text-muted mb-0">[ANDI RISYDAH RESTU.P]</p>
+                        <p class="small text-muted mb-0">[RAYUS, S.Pd.]</p>
                     </div>
                 </div>
                 <div class="container px-4 mt-5">
@@ -516,20 +798,22 @@
                         <div id="kontak-kantor" class="bg-light py-5 border-top" style="scroll-margin-top: 70px;">
                             <div class="container px-4">
                                 <div class="row g-4 align-items-stretch">
-                                    <div class="col-lg-7">
+                                    <div class="col-12 col-lg-7">
                                         <div class="card h-100 border-0 shadow-sm overflow-hidden"
                                             style="border-radius: 15px;">
-                                            <iframe <iframe
+                                            <iframe
                                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.606334410731!2d119.53661977400687!3d-4.8374607498173745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbe4f0079b3fa11%3A0x4a0bc6e6f5ae89e1!2sRaisyahVehicleWash!5e0!3m2!1sid!2sid!4v1782567102737!5m2!1sid!2sid"
-                                                width="600" height="450" style="border:0;" allowfullscreen=""
+                                                class="w-100 rounded"
+                                                style="border:0; min-height:350px;"
+                                                allowfullscreen=""
                                                 loading="lazy"
-                                                referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                                                referrerpolicy="strict-origin-when-cross-origin">
                                             </iframe>
                                         </div>
                                     </div>
                                     <!-- KOLOM KANAN: Detail Kontak Kantor -->
-                                    <div class="col-lg-5">
-                                        <div class="card h-100 border-0 shadow-sm p-4 p-md-5 d-flex flex-column justify-content-center"
+                                    <div class="col-12 col-lg-5">
+                                        <div class="card h-100 border-0 shadow-sm p-3 p-md-5"
                                             style="border-radius: 15px; background: #ffffff;">
 
                                             <h4 class="fw-bold text-dark mb-4 border-bottom pb-2">
@@ -547,7 +831,7 @@
                                                         class="text-muted small d-block fw-bold text-uppercase tracking-wider">WhatsApp
                                                         Admin</span>
                                                     <a href="https://wa.me/6288704491032" target="_blank"
-                                                        class="text-decoration-none text-dark fw-bold fs-5 hover-link">
+                                                       class="text-decoration-none text-dark fw-bold"style="font-size:1rem;">
                                                         +62 887-0449-1032
                                                     </a>
                                                     <small class="text-muted d-block mt-1">Respons cepat pada hari &
@@ -589,8 +873,8 @@
                                         </div>
                                     </div>
 
-                                </div> <!-- /row -->
-                            </div> <!-- /container -->
+                                </div> 
+                            </div> 
                         </div>
 
     </section>
@@ -623,14 +907,33 @@
                         <!-- PANEL FORM LOGIN -->
                         <div class="tab-pane fade show active" id="login-panel" role="tabpanel"
                             aria-labelledby="login-tab">
+                            @if ($errors->has('email'))
+                            <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                {{ $errors->first('email') }}
+
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert"
+                                    aria-label="Close">
+                                </button>
+                            </div>
+                        @endif
                             <form
                                 action="{{ method_exists(Route::class, 'has') && Route::has('login') ? route('login') : url('/login') }}"
                                 method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label small fw-bold text-secondary">Alamat Email</label>
-                                    <input type="email" name="email" class="form-control"
-                                        placeholder="Masukkan email terdaftar" required autocomplete="email">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        class="form-control"
+                                        value="{{ old('email') }}"
+                                        placeholder="Masukkan email terdaftar"
+                                        required
+                                        autocomplete="email">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small fw-bold text-secondary">Password</label>
