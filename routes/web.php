@@ -118,16 +118,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
     Route::put('/admin/berita/{id}/update', [AdminController::class, 'updateBerita'])
     ->name('admin.berita.update');
 
-// ===============================
-// API Tutor
-// ===============================
-    Route::get('/api/ambil-kelas-tutor', function () {
-
-    return DB::table('kelas')
-        ->where('tutor_id', Auth::id())
-        ->orderByDesc('id')
-        ->get();
-});
     Route::post('/ruang-kelas/{id}/update-password', [AdminController::class, 'updatePasswordKelas'])
     ->name('kelas.updatePassword');
 
@@ -411,4 +401,14 @@ Route::delete('/materi/{id}/hapus', function ($id) {
     }
 
     return back()->with('success', 'Materi berhasil dihapus.');
+});
+        // ===============================
+// API Tutor
+// ===============================
+    Route::get('/api/ambil-kelas-tutor', function () {
+
+    return DB::table('kelas')
+        ->where('tutor_id', Auth::id())
+        ->orderByDesc('id')
+        ->get();
 });
