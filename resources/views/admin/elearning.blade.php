@@ -1639,7 +1639,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             function muatKelasTutor() {
-                fetch('/api/ambil-kelas-tutor')
+                fetch('/ambil-kelas-tutor')
                     .then(response => response.json())
                     .then(data => {
                         const wadah = document.getElementById('konten-kelas-tutor');
