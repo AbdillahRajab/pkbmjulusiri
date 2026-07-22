@@ -31,8 +31,13 @@ Route::get('/', function () {
     ));
 });
 
-Route::get('/tes-api', function () {
-    return "API OK";
+Route::middleware(['auth'])->get('/api/ambil-kelas-tutor', function () {
+
+    return response()->json([
+        'login' => Auth::check(),
+        'user'  => Auth::id(),
+    ]);
+
 });
 
 // Tampilan Halaman Formulir Pendaftaran Publik
