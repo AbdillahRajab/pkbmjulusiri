@@ -117,7 +117,17 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
 // Proses update berita
     Route::put('/admin/berita/{id}/update', [AdminController::class, 'updateBerita'])
     ->name('admin.berita.update');
-    
+
+// ===============================
+// API Tutor
+// ===============================
+    Route::get('/api/ambil-kelas-tutor', function () {
+
+    return DB::table('kelas')
+        ->where('tutor_id', Auth::id())
+        ->orderByDesc('id')
+        ->get();
+
     Route::post('/ruang-kelas/{id}/update-password', [AdminController::class, 'updatePasswordKelas'])
     ->name('kelas.updatePassword');
 
@@ -168,11 +178,6 @@ return redirect('/ruang-kelas/'.$id);
     // Pastikan nama route ini terdaftar persis seperti ini
     Route::post('/admin/kelas/simpan', [AdminController::class, 'simpanKelas'])->name('admin.simpanKelas');
 
-Route::middleware('auth')->get('/api/ambil-kelas-tutor', function () {
-
-    dd("API MASUK");
-
-});
 
 // 2. Jalur POST Khusus: Mengurus simpan kelas baru dari modal tutor
 Route::post('/tutor/proses-tambah-kelas', function (Request $request) {
