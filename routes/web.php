@@ -31,14 +31,6 @@ Route::get('/', function () {
     ));
 });
 
-Route::middleware(['auth'])->get('/api/ambil-kelas-tutor', function () {
-
-    return response()->json([
-        'login' => Auth::check(),
-        'user'  => Auth::id(),
-    ]);
-
-});
 
 // Tampilan Halaman Formulir Pendaftaran Publik
 Route::get('/pendaftaran', function () {
@@ -177,6 +169,14 @@ return redirect('/ruang-kelas/'.$id);
     // Pastikan nama route ini terdaftar persis seperti ini
     Route::post('/admin/kelas/simpan', [AdminController::class, 'simpanKelas'])->name('admin.simpanKelas');
 
+Route::middleware(['auth'])->get('/api/ambil-kelas-tutor', function () {
+
+    return response()->json([
+        'login' => Auth::check(),
+        'user'  => Auth::id(),
+    ]);
+
+});
 
 // 2. Jalur POST Khusus: Mengurus simpan kelas baru dari modal tutor
 Route::post('/tutor/proses-tambah-kelas', function (Request $request) {
