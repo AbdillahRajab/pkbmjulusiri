@@ -127,7 +127,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
         ->where('tutor_id', Auth::id())
         ->orderByDesc('id')
         ->get();
-
+});
     Route::post('/ruang-kelas/{id}/update-password', [AdminController::class, 'updatePasswordKelas'])
     ->name('kelas.updatePassword');
 
@@ -173,7 +173,7 @@ if (!$cek) {
 
 return redirect('/ruang-kelas/'.$id);
 });
-    });
+  
 
     // Pastikan nama route ini terdaftar persis seperti ini
     Route::post('/admin/kelas/simpan', [AdminController::class, 'simpanKelas'])->name('admin.simpanKelas');
