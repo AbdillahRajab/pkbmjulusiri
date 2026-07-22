@@ -169,10 +169,9 @@ return redirect('/ruang-kelas/'.$id);
     Route::post('/admin/kelas/simpan', [AdminController::class, 'simpanKelas'])->name('admin.simpanKelas');
 
 Route::middleware('auth')->get('/api/ambil-kelas-tutor', function () {
-    return DB::table('kelas')
-        ->where('tutor_id', Auth::id())
-        ->orderBy('id', 'desc')
-        ->get();
+
+    dd("API MASUK");
+
 });
 
 // 2. Jalur POST Khusus: Mengurus simpan kelas baru dari modal tutor
