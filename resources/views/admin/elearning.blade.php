@@ -619,8 +619,8 @@
                                                     Admin</option>
                                                 <option value="tutor" {{ $usr->role == 'tutor' ? 'selected' : '' }}>
                                                     Tutor</option>
-                                                {{-- <option value="siswa" {{ $usr->role == 'siswa' ? 'selected' : '' }}>
-                                                    Siswa</option> --}}
+                                                <option value="siswa" {{ $usr->role == 'siswa' ? 'selected' : '' }}>
+                                                    Siswa</option>
                                             </select>
                                         </div>
                                     </div>
@@ -670,7 +670,7 @@
                                         <select name="role" class="form-select">
                                             <option value="admin">Admin</option>
                                             <option value="tutor">Tutor</option>
-                                            {{-- <option value="tutor">Siswa</option> --}}
+                                            <option value="tutor">Siswa</option>
                                         </select>
                                     </div>
                                 </div>
@@ -1636,6 +1636,7 @@
     @endif
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @if(auth()->check() && auth()->user()->role == 'tutor')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             function muatKelasTutor() {
@@ -1679,6 +1680,7 @@
             muatKelasTutor();
         });
     </script>
+    @endif
     <script>
         const password = document.getElementById('password');
         const error = document.getElementById('passwordError');

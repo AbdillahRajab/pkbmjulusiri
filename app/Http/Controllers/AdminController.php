@@ -274,6 +274,8 @@ public function aktifkanAkun($id)
     $siswa->status_akun = 1;
     $siswa->save();
 
-    return back()->with('success', 'Akun siswa berhasil diaktifkan.');
+    return redirect()
+    ->route('elearning.index')
+    ->with('success', 'Akun siswa berhasil diaktifkan.');
 }
 }
