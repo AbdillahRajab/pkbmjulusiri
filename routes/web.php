@@ -7,6 +7,7 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
 use App\Models\User;
@@ -272,22 +273,25 @@ Route::post('/ruang-kelas/{id}/upload', function (Request $request, $id) {
     $file_path = null;
     $file_soal = null;
 
-    // Jika ada file yang diupload
-    if ($request->hasFile('file_materi')) {
+if ($request->hasFile('file_materi')) {
 
-        $file = $request->file('file_materi');
+    if ($tipe == 'materi') {
 
-        $namaFile = time().'_'.$file->getClientOriginalName();
+        $file_path = Storage::disk('s3')->putFile(
+            'materi',
+            $request->file('file_materi')
+        );
 
-        $file->move(public_path('uploads/materi'), $namaFile);
+    } else {
 
-        if ($tipe == 'materi') {
-            $file_path = 'uploads/materi/'.$namaFile;
-        } else {
-            $file_soal = 'uploads/materi/'.$namaFile;
-        }
+        $file_soal = Storage::disk('s3')->putFile(
+            'materi',
+            $request->file('file_materi')
+        );
 
     }
+
+}
 
     DB::table('materi_kelas')->insert([
 
@@ -309,19 +313,16 @@ Route::post('/ruang-kelas/{id}/upload', function (Request $request, $id) {
 
 Route::post('/tugas/{id}/upload-jawaban', function (Request $request, $id) {
 
-    $fileJawaban = null;
+$fileJawaban = null;
 
-    if ($request->hasFile('file_jawaban')) {
+if ($request->hasFile('file_jawaban')) {
 
-        $file = $request->file('file_jawaban');
+    $fileJawaban = Storage::disk('s3')->putFile(
+        'jawaban',
+        $request->file('file_jawaban')
+    );
 
-        $namaFile = time().'_'.$file->getClientOriginalName();
-
-        $file->move(public_path('uploads/jawaban'), $namaFile);
-
-        $fileJawaban = 'uploads/jawaban/'.$namaFile;
-
-    }
+}
 
     DB::table('pengumpulan_tugas')->insert([
 
@@ -387,14 +388,14 @@ Route::delete('/materi/{id}/hapus', function ($id) {
     if ($materi) {
 
         // Hapus file materi
-        if (!empty($materi->file_path) && file_exists(public_path($materi->file_path))) {
-            unlink(public_path($materi->file_path));
-        }
+        if (!empty($materi->file_path)) {
+        Storage::disk('s3')->delete($materi->file_path);
+    }
 
         // Hapus file soal
-        if (!empty($materi->file_soal) && file_exists(public_path($materi->file_soal))) {
-            unlink(public_path($materi->file_soal));
-        }
+        if (!empty($materi->file_soal)) {
+        Storage::disk('s3')->delete($materi->file_soal);
+    }
 
         // Jika ini tugas, hapus data pengumpulan siswa
         if ($materi->tipe == 'tugas') {

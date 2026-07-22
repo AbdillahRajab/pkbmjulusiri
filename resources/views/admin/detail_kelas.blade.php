@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+@php
+    $bucket = config('app.supabase_bucket');
+    $supabase = config('app.supabase_url').'/storage/v1/object/public/'.$bucket.'/';
+@endphp
 <html lang="en">
 
 <head>
@@ -269,7 +273,7 @@
 
                                     @if($item->file_path)
 
-                                    <a href="{{ asset($item->file_path) }}"
+                                    <a href="{{ $supabase.$item->file_path }}"
                                         class="btn btn-primary btn-sm"
                                         target="_blank">
 
@@ -355,7 +359,7 @@
                                                 @if(Auth::user()->role == 'tutor')
 
                                                     @if($item->file_soal)
-                                                        <a href="{{ asset($item->file_soal) }}"
+                                                        <a href="{{ $supabase.$item->file_soal }}"
                                                             class="btn btn-warning btn-sm"
                                                             target="_blank">
 
@@ -401,7 +405,7 @@
                                                     @endphp
 
                                                     @if($item->file_soal)
-                                                        <a href="{{ asset($item->file_soal) }}"
+                                                        <a href="{{ $supabase.$item->file_soal }}"
                                                             class="btn btn-warning btn-sm"
                                                             target="_blank">
 
@@ -472,20 +476,21 @@
                                                         ->get();
                                                     @endphp
                                                     @forelse($pengumpulan as $jawaban)
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <h6 class="fw-bold">
-                                                <i class="bi bi-person-circle"></i>
-                                                {{ $jawaban->name }}
-                                            </h6>
-                                            <small class="text-muted">
-                                                {{ \Carbon\Carbon::parse($jawaban->created_at)->format('d M Y H:i') }}
-                                            </small>
-                                            <br><br>
+                                                    <div class="card mb-3">
+                                                        <div class="card-body">
+                                                            <h6 class="fw-bold">
+                                                                <i class="bi bi-person-circle"></i>
+                                                                {{ $jawaban->name }}
+                                                            </h6>
+                                                            <small class="text-muted">
+                                                                {{ \Carbon\Carbon::parse($jawaban->created_at)->format('d M Y H:i') }}
+                                                            </small>
+                                                            <br><br>
                                             <a
-                                                href="{{ asset($jawaban->file_jawaban) }}"
+                                                href="{{ $supabase.$jawaban->file_jawaban }}"
                                                 target="_blank"
                                                 class="btn btn-success btn-sm">
+
                                                 <i class="bi bi-download"></i>
                                                 Download Jawaban
                                             </a>
