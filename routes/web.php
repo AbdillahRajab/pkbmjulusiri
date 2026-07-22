@@ -31,6 +31,10 @@ Route::get('/', function () {
     ));
 });
 
+Route::get('/tes-api', function () {
+    return "API OK";
+});
+
 // Tampilan Halaman Formulir Pendaftaran Publik
 Route::get('/pendaftaran', function () {
     return view('pendaftaran.form');
@@ -168,12 +172,6 @@ return redirect('/ruang-kelas/'.$id);
     // Pastikan nama route ini terdaftar persis seperti ini
     Route::post('/admin/kelas/simpan', [AdminController::class, 'simpanKelas'])->name('admin.simpanKelas');
 
-Route::middleware('auth')->get('/api/ambil-kelas-tutor', function () {
-    return DB::table('kelas')
-        ->where('tutor_id', Auth::id())
-        ->orderBy('id', 'desc')
-        ->get();
-});
 
 // 2. Jalur POST Khusus: Mengurus simpan kelas baru dari modal tutor
 Route::post('/tutor/proses-tambah-kelas', function (Request $request) {
