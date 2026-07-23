@@ -114,14 +114,14 @@ $data_berita = DB::table('berita')
         // 4. HITUNG STATISTIK REAL-TIME
         $total_siswa     = $data_siswa->count();
         $total_tutor     = $data_tutor->count();
-        $total_admin     = $data_admin->count();
+        $total_user = $data_user->count();
         $total_pendaftar = $data_pendaftar->count();
         $total_kelas     = $data_kelas->count();
         $total_berita    = $data_berita->count();
 
         return view('admin.elearning', compact(
               'data_kelas','data_kelas_saya','data_mapel','data_tutor','data_siswa','data_admin','data_pendaftar','total_siswa','total_tutor',
-              'total_kelas','total_pendaftar','total_admin','total_berita','data_user','data_berita','berita'
+              'total_kelas','total_pendaftar','total_user','total_berita','data_user','data_berita','berita'
         ));
     }
 

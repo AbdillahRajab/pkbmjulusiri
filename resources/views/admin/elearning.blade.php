@@ -26,6 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard E-Learning - PKBM JULU SIRI</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/mobile-dashboard.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         body {
@@ -123,146 +124,156 @@
     </style>
 </head>
 
-<body>
+    <body>
 
-    <!-- SIDEBAR KIRI -->
-    <div class="sidebar">
-        <div class="text-center py-4 border-bottom border-secondary">
-            <img src="{{ asset('images/logo3.png') }}" alt="Logo PKBM" width="40" height="40"
-                class="d-inline-block align-top img-fluid">
-            <h5 class="text-white fw-bold mb-0">PKBM JULU SIRI</h5>
-            <small class="text-warning font-monospace" style="font-size: 0.75rem;">PANEL
-                {{ strtoupper(Auth::user()->role) }}</small>
-        </div>
+            <!-- SIDEBAR KIRI -->
+    <div id="sidebarOverlay"></div>
+        <div id="sidebar" class="sidebar">
+            <div class="text-center py-4 border-bottom border-secondary">
+                <img src="{{ asset('images/logo3.png') }}" alt="Logo PKBM" width="40" height="40"
+                    class="d-inline-block align-top img-fluid">
+                <h5 class="text-white fw-bold mb-0">PKBM JULU SIRI</h5>
+                <small class="text-warning font-monospace" style="font-size: 0.75rem;">PANEL
+                    {{ strtoupper(Auth::user()->role) }}</small>
+            </div>
 
-        <div class="nav pt-3 gap-1" id="v-pills-tab" role="tablist" aria-orientation="vertical"
-            style="max-height: calc(100vh - 140px); overflow-y: auto !important; overflow-x: hidden !important; display: block !important; width: 100% !important; padding-bottom: 50px;">
+            <div class="nav pt-3 gap-1" id="v-pills-tab" role="tablist" aria-orientation="vertical"
+                style="max-height: calc(100vh - 140px); overflow-y: auto !important; overflow-x: hidden !important; display: block !important; width: 100% !important; padding-bottom: 50px;">
 
-            <p class="sidebar-heading mb-1 px-3 small text-uppercase fw-bold text-white opacity-75"
-                style="font-size: 11px; letter-spacing: 0.5px;">Menu Utama</p>
-            <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-2 active"
-                id="tab-dashboard" data-bs-toggle="pill" data-bs-target="#panel-dash" type="button" role="tab">
-                <i class="bi bi-speedometer2 me-3"></i> Dashboard
+                <p class="sidebar-heading mb-1 px-3 small text-uppercase fw-bold text-white opacity-75"
+                    style="font-size: 11px; letter-spacing: 0.5px;">Menu Utama</p>
+                <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-2 active"
+                    id="tab-dashboard" data-bs-toggle="pill" data-bs-target="#panel-dash" type="button" role="tab">
+                    <i class="bi bi-speedometer2 me-3"></i> Dashboard
+                </button>
+
+                @if (Auth::user()->role == 'admin')
+                    <p class="sidebar-heading mb-1 mt-3 px-3 small text-uppercase fw-bold text-white opacity-75"
+                        style="font-size: 11px; letter-spacing: 0.5px;">Kelola Pendaftar</p>
+                    <button class="nav-link border-0 text-start bg-transparent text-info w-100 d-block mb-2"
+                        id="tab-pendaftar" data-bs-toggle="pill" data-bs-target="#panel-pendaftar" type="button"
+                        role="tab">
+                        <i class="bi bi-clipboard2-check-fill me-3"></i> Data Pendaftar
+                    </button>
+
+                    <p class="sidebar-heading mb-1 mt-3 px-3 small text-uppercase fw-bold text-white opacity-75"
+                        style="font-size: 11px; letter-spacing: 0.5px;">Manajemen Pengguna</p>
+                    <button class="nav-link border-0 text-start bg-transparent text-warning w-100 d-block mb-1"
+                        id="tab-admin" data-bs-toggle="pill" data-bs-target="#panel-user" type="button" role="tab">
+                        <i class="bi bi-shield-lock-fill me-3"></i> Data User
+                    </button>
+                    <button class="nav-link border-0 text-start bg-transparent text-success w-100 d-block mb-1"
+                        id="tab-tutor" data-bs-toggle="pill" data-bs-target="#panel-tutor" type="button" role="tab">
+                        <i class="bi bi-person-badge-fill me-3"></i> Data Tutor
+                    </button>
+                    <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-2" id="tab-siswa"
+                        data-bs-toggle="pill" data-bs-target="#panel-siswa" type="button" role="tab">
+                        <i class="bi bi-people-fill me-3"></i> Data Warga Belajar
+                    </button>
+
+                    <p class="sidebar-heading mb-1 mt-3 px-3 small text-uppercase fw-bold text-white opacity-75"
+                        style="font-size: 11px; letter-spacing: 0.5px;">Kelola Akademik</p>
+                    <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-1" id="tab-kelas"
+                        data-bs-toggle="pill" data-bs-target="#panel-kelas" type="button" role="tab">
+                        <i class="bi bi-houses-fill me-3 text-warning"></i> Ruang Kelas
+                    </button>
+                    <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-1"
+                        id="tab-berita" data-bs-toggle="pill" data-bs-target="#panel-berita" type="button" role="tab">
+                        <i class="bi bi-newspaper me-3 text-warning"></i> Berita & Info
+                    </button>
+            </div>
+
+
+            {{-- HALAMAN TUTOR --}}
+        @elseif(Auth::user()->role == 'tutor')
+            <p class="sidebar-heading mb-1">Akademik Tutor</p>
+            <button class="nav-link border-0 text-start bg-transparent text-white" id="tab-jadwal-tutor"
+                data-bs-toggle="pill" data-bs-target="#panel-jadwal-tutor" type="button" role="tab"><i
+                    class="bi bi-calendar-event me-3"></i> Profil Tutor</button>
+            <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-1" id="tab-kelas-tutor"
+                data-bs-toggle="pill" data-bs-target="#panel-kelas-tutor" type="button">
+                <i class="bi bi-book-half me-3 text-warning"></i>
+                Kelas Pembelajaran
+            </button>
+            <button class="nav-link border-0 text-start bg-transparent text-white" id="tab-berita" data-bs-toggle="pill"
+                data-bs-target="#panel-berita" type="button">
+                <i class="bi bi-newspaper me-3 text-info"></i>
+                Berita PKBM
             </button>
 
-            @if (Auth::user()->role == 'admin')
-                <p class="sidebar-heading mb-1 mt-3 px-3 small text-uppercase fw-bold text-white opacity-75"
-                    style="font-size: 11px; letter-spacing: 0.5px;">Kelola Pendaftar</p>
-                <button class="nav-link border-0 text-start bg-transparent text-info w-100 d-block mb-2"
-                    id="tab-pendaftar" data-bs-toggle="pill" data-bs-target="#panel-pendaftar" type="button"
-                    role="tab">
-                    <i class="bi bi-clipboard2-check-fill me-3"></i> Data Pendaftar
-                </button>
-
-                <p class="sidebar-heading mb-1 mt-3 px-3 small text-uppercase fw-bold text-white opacity-75"
-                    style="font-size: 11px; letter-spacing: 0.5px;">Manajemen Pengguna</p>
-                <button class="nav-link border-0 text-start bg-transparent text-warning w-100 d-block mb-1"
-                    id="tab-admin" data-bs-toggle="pill" data-bs-target="#panel-user" type="button" role="tab">
-                    <i class="bi bi-shield-lock-fill me-3"></i> Data User
-                </button>
-                <button class="nav-link border-0 text-start bg-transparent text-success w-100 d-block mb-1"
-                    id="tab-tutor" data-bs-toggle="pill" data-bs-target="#panel-tutor" type="button" role="tab">
-                    <i class="bi bi-person-badge-fill me-3"></i> Data Tutor
-                </button>
-                <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-2" id="tab-siswa"
-                    data-bs-toggle="pill" data-bs-target="#panel-siswa" type="button" role="tab">
-                    <i class="bi bi-people-fill me-3"></i> Data Warga Belajar
-                </button>
-
-                <p class="sidebar-heading mb-1 mt-3 px-3 small text-uppercase fw-bold text-white opacity-75"
-                    style="font-size: 11px; letter-spacing: 0.5px;">Kelola Akademik</p>
-                <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-1" id="tab-kelas"
-                    data-bs-toggle="pill" data-bs-target="#panel-kelas" type="button" role="tab">
-                    <i class="bi bi-houses-fill me-3 text-warning"></i> Ruang Kelas
-                </button>
-                <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-1"
-                    id="tab-berita" data-bs-toggle="pill" data-bs-target="#panel-berita" type="button" role="tab">
-                    <i class="bi bi-newspaper me-3 text-warning"></i> Berita & Info
-                </button>
+            {{-- HALAMAN  SISWA --}}
+        @elseif(Auth::user()->role == 'siswa')
+            <p class="sidebar-heading mb-1">Ruang Belajar</p>
+            <button class="nav-link border-0 text-start bg-transparent text-white" id="tab-kelas-siswa"
+                data-bs-toggle="pill" data-bs-target="#panel-kelas-siswa" type="button" role="tab"><i
+                    class="bi bi-house-door-fill me-3"></i> Kelas Pembelajaran</button>
+            <button class="nav-link border-0 text-start bg-transparent text-warning" data-bs-toggle="pill"
+                data-bs-target="#panel-kelas-saya">
+                <i class="bi bi-journal-bookmark-fill me-3"></i>Kelas Saya</button>
+            <button class="nav-link border-0 text-start bg-transparent text-white"id="tab-profil-siswa"
+                data-bs-toggle="pill" data-bs-target="#panel-profil-siswa"type="button">
+                <i class="bi bi-person-circle me-3 text-success"></i>Profil Saya</button>
+            <button class="nav-link border-0 text-start bg-transparent text-white"id="tab-berita"
+                data-bs-toggle="pill"data-bs-target="#panel-berita" type="button">
+                <i class="bi bi-newspaper me-3 text-info"></i>Berita PKBM
+            </button>
+            @endif
+        </div>
         </div>
 
-
-        {{-- HALAMAN TUTOR --}}
-    @elseif(Auth::user()->role == 'tutor')
-        <p class="sidebar-heading mb-1">Akademik Tutor</p>
-        <button class="nav-link border-0 text-start bg-transparent text-white" id="tab-jadwal-tutor"
-            data-bs-toggle="pill" data-bs-target="#panel-jadwal-tutor" type="button" role="tab"><i
-                class="bi bi-calendar-event me-3"></i> Profil Tutor</button>
-        <button class="nav-link border-0 text-start bg-transparent text-white w-100 d-block mb-1" id="tab-kelas-tutor"
-            data-bs-toggle="pill" data-bs-target="#panel-kelas-tutor" type="button">
-            <i class="bi bi-book-half me-3 text-warning"></i>
-            Kelas Pembelajaran
-        </button>
-        <button class="nav-link border-0 text-start bg-transparent text-white" id="tab-berita" data-bs-toggle="pill"
-            data-bs-target="#panel-berita" type="button">
-            <i class="bi bi-newspaper me-3 text-info"></i>
-            Berita PKBM
-        </button>
-
-        {{-- HALAMAN  SISWA --}}
-    @elseif(Auth::user()->role == 'siswa')
-        <p class="sidebar-heading mb-1">Ruang Belajar</p>
-        <button class="nav-link border-0 text-start bg-transparent text-white" id="tab-kelas-siswa"
-            data-bs-toggle="pill" data-bs-target="#panel-kelas-siswa" type="button" role="tab"><i
-                class="bi bi-house-door-fill me-3"></i> Kelas Pembelajaran</button>
-        <button class="nav-link border-0 text-start bg-transparent text-warning" data-bs-toggle="pill"
-            data-bs-target="#panel-kelas-saya">
-            <i class="bi bi-journal-bookmark-fill me-3"></i>Kelas Saya</button>
-        <button class="nav-link border-0 text-start bg-transparent text-white"id="tab-profil-siswa"
-            data-bs-toggle="pill" data-bs-target="#panel-profil-siswa"type="button">
-            <i class="bi bi-person-circle me-3 text-success"></i>Profil Saya</button>
-        <button class="nav-link border-0 text-start bg-transparent text-white"id="tab-berita"
-            data-bs-toggle="pill"data-bs-target="#panel-berita" type="button">
-            <i class="bi bi-newspaper me-3 text-info"></i>Berita PKBM
-        </button>
-        @endif
-    </div>
-    </div>
-
-    <!-- NAVBAR ATAS -->
-    <nav class="navbar navbar-expand-md navbar-top fixed-top p-0">
-        <div class="container-fluid px-4 py-2 d-flex justify-content-between align-items-center">
-            <span class="navbar-text fw-semibold text-dark"><i class="bi bi-calendar3 me-2"></i> Portal Pembelajaran
-                PKBM JULU SIRI</span>
-            <div class="dropdown">
-                <button class="btn btn-light btn-sm dropdown-toggle fw-bold" type="button"
-                    data-bs-toggle="dropdown">
-                    <i class="bi bi-person-circle text-primary"></i> {{ Auth::user()->name }}
+        <!-- NAVBAR ATAS -->
+        <nav class="navbar navbar-expand-md navbar-top fixed-top p-0">
+            <div class="container-fluid px-4 py-2 d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <button
+                    id="toggleSidebar"
+                    class="btn btn-outline-primary me-3 d-lg-none">
+                    <i class="bi bi-list fs-4"></i>
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                    <li>
-                        <form action="{{ route('logout') }}" method="POST" class="px-2">
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm w-100 text-start rounded"><i
-                                    class="bi bi-box-arrow-right me-2"></i> Keluar Sistem</button>
-                        </form>
-                    </li>
-                </ul>
+                <span class="navbar-text fw-semibold text-dark">
+                    <i class="bi bi-calendar3 me-2"></i>
+                    Portal Pembelajaran PKBM JULU SIRI
+                </span>
             </div>
-        </div>
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show mt-3">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                {{ session('error') }}
-
-                <button type="button" class="btn-close" data-bs-dismiss="alert">
-                </button>
+                <div class="dropdown">
+                    <button class="btn btn-light btn-sm dropdown-toggle fw-bold" type="button"
+                        data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle text-primary"></i> {{ Auth::user()->name }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST" class="px-2">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm w-100 text-start rounded"><i
+                                        class="bi bi-box-arrow-right me-2"></i> Keluar Sistem</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        @endif
-    </nav>
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show mt-3">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    {{ session('error') }}
 
-    <!-- AREA KONTEN UTAMA -->
-    <div class="main-content px-4 py-3">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert">
+                    </button>
+                </div>
+            @endif
+        </nav>
 
-        <!-- Notifikasi Sukses / Gagal Verifikasi -->
-        @if (session('sukses_data'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle-fill me-2"></i> {{ session('sukses_data') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        <!-- AREA KONTEN UTAMA -->
+        <div class="main-content px-4 py-3">
 
-        <div class="tab-content" id="v-pills-tabContent">
+            <!-- Notifikasi Sukses / Gagal Verifikasi -->
+            @if (session('sukses_data'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i> {{ session('sukses_data') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            <div class="tab-content" id="v-pills-tabContent">
 
             <!-- PANEL DASHBOARD COMNAL -->
             <div class="tab-pane fade show active pt-3" id="panel-dash" role="tabpanel">
@@ -311,21 +322,23 @@
                             <div
                                 class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">TOTAL TUTOR</small>
-                                    <h3 class="fw-bold mb-0 text-success">{{ $total_tutor }} Pengajar</h3>
+                                    <h3 class="fw-bold mb-0 text-success">{{ $total_tutor }} Tutor</h3>
                                 </div>
                                 <div class="bg-success bg-opacity-10 text-success p-3 rounded-3"><i
                                         class="bi bi-person-workspace fs-3"></i></div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
-                                <div><small class="text-muted fw-bold">TOTAL ADMIN</small>
-                                    <h3 class="fw-bold mb-0 text-warning">{{ $total_admin }} User</h3>
+                            <div
+                                class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
+                                <div><small class="text-muted fw-bold">TOTAL USER</small>
+                                    <h3 class="fw-bold mb-0 text-warning">{{ $total_user }} User</h3>
                                 </div>
-                                <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-3"><i class="bi bi-shield-lock fs-3"></i></div>
+                                <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-3"><i
+                                        class="bi bi-shield-lock fs-3"></i></div>
                             </div>
-                                </div>
-                            <div class="col-xl-3 col-md-6 mb-4">
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-0 shadow-sm rounded-4 h-100">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <div>
@@ -346,41 +359,41 @@
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-0 shadow-sm rounded-4 h-100">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div>
-                                <div class="text-muted fw-bold text-uppercase small">
-                                    Total Berita
+                            <div class="card border-0 shadow-sm rounded-4 h-100">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="text-muted fw-bold text-uppercase small">
+                                            Total Berita
+                                        </div>
+
+                                        <div class="fs-1 fw-bold text-success">
+                                            {{ $total_berita }}
+                                        </div>
+
+                                        <small class="text-secondary">
+                                            Berita Dipublikasikan
+                                        </small>
+                                    </div>
+
+                                    <div class="bg-success bg-opacity-10 rounded-4 p-3">
+                                        <i class="bi bi-newspaper text-success fs-2"></i>
+                                    </div>
+
                                 </div>
-
-                                <div class="fs-1 fw-bold text-success">
-                                    {{ $total_berita }}
-                                </div>
-
-                                <small class="text-secondary">
-                                    Berita Dipublikasikan
-                                </small>
                             </div>
-
-                            <div class="bg-success bg-opacity-10 rounded-4 p-3">
-                                <i class="bi bi-newspaper text-success fs-2"></i>
-                            </div>
-
                         </div>
                     </div>
-                </div>
+                @endif
+                @if (Auth::user()->role == 'admin')
+                    <div class="card border-0 shadow-sm rounded-4 mt-4">
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-4">
+                                <i class="bi bi-bar-chart-fill text-primary me-2"></i>
+                                Grafik Statistik PKBM JULU SIRI
+                            </h5>
+                            <canvas id="grafikStatistik" height="90"></canvas>
+                        </div>
                     </div>
-                    @endif
-                @if(Auth::user()->role == 'admin')
-                <div class="card border-0 shadow-sm rounded-4 mt-4">
-                    <div class="card-body">
-                        <h5 class="fw-bold mb-4">
-                            <i class="bi bi-bar-chart-fill text-primary me-2"></i>
-                            Grafik Statistik PKBM JULU SIRI
-                        </h5>
-                        <canvas id="grafikStatistik" height="90"></canvas>
-                    </div>
-                </div>
                 @endif
             </div>
 
@@ -511,10 +524,12 @@
                 <div class="tab-pane fade" id="panel-user" role="tabpanel">
                     <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
                         @if ($errors->any())
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 @foreach ($errors->all() as $error)
                                     <div>{{ $error }}</div>
                                 @endforeach
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                </button>
                             </div>
                         @endif
                         <h5 class="fw-bold mb-3 text-dark"><i
@@ -550,11 +565,11 @@
                                             <td>{{ $usr->email }}</td>
                                             <td>{{ $usr->role }}</td>
                                             <td class="text-center">
-                                                <button class="btn btn-secondary btn-xs py-1 px-2 text-xs fw-bold me-1"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#modalEditUser{{ $usr->id }}">
-                                                    <i class="bi bi-pencil-square"></i> Edit
-                                                </button>
+                                            <button class="btn btn-secondary btn-sm btn-mobile-xs"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalEditUser{{ $usr->id }}">
+                                                <i class="bi bi-pencil-square me-1"></i>
+                                            </button>
 
                                                 <form action="{{ route('admin.user.destroy', $usr->id) }}"
                                                     method="POST" class="d-inline m-0"
@@ -562,8 +577,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                        class="btn btn-danger btn-xs py-1 px-2 text-xs fw-bold">
-                                                        <i class="bi bi-trash"></i> Hapus
+                                                        class="btn btn-danger btn-sm py-1 px-2">
+                                                        <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -704,10 +719,7 @@
                                     <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
                                         <strong>Sukses!</strong> {{ session('success_pendaftar') }}
 
-                                        <button
-                                            type="button"
-                                            class="btn-close"
-                                            data-bs-dismiss="alert"
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close">
                                         </button>
                                     </div>
@@ -770,9 +782,9 @@
 
                                                     </form>
                                                 </form>
-                                        </div>
-                                    </td>
-                            </tr>
+                        </div>
+                        </td>
+                        </tr>
                     @empty
                         <tr>
                             <td colspan="5" class="text-center text-muted py-3">Belum ada data
@@ -811,215 +823,197 @@
     </div>
     @endif
 
-<!-- TABEL DATA SISWA -->
-<div class="tab-pane fade" id="panel-siswa" role="tabpanel">
-    <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
+    <!-- TABEL DATA SISWA -->
+    <div class="tab-pane fade" id="panel-siswa" role="tabpanel">
+        <div class="card border-0 p-4 rounded-3 shadow-sm bg-white mt-4">
 
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="fw-bold text-dark mb-0">
-                <i class="bi bi-people-fill text-primary me-2"></i>
-                Tabel Data Warga Belajar
-            </h5>
-
-            <a href="{{ route('admin.siswa.import') }}" class="btn btn-success">
-                <i class="bi bi-file-earmark-excel"></i>
-                Import File Excel
-            </a>
-        </div>
-    <div class="row mb-3">
-        <div class="col-md-5">
-            <input
-                type="text"
-                id="cariSiswa"
-                class="form-control"
-                placeholder="🔍 Cari berdasarkan Nama, NIS atau Kelas...">
-        </div>
-    </div>
-        <div class="table-responsive">
-            <table id="tabelSiswa" class="table table-bordered table-hover align-middle">
-                <thead class="table-primary">
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>NIS</th>
-                    <th>JK</th>
-                    <th>Alamat</th>
-                    <th>Tgl Lahir</th>
-                    <th>Kelas</th>
-                    <th>Status Akun</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-               <tbody id="bodySiswa">
-                @forelse($data_siswa as $key => $s)
-                <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $s->nama }}</td>
-                    <td>{{ $s->nis }}</td>
-                    <td>{{ $s->jenis_kelamin }}</td>
-                    <td>{{ $s->alamat }}</td>
-                    <td>
-                        @if($s->tgl_lahir)
-                            {{ \Carbon\Carbon::parse($s->tgl_lahir)->format('d-m-Y') }}
-                        @endif
-                    </td>
-                    <td>{{ $s->kelas }}</td>
-                    <td>
-                    @if($s->status_akun)
-                        <span class="badge bg-success">
-                            Aktif
-                        </span>
-                    @else
-                        <span class="badge bg-danger">
-                            Belum Aktif
-                        </span>
-                    @endif
-                </td>
-                    <td class="text-center">
-                    <a href="#"
-                        class="btn btn-info btn-sm btn-detail"
-                        data-bs-toggle="modal"
-                        data-bs-target="#detailSiswa"
-
-                        data-nama="{{ $s->nama }}"
-                        data-nis="{{ $s->nis }}"
-                        data-jk="{{ $s->jenis_kelamin }}"
-                        data-tempat="{{ $s->tempat_lahir }}"
-                        data-tgl="{{ $s->tgl_lahir }}"
-                        data-nik="{{ $s->nik }}"
-                        data-agama="{{ $s->agama }}"
-                        data-alamat="{{ $s->alamat }}"
-                        data-kelurahan="{{ $s->kelurahan_desa }}"
-                        data-kecamatan="{{ $s->kecamatan }}"
-                        data-ayah="{{ $s->nama_ayah }}"
-                        data-nikayah="{{ $s->nik_ayah }}"
-                        data-ibu="{{ $s->nama_ibu }}"
-                        data-nikibu="{{ $s->nik_ibu }}"
-                        data-kelas="{{ $s->kelas }}"
-                        data-status="{{ $s->status_akun }}"
-
-                        title="Detail">
-                        <i class="bi bi-eye-fill"></i>
-                    </a>
-                        @if($s->status_akun == 0)
-                        <form action="{{ route('admin.siswa.aktifkan', $s->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            <button type="submit"
-                                    class="btn btn-success btn-sm"
-                                    title="Aktifkan Akun">
-                                <i class="bi bi-person-check-fill"></i>
-                            </button>
-                        </form>
-                        @else
-                            <span class="badge bg-success">
-                                Aktif
-                            </span>
-                        @endif
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="8" class="text-center">
-                        Belum ada data siswa.
-                    </td>
-                </tr>
-                @endforelse
-           </tbody>
-        </table>
-        </div>
-    </div>
-</div>
-
-<!-- ================= MODAL DETAIL SISWA ================= -->
-
-<div class="modal fade" id="detailSiswa" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title">
-                    Detail Data Warga Belajar
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold text-dark mb-0">
+                    <i class="bi bi-people-fill text-primary me-2"></i>
+                    Tabel Data Warga Belajar
                 </h5>
-                <button class="btn-close btn-close-white"
-                        data-bs-dismiss="modal">
-                </button>
+
+                <a href="{{ route('admin.siswa.import') }}" class="btn btn-success">
+                    <i class="bi bi-file-earmark-excel"></i>
+                    Import File Excel
+                </a>
             </div>
-            <div class="modal-body">
-                <table class="table table-bordered">
-                    <tr>
-                        <th width="35%">Nama</th>
-                        <td id="detailNama"></td>
-                    </tr>
-                    <tr>
-                        <th>NIS</th>
-                        <td id="detailNis"></td>
-                    </tr>
-                    <tr>
-                        <th>Jenis Kelamin</th>
-                        <td id="detailJk"></td>
-                    </tr>
-                    <tr>
-                        <th>Tempat Lahir</th>
-                        <td id="detailTempat"></td>
-                    </tr>
-                    <tr>
-                        <th>Tanggal Lahir</th>
-                        <td id="detailTgl"></td>
-                    </tr>
-                    <tr>
-                        <th>NIK</th>
-                        <td id="detailNik"></td>
-                    </tr>
-                    <tr>
-                        <th>Agama</th>
-                        <td id="detailAgama"></td>
-                    </tr>
-                    <tr>
-                        <th>Alamat</th>
-                        <td id="detailAlamat"></td>
-                    </tr>
-                    <tr>
-                        <th>Kelurahan</th>
-                        <td id="detailKelurahan"></td>
-                    </tr>
-                    <tr>
-                        <th>Kecamatan</th>
-                        <td id="detailKecamatan"></td>
-                    </tr>
-                    <tr>
-                        <th>Nama Ayah</th>
-                        <td id="detailAyah"></td>
-                    </tr>
-                    <tr>
-                        <th>NIK Ayah</th>
-                        <td id="detailNikAyah"></td>
-                    </tr>
-                    <tr>
-                        <th>Nama Ibu</th>
-                        <td id="detailIbu"></td>
-                    </tr>
-                    <tr>
-                        <th>NIK Ibu</th>
-                        <td id="detailNikIbu"></td>
-                    </tr>
-                    <tr>
-                        <th>Kelas</th>
-                        <td id="detailKelas"></td>
-                    </tr>
-                    <tr>
-                        <th>Status Akun</th>
-                        <td id="detailStatus"></td>
-                    </tr>
+            <div class="row mb-3">
+                <div class="col-md-5">
+                    <input type="text" id="cariSiswa" class="form-control"
+                        placeholder="🔍 Cari berdasarkan Nama, NIS atau Kelas...">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="tabelSiswa" class="table table-bordered table-hover align-middle">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>NIS</th>
+                            <th>JK</th>
+                            <th>Alamat</th>
+                            <th>Tgl Lahir</th>
+                            <th>Kelas</th>
+                            <th>Status Akun</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodySiswa">
+                        @forelse($data_siswa as $key => $s)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $s->nama }}</td>
+                                <td>{{ $s->nis }}</td>
+                                <td>{{ $s->jenis_kelamin }}</td>
+                                <td>{{ $s->alamat }}</td>
+                                <td>
+                                    @if ($s->tgl_lahir)
+                                        {{ \Carbon\Carbon::parse($s->tgl_lahir)->format('d-m-Y') }}
+                                    @endif
+                                </td>
+                                <td>{{ $s->kelas }}</td>
+                                <td>
+                                    @if ($s->status_akun)
+                                        <span class="badge bg-success">
+                                            Aktif
+                                        </span>
+                                    @else
+                                        <span class="badge bg-danger">
+                                            Belum Aktif
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    <a href="#" class="btn btn-info btn-sm btn-detail" data-bs-toggle="modal"
+                                        data-bs-target="#detailSiswa" data-nama="{{ $s->nama }}"
+                                        data-nis="{{ $s->nis }}" data-jk="{{ $s->jenis_kelamin }}"
+                                        data-tempat="{{ $s->tempat_lahir }}" data-tgl="{{ $s->tgl_lahir }}"
+                                        data-nik="{{ $s->nik }}" data-agama="{{ $s->agama }}"
+                                        data-alamat="{{ $s->alamat }}" data-kelurahan="{{ $s->kelurahan_desa }}"
+                                        data-kecamatan="{{ $s->kecamatan }}" data-ayah="{{ $s->nama_ayah }}"
+                                        data-nikayah="{{ $s->nik_ayah }}" data-ibu="{{ $s->nama_ibu }}"
+                                        data-nikibu="{{ $s->nik_ibu }}" data-kelas="{{ $s->kelas }}"
+                                        data-status="{{ $s->status_akun }}" title="Detail">
+                                        <i class="bi bi-eye-fill"></i>
+                                    </a>
+                                    @if ($s->status_akun == 0)
+                                        <form action="{{ route('admin.siswa.aktifkan', $s->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success btn-sm"
+                                                title="Aktifkan Akun">
+                                                <i class="bi bi-person-check-fill"></i>
+                                            </button>
+                                        </form>
+                                    @else
+                                        <span class="badge bg-success">
+                                            Aktif
+                                        </span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    Belum ada data siswa.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
                 </table>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-                    Tutup
-                </button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL DETAIL SISWA ================= -->
+
+    <div class="modal fade" id="detailSiswa" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">
+                        Detail Data Warga Belajar
+                    </h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="35%">Nama</th>
+                            <td id="detailNama"></td>
+                        </tr>
+                        <tr>
+                            <th>NIS</th>
+                            <td id="detailNis"></td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Kelamin</th>
+                            <td id="detailJk"></td>
+                        </tr>
+                        <tr>
+                            <th>Tempat Lahir</th>
+                            <td id="detailTempat"></td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Lahir</th>
+                            <td id="detailTgl"></td>
+                        </tr>
+                        <tr>
+                            <th>NIK</th>
+                            <td id="detailNik"></td>
+                        </tr>
+                        <tr>
+                            <th>Agama</th>
+                            <td id="detailAgama"></td>
+                        </tr>
+                        <tr>
+                            <th>Alamat</th>
+                            <td id="detailAlamat"></td>
+                        </tr>
+                        <tr>
+                            <th>Kelurahan</th>
+                            <td id="detailKelurahan"></td>
+                        </tr>
+                        <tr>
+                            <th>Kecamatan</th>
+                            <td id="detailKecamatan"></td>
+                        </tr>
+                        <tr>
+                            <th>Nama Ayah</th>
+                            <td id="detailAyah"></td>
+                        </tr>
+                        <tr>
+                            <th>NIK Ayah</th>
+                            <td id="detailNikAyah"></td>
+                        </tr>
+                        <tr>
+                            <th>Nama Ibu</th>
+                            <td id="detailIbu"></td>
+                        </tr>
+                        <tr>
+                            <th>NIK Ibu</th>
+                            <td id="detailNikIbu"></td>
+                        </tr>
+                        <tr>
+                            <th>Kelas</th>
+                            <td id="detailKelas"></td>
+                        </tr>
+                        <tr>
+                            <th>Status Akun</th>
+                            <td id="detailStatus"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                        Tutup
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
     {{-- PANEL KELAS --}}
@@ -1636,28 +1630,28 @@
     @endif
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    @if(auth()->check() && auth()->user()->role == 'tutor')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            function muatKelasTutor() {
-                fetch('/ambil-kelas-tutor')
-                    .then(response => response.json())
-                    .then(data => {
-                        const wadah = document.getElementById('konten-kelas-tutor');
-                        wadah.innerHTML = ''; // Bersihkan kontainer
+    @if (auth()->check() && auth()->user()->role == 'tutor')
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                function muatKelasTutor() {
+                    fetch('/ambil-kelas-tutor')
+                        .then(response => response.json())
+                        .then(data => {
+                            const wadah = document.getElementById('konten-kelas-tutor');
+                            wadah.innerHTML = ''; // Bersihkan kontainer
 
-                        if (data.length === 0) {
-                            wadah.innerHTML = `
+                            if (data.length === 0) {
+                                wadah.innerHTML = `
                                             <div class="col-12 text-center py-5">
                                                 <img src="https://cdn-icons-png.flaticon.com/512/7486/7486744.png" alt="Kosong" style="width: 100px; opacity: 0.5;" class="mb-3">
                                                 <h5 class="fw-bold text-dark mb-1">Belum Ada Kelas Aktif</h5>
                                                 <p class="text-muted small">Mulai perjalanan mengajar Anda dengan menekan tombol "Buat Kelas Baru" di atas.</p>
                                             </div>`;
-                            return;
-                        }
+                                return;
+                            }
 
-                        data.forEach(kelas => {
-                            wadah.innerHTML += `
+                            data.forEach(kelas => {
+                                wadah.innerHTML += `
                                             <div class="col-md-4">
                                                 <div class="card border-0 shadow-sm rounded-4 h-100">
                                                     <div class="card-body p-4 d-flex flex-column justify-content-between">
@@ -1672,14 +1666,14 @@
                                                     </div>
                                                 </div>
                                             </div>`;
+                            });
                         });
-                    });
-            }
+                }
 
-            // Jalankan fungsi saat halaman pertama kali dibuka
-            muatKelasTutor();
-        });
-    </script>
+                // Jalankan fungsi saat halaman pertama kali dibuka
+                muatKelasTutor();
+            });
+        </script>
     @endif
     <script>
         const password = document.getElementById('password');
@@ -1707,118 +1701,134 @@
             }
         });
     </script>
-<script>
-document.getElementById('cariSiswa').addEventListener('keyup', function () {
-    let keyword = this.value.toLowerCase();
-    let rows = document.querySelectorAll('#bodySiswa tr');
-    rows.forEach(function(row){
-        let nama  = row.cells[1].innerText.toLowerCase();
-        let nis   = row.cells[2].innerText.toLowerCase();
-        let kelas = row.cells[6].innerText.toLowerCase();
-        if (
-            nama.includes(keyword) ||
-            nis.includes(keyword) ||
-            kelas.includes(keyword)
-        ){
-            row.style.display = "";
-        }else{
-            row.style.display = "none";
-        }
-    });
-});
-</script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-const ctx = document.getElementById('grafikStatistik');
-new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [
-            'Pendaftar',
-            'Warga Belajar',
-            'Tutor',
-            'Admin',
-            'Kelas',
-            'Berita'
-        ],
-        datasets: [{
-            label: 'Jumlah Data',
-            data: [
-                {{ $total_pendaftar }},
-                {{ $total_siswa }},
-                {{ $total_tutor }},
-                {{ $total_admin }},
-                {{ $total_kelas }},
-                {{ $total_berita }}
-            ],
-            backgroundColor: [
-                '#ef4444',
-                '#2563eb',
-                '#10b981',
-                '#f59e0b',
-                '#8b5cf6',
-                '#06b6d4'
-            ],
-            borderRadius: 8,
-            borderWidth: 0
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false
+    <script>
+        document.getElementById('cariSiswa').addEventListener('keyup', function() {
+            let keyword = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#bodySiswa tr');
+            rows.forEach(function(row) {
+                let nama = row.cells[1].innerText.toLowerCase();
+                let nis = row.cells[2].innerText.toLowerCase();
+                let kelas = row.cells[6].innerText.toLowerCase();
+                if (
+                    nama.includes(keyword) ||
+                    nis.includes(keyword) ||
+                    kelas.includes(keyword)
+                ) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('grafikStatistik');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Pendaftar',
+                    'Warga Belajar',
+                    'Tutor',
+                    'Kelas',
+                    'Berita'
+                ],
+                datasets: [{
+                    label: 'Jumlah Data',
+                    data: [
+                        {{ $total_pendaftar }},
+                        {{ $total_siswa }},
+                        {{ $total_tutor }},
+                        {{ $total_kelas }},
+                        {{ $total_berita }}
+                    ],
+                    backgroundColor: [
+                        '#ef4444',
+                        '#2563eb',
+                        '#10b981',
+                        '#f59e0b',
+                        '#8b5cf6',
+                        '#06b6d4'
+                    ],
+                    borderRadius: 8,
+                    borderWidth: 0
+                }]
             },
-            title: {
-                display: true,
-                text: 'Statistik PKBM JULU SIRI Tahun {{ date("Y") }}',
-                font: {
-                    size: 18
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Statistik PKBM JULU SIRI Tahun {{ date('Y') }}',
+                        font: {
+                            size: 18
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
                 }
             }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    precision: 0
-                }
+        });
+    </script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const tombol = document.getElementById("toggleSidebar");
+                        const sidebar = document.getElementById("sidebar");
+                        const overlay = document.getElementById("sidebarOverlay");
+
+                        tombol.onclick = function () {
+                            sidebar.classList.toggle("show");
+                            overlay.classList.toggle("show");
+                        };
+
+                        overlay.onclick = function () {
+                            sidebar.classList.remove("show");
+                            overlay.classList.remove("show");
+                        };
+                    });
+    </script>
+<script>
+    document.querySelectorAll('.btn-detail').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.getElementById('detailNama').innerText = this.dataset.nama;
+            document.getElementById('detailNis').innerText = this.dataset.nis;
+            document.getElementById('detailJk').innerText = this.dataset.jk;
+            document.getElementById('detailTempat').innerText = this.dataset.tempat;
+            document.getElementById('detailTgl').innerText = this.dataset.tgl;
+            document.getElementById('detailNik').innerText = this.dataset.nik;
+            document.getElementById('detailAgama').innerText = this.dataset.agama;
+            document.getElementById('detailAlamat').innerText = this.dataset.alamat;
+            document.getElementById('detailKelurahan').innerText = this.dataset.kelurahan;
+            document.getElementById('detailKecamatan').innerText = this.dataset.kecamatan;
+            document.getElementById('detailAyah').innerText = this.dataset.ayah;
+            document.getElementById('detailNikAyah').innerText = this.dataset.nikayah;
+            document.getElementById('detailIbu').innerText = this.dataset.ibu;
+            document.getElementById('detailNikIbu').innerText = this.dataset.nikibu;
+            document.getElementById('detailKelas').innerText = this.dataset.kelas;
+
+            if (this.dataset.status == 1) {
+                document.getElementById('detailStatus').innerHTML =
+                    '<span class="badge bg-success">Aktif</span>';
+            } else {
+                document.getElementById('detailStatus').innerHTML =
+                    '<span class="badge bg-secondary">Belum Aktif</span>';
+
             }
-        }
-    }
-});
+
+        });
+
+    });
 </script>
 </body>
 
 </html>
-<script>
-document.querySelectorAll('.btn-detail').forEach(function(btn){
-    btn.addEventListener('click',function(){
-        document.getElementById('detailNama').innerText=this.dataset.nama;
-        document.getElementById('detailNis').innerText=this.dataset.nis;
-        document.getElementById('detailJk').innerText=this.dataset.jk;
-        document.getElementById('detailTempat').innerText=this.dataset.tempat;
-        document.getElementById('detailTgl').innerText=this.dataset.tgl;
-        document.getElementById('detailNik').innerText=this.dataset.nik;
-        document.getElementById('detailAgama').innerText=this.dataset.agama;
-        document.getElementById('detailAlamat').innerText=this.dataset.alamat;
-        document.getElementById('detailKelurahan').innerText=this.dataset.kelurahan;
-        document.getElementById('detailKecamatan').innerText=this.dataset.kecamatan;
-        document.getElementById('detailAyah').innerText=this.dataset.ayah;
-        document.getElementById('detailNikAyah').innerText=this.dataset.nikayah;
-        document.getElementById('detailIbu').innerText=this.dataset.ibu;
-        document.getElementById('detailNikIbu').innerText=this.dataset.nikibu;
-        document.getElementById('detailKelas').innerText=this.dataset.kelas;
-
-        if(this.dataset.status==1){
-            document.getElementById('detailStatus').innerHTML='<span class="badge bg-success">Aktif</span>';
-        }else{
-            document.getElementById('detailStatus').innerHTML='<span class="badge bg-secondary">Belum Aktif</span>';
-
-        }
-
-    });
-
-});
-
-</script>

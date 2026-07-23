@@ -199,7 +199,7 @@
             <p>Email : pkbm.julusiri@gmail.com</p>
 
             <p>
-                Jl. Andi Mauraga No.21 RT.003 RW.003 Jagon,
+                Jl. Andi Mauraga No.21 RT.003 RW.003 Jagong,
                 Kecamatan Pangkajene,
                 Kabupaten Pangkep,
                 Sulawesi Selatan
