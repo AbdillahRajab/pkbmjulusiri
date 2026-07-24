@@ -790,27 +790,56 @@
             @endforelse
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    // 1. Cek apakah ada tab aktif yang disimpan di memori browser (localStorage)
+                    
+                    // ==========================================
+                    // 1. HANDLER TOGGLE SIDEBAR & OVERLAY MOBILE
+                    // ==========================================
+                    const toggleBtn = document.getElementById('toggleSidebar');
+                    const sidebar = document.querySelector('.sidebar');
+                    const overlay = document.getElementById('sidebarOverlay');
+
+                    function toggleMenu() {
+                        if (sidebar) sidebar.classList.toggle('show');
+                        if (overlay) overlay.classList.toggle('show');
+                    }
+
+                    // Klik tombol garis 3
+                    if (toggleBtn) {
+                        toggleBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            toggleMenu();
+                        });
+                    }
+
+                    // Klik area latar belakang gelap (overlay) untuk menutup sidebar
+                    if (overlay) {
+                        overlay.addEventListener('click', function() {
+                            toggleMenu();
+                        });
+                    }
+
+
+                    // ==========================================
+                    // 2. HANDLER TAB AKTIF (KODE ANDA)
+                    // ==========================================
                     var activeTab = localStorage.getItem('activeAdminTab');
                     if (activeTab) {
                         var tabElement = document.querySelector('button[data-bs-target="' + activeTab + '"]') ||
-                            document.querySelector('a[href="' + activeTab + '"]');
-                        if (tabElement) {
+                                        document.querySelector('a[href="' + activeTab + '"]');
+                        if (tabElement && typeof bootstrap !== 'undefined') {
                             var tab = new bootstrap.Tab(tabElement);
                             tab.show();
                         }
                     }
 
-                    // 2. Simpan tab baru ke memori browser setiap kali Admin mengklik sidebar / tab lain
-                    var tabTriggerList = [].slice.call(document.querySelectorAll(
-                        '[data-bs-toggle="tab"], [data-bs-toggle="pill"]'));
+                    var tabTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tab"], [data-bs-toggle="pill"]'));
                     tabTriggerList.forEach(function(tabTriggerEl) {
                         tabTriggerEl.addEventListener('shown.bs.tab', function(event) {
-                            var targetId = event.target.getAttribute('data-bs-target') || event.target
-                                .getAttribute('href');
+                            var targetId = event.target.getAttribute('data-bs-target') || event.target.getAttribute('href');
                             localStorage.setItem('activeAdminTab', targetId);
                         });
                     });
+
                 });
             </script>
             </tbody>
@@ -1777,23 +1806,29 @@
             }
         });
     </script>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const tombol = document.getElementById("toggleSidebar");
-                        const sidebar = document.getElementById("sidebar");
-                        const overlay = document.getElementById("sidebarOverlay");
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tombol = document.getElementById("toggleSidebar");
+                    // Mencari elemen sidebar baik yang menggunakan id="sidebar" ataupun class="sidebar"
+                    const sidebar = document.getElementById("sidebar") || document.querySelector(".sidebar");
+                    const overlay = document.getElementById("sidebarOverlay");
 
-                        tombol.onclick = function () {
+                    if (tombol && sidebar) {
+                        tombol.onclick = function (e) {
+                            e.preventDefault();
                             sidebar.classList.toggle("show");
-                            overlay.classList.toggle("show");
+                            if (overlay) overlay.classList.toggle("show");
                         };
+                    }
 
+                    if (overlay && sidebar) {
                         overlay.onclick = function () {
                             sidebar.classList.remove("show");
                             overlay.classList.remove("show");
                         };
-                    });
-    </script>
+                    }
+                });
+            </script>
 <script>
     document.querySelectorAll('.btn-detail').forEach(function(btn) {
         btn.addEventListener('click', function() {
