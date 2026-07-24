@@ -1,45 +1,40 @@
-@media (max-width:991px){
-
-        /* ===================
-    SIDEBAR
+@media (max-width: 991px) {
+    /* ===================
+       SIDEBAR OVERLAY
     =================== */
-
-    .sidebar{
-
-        position:fixed;
-        top:0;
-        left:-270px;
-        width:270px;
-        height:100vh;
-        background:#001f3f;
-        transition:.35s;
-        overflow-y:auto;
-        z-index:1055;
-        box-shadow:0 0 25px rgba(0,0,0,.35);
-
+    #sidebarOverlay {
+        position: fixed !important;
+        inset: 0 !important;
+        display: none;
+        background: rgba(0, 0, 0, 0.5) !important;
+        z-index: 1080 !important; /* Di atas navbar fixed-top */
     }
 
-    .sidebar.show{
-
-        left:0;
-
+    #sidebarOverlay.show {
+        display: block !important;
     }
 
-    #sidebarOverlay{
-
-        position:fixed;
-        inset:0;
-        display:none;
-        background:rgba(0,0,0,.45);
-        z-index:1050;
-
+    /* ===================
+       SIDEBAR KIRI
+    =================== */
+    .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: -270px !important;
+        width: 270px !important;
+        height: 100vh !important;
+        background: #001f3f !important;
+        transition: left 0.35s ease !important;
+        overflow-y: auto !important;
+        z-index: 1090 !important; /* Paling tinggi, wajib di atas overlay (1080) */
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.35) !important;
     }
 
-    #sidebarOverlay.show{
-
-        display:block;
-
+    /* Saat class .show aktif, paksa geser ke layar */
+    .sidebar.show {
+        left: 0 !important;
     }
+}
     /* ===================
     NAVBAR
     =================== */
@@ -357,4 +352,3 @@ textarea{
 
 }
 
-}

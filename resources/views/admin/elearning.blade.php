@@ -1809,9 +1809,13 @@
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
                     const tombol = document.getElementById("toggleSidebar");
-                    // Mencari elemen sidebar baik yang menggunakan id="sidebar" ataupun class="sidebar"
                     const sidebar = document.getElementById("sidebar") || document.querySelector(".sidebar");
                     const overlay = document.getElementById("sidebarOverlay");
+
+                    function closeMenu() {
+                        if (sidebar) sidebar.classList.remove("show");
+                        if (overlay) overlay.classList.remove("show");
+                    }
 
                     if (tombol && sidebar) {
                         tombol.onclick = function (e) {
@@ -1821,11 +1825,21 @@
                         };
                     }
 
-                    if (overlay && sidebar) {
-                        overlay.onclick = function () {
-                            sidebar.classList.remove("show");
-                            overlay.classList.remove("show");
-                        };
+                    // Klik area hitam overlay untuk menutup
+                    if (overlay) {
+                        overlay.onclick = closeMenu;
+                    }
+
+                    // Klik salah satu menu di sidebar untuk otomatis menutup (khusus mobile)
+                    if (sidebar) {
+                        const menuItems = sidebar.querySelectorAll('.nav-link, button, a');
+                        menuItems.forEach(function(item) {
+                            item.addEventListener('click', function() {
+                                if (window.innerWidth <= 991) {
+                                    closeMenu();
+                                }
+                            });
+                        });
                     }
                 });
             </script>
