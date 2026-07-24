@@ -446,7 +446,7 @@
                 </a>
             </div>
             {{-- STATISKTIK WELCOME --}}
-            <div class="w-100 mt-5">
+            <div class="w-50 mt-3">
                 <div class="row justify-content-center text-center g-3">
 
                     <div class="col-6 col-md-3 px-2">
