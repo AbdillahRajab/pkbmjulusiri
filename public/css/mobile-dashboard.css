@@ -332,4 +332,28 @@ textarea{
 
     overflow:hidden;
 }
+@media (max-width:991px){
+
+.dashboard-card{
+    padding:12px !important;
+}
+
+.dashboard-card h3,
+.dashboard-card .fs-1{
+    font-size:1.5rem !important;
+}
+
+.dashboard-card small{
+    font-size:.72rem;
+}
+
+.dashboard-card i{
+    font-size:1.5rem !important;
+}
+
+.dashboard-card .p-3{
+    padding:.8rem !important;
+}
+
+}
 }

@@ -298,9 +298,8 @@
 
                 @if (Auth::user()->role == 'admin')
                     <div class="row g-3 mt-3">
-                        <div class="col-md-3">
-                            <div
-                                class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
+                        <div class="col-6 col-md-3">
+                            <div class="card dashboard-card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">CALON PENDAFTAR</small>
                                     <h3 class="fw-bold mb-0 text-danger">{{ $total_pendaftar }} Orang</h3>
                                 </div>
@@ -308,9 +307,8 @@
                                         class="bi bi-clipboard2-data fs-3"></i></div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div
-                                class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
+                        <div class="col-6 col-md-6 col-xl-3 mb-3">
+                           <div class="card dashboard-card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">WARGA BELAJAR</small>
                                     <h3 class="fw-bold mb-0 text-primary">{{ $total_siswa }} Siswa</h3>
                                 </div>
@@ -318,7 +316,7 @@
                                         class="bi bi-people fs-3"></i></div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-6 col-md-6 col-xl-3 mb-3">
                             <div
                                 class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">TOTAL TUTOR</small>
@@ -328,9 +326,8 @@
                                         class="bi bi-person-workspace fs-3"></i></div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div
-                                class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
+                        <div class="col-6 col-md-6 col-xl-3 mb-3">
+                            <div class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">TOTAL USER</small>
                                     <h3 class="fw-bold mb-0 text-warning">{{ $total_user }} User</h3>
                                 </div>
@@ -338,7 +335,7 @@
                                         class="bi bi-shield-lock fs-3"></i></div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-6 col-md-6 col-xl-3 mb-3">
                             <div class="card border-0 shadow-sm rounded-4 h-100">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <div>
@@ -358,7 +355,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-6 col-md-6 col-xl-3 mb-3">
                             <div class="card border-0 shadow-sm rounded-4 h-100">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <div>
