@@ -1,40 +1,27 @@
 @media (max-width:991px){
 
+        /* ===================
+    SIDEBAR
+    =================== */
+
     .sidebar{
 
-        position: fixed !important;
-        top:0 !important;
-        left:-270px !important;
-        width:270px !important;
-        height:100vh !important;
+        position:fixed;
+        top:0;
+        left:-270px;
+        width:270px;
+        height:100vh;
+        background:#001f3f;
+        transition:.35s;
+        overflow-y:auto;
+        z-index:1055;
+        box-shadow:0 0 25px rgba(0,0,0,.35);
 
-        background:#001f3f !important;
-
-        z-index:1055 !important;
-
-        transition:left .3s ease !important;
-
-        overflow-y:auto !important;
     }
 
     .sidebar.show{
 
-        left:0 !important;
-
-    }
-
-    .navbar-top{
-
-        left:0 !important;
-        width:100% !important;
-
-    }
-
-    .main-content{
-
-        margin-left:0 !important;
-        width:100% !important;
-        padding-top:90px !important;
+        left:0;
 
     }
 
@@ -53,9 +40,296 @@
         display:block;
 
     }
+    /* ===================
+    NAVBAR
+    =================== */
+
+    .navbar-top{
+
+        left:0 !important;
+        width:100% !important;
+        padding:.5rem .8rem;
+
+    }
+
+    .navbar-top .navbar-text{
+
+        font-size:.95rem;
+        font-weight:600;
+
+    }
+
+        /* ===================
+    MAIN CONTENT
+    =================== */
+    .main-content{
+
+    margin-left:0 !important;
+    width:100% !important;
+    padding:90px 12px 20px;
+    overflow-x:hidden;
+}
+    .tab-content{
+        width:100%;
+    }
+    .tab-pane{
+        width:100%;
+
+    }
+
     .btn-mobile-xs {
         font-size: 11px;
         padding: 3px 8px !important;
         line-height: 1.2;
     }
+
+/* CARD HEADER */
+
+#panel-dash .card:first-child{
+
+    padding:18px !important;
+    margin-bottom:18px !important;
+
+}
+
+#panel-dash h3{
+
+    font-size:1.35rem;
+    line-height:1.4;
+    margin-bottom:8px;
+}
+
+#panel-dash p{
+    font-size:.95rem;
+
+}
+/* ===================
+   DASHBOARD CARD
+=================== */
+
+#panel-dash .card{
+
+    border-radius:16px !important;
+    margin-bottom:15px !important;
+
+}
+
+#panel-dash .card-body{
+    padding:18px !important;
+
+}
+/* ===================
+   ROW DASHBOARD
+=================== */
+
+#panel-dash .row{
+
+    margin-left:0 !important;
+    margin-right:0 !important;
+
+}
+/* ===================
+   CARD STATISTIK
+=================== */
+
+#panel-dash .col-xl-3,
+#panel-dash .col-lg-3,
+#panel-dash .col-md-4,
+#panel-dash .col-md-3,
+#panel-dash .col-sm-6{
+
+    width:50%;
+    padding:6px;
+    flex:0 0 50%;
+    max-width:50%;
+
+}
+/* ===================
+   ISI CARD
+=================== */
+#panel-dash .card h2{
+
+    font-size:1.4rem;
+    margin-bottom:4px;
+}
+
+#panel-dash .card h5{
+    font-size:.9rem;
+}
+
+#panel-dash .card p{
+    font-size:.75rem;
+}
+#panel-dash .card i{
+    font-size:1.6rem !important;
+}
+.badge{
+    font-size:.72rem;
+}
+/* ===================
+   CARD TABEL
+=================== */
+.card{
+
+    border-radius:16px !important;
+    margin-bottom:15px !important;
+}
+/* ===================
+   TABLE RESPONSIVE
+=================== */
+.table-responsive{
+
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+.table{
+
+    font-size:.82rem;
+    white-space:nowrap;
+}
+.table thead th{
+
+    font-size:.8rem;
+    padding:10px 8px;
+    vertical-align:middle;
+}
+.table tbody td{
+
+    padding:10px 8px;
+    vertical-align:middle;
+}
+.table .btn{
+
+    font-size:.72rem;
+    padding:4px 8px;
+}
+.table .badge{
+
+    font-size:.68rem;
+}
+/* ===================
+   MODAL
+=================== */
+.modal-dialog{
+
+    margin:.8rem;
+}
+
+.modal-content{
+
+    border-radius:16px;
+}
+
+.modal-header h5{
+
+    font-size:1rem;
+}
+
+.modal-body{
+
+    font-size:.9rem;
+}
+/* ===================
+   FORM
+=================== */
+.form-control,
+.form-select{
+
+    font-size:.9rem;
+}
+
+label{
+
+    font-size:.88rem;
+}
+textarea{
+
+    min-height:120px;
+}
+/* ===================
+   DETAIL KELAS
+=================== */
+#panel-kelas .card,
+#panel-kelas-tutor .card,
+#panel-kelas-saya .card{
+
+    border-radius:16px;
+    margin-bottom:15px;
+}
+
+#panel-kelas .card-body,
+#panel-kelas-tutor .card-body,
+#panel-kelas-saya .card-body{
+
+    padding:16px;
+}
+/* ===================
+   JUDUL MATERI
+=================== */
+.card-title{
+
+    font-size:1rem;
+    line-height:1.4;
+    font-weight:600;
+}
+.card-text{
+
+    font-size:.88rem;
+    line-height:1.6;
+}
+/* ===================
+   BUTTON DOWNLOAD
+=================== */
+.btn{
+
+    margin-bottom:6px;
+}
+
+.btn-sm{
+
+    font-size:.78rem;
+}
+@media(max-width:576px){
+    .btn-group-mobile .btn{
+
+        width:100%;
+        margin-bottom:8px;
+    }
+
+}
+/* ===================
+   UPLOAD
+=================== */
+input[type=file]{
+
+    font-size:.82rem;
+}
+
+textarea{
+
+    font-size:.88rem;
+}
+/* ===================
+   BUTTON
+=================== */
+.btn{
+
+    border-radius:10px;
+}
+
+.btn-success,
+.btn-primary,
+.btn-warning,
+.btn-danger{
+
+    padding:8px 14px;
+}
+.bi{
+
+    vertical-align:middle;
+}
+.card{
+
+    overflow:hidden;
+}
 }
