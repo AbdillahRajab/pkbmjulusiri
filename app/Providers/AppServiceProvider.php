@@ -2,56 +2,31 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiting;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
-class RouteServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
     /**
-     * The path to the "home" route for your application.
+     * Register any application services.
      *
-     * Typically, users are redirected here after authentication.
-     *
-     * @var string
+     * @return void
      */
-    // DIUBAH: Dari '/home' atau '/dashboard' menjadi '/'
-    public const HOME = '/';
+    public function register()
+    {
+        //
+    }
 
     /**
-     * Define your route model bindings, pattern filters, etc.
+     * Bootstrap any application services.
      *
      * @return void
      */
     public function boot()
     {
-        if ($this->app->environment('production')) {
-        \URL::forceScheme('https');
-    }
-        // $this->configureRateLimiting();
-
-        // $this->routes(function () {
-        //     Route::middleware('api')
-        //         ->prefix('api')
-        //         ->group(base_path('routes/api.php'));
-
-        //     Route::middleware('web')
-        //         ->group(base_path('routes/web.php'));
-        // });
-        
-    }
-
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
-    protected function configureRateLimiting()
-    {
-        RateLimiting::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        // Memaksa seluruh URL/Asset menggunakan HTTPS di environment Vercel / Production
+        if (config('app.env') === 'production' || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+            URL::forceScheme('https');
+        }
     }
 }
