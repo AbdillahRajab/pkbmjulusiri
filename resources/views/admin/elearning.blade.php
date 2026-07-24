@@ -28,100 +28,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/mobile-dashboard.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 100;
-            width: 260px;
-            background-color: #001f3f;
-        }
-
-        .sidebar .nav-link {
-            font-weight: bold;
-            color: #b8c7ce;
-            padding: 12px 20px;
-            border-radius: 4px;
-            margin: 2px 10px;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        .sidebar .nav-link.active {
-            background-color: #003366;
-        }
-
-        .sidebar-heading {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: .1rem;
-            font-weight: bold;
-            color: #6c757d;
-            padding: 15px 20px 5px;
-        }
-
-        .main-content {
-            margin-left: 260px;
-            padding-top: 100px;
-        }
-
-        .navbar-top {
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-            left: 260px;
-            width: calc(100% - 260px);
-        }
-
-        .nav-pills .nav-link,
-        .sidebar .nav-link,
-        .nav-item .nav-link {
-            transition: all 0.3s ease;
-            color: #495057;
-        }
-
-        .nav-pills .nav-link:hover,
-        .sidebar .nav-link:hover,
-        .nav-item .nav-link:hover {
-            background-color: #f8f9fa !important;
-            /* Warna latar belakang jadi terang/abu-abu halus */
-            color: #0d6efd !important;
-            /* Warna teks/ikon berubah jadi biru cerah */
-            padding-left: 20px !important;
-            /* Efek geser sedikit ke kanan biar estetik */
-            font-weight: bold;
-        }
-
-        .bg-dark .nav-link:hover,
-        .sidebar-dark .nav-link:hover {
-            background-color: #212529 !important;
-            /* Latar belakang abu-abu gelap */
-            color: #ffffff !important;
-            /* Teks jadi putih bersih */
-            padding-left: 20px !important;
-        }
-
-        .nav-pills .nav-link.active,
-        .sidebar .nav-link.active {
-            background-color: #0d6efd !important;
-            /* Warna biru saat aktif */
-            color: white !important;
-        }
-    </style>
 </head>
 
     <body>
@@ -129,7 +35,7 @@
             <!-- SIDEBAR KIRI -->
     <div id="sidebarOverlay"></div>
         <div id="sidebar" class="sidebar">
-            <div class="text-center py-4 border-bottom border-secondary">
+            <div class="sidebar-header text-center border-bottom border-secondary">
                 <img src="{{ asset('images/logo3.png') }}" alt="Logo PKBM" width="40" height="40"
                     class="d-inline-block align-top img-fluid">
                 <h5 class="text-white fw-bold mb-0">PKBM JULU SIRI</h5>
@@ -181,7 +87,7 @@
                         id="tab-berita" data-bs-toggle="pill" data-bs-target="#panel-berita" type="button" role="tab">
                         <i class="bi bi-newspaper me-3 text-warning"></i> Berita & Info
                     </button>
-            </div>
+            
 
 
             {{-- HALAMAN TUTOR --}}
@@ -218,23 +124,23 @@
                 <i class="bi bi-newspaper me-3 text-info"></i>Berita PKBM
             </button>
             @endif
+            </div>
         </div>
-        </div>
+
 
         <!-- NAVBAR ATAS -->
         <nav class="navbar navbar-expand-md navbar-top fixed-top p-0">
             <div class="container-fluid px-4 py-2 d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-                <button
-                    id="toggleSidebar"
-                    class="btn btn-outline-primary me-3 d-lg-none">
-                    <i class="bi bi-list fs-4"></i>
-                </button>
-                <span class="navbar-text fw-semibold text-dark">
-                    <i class="bi bi-calendar3 me-2"></i>
-                    Portal Pembelajaran PKBM JULU SIRI
-                </span>
-            </div>
+            <button id="toggleSidebar"
+                class="btn btn-primary d-lg-none">
+                <i class="bi bi-list"></i>
+            </button>
+            <span class="navbar-text fw-semibold text-dark">
+                <i class="bi bi-calendar3 me-2"></i>
+                Portal Pembelajaran PKBM JULU SIRI
+            </span>
+        </div>
                 <div class="dropdown">
                     <button class="btn btn-light btn-sm dropdown-toggle fw-bold" type="button"
                         data-bs-toggle="dropdown">
@@ -779,8 +685,8 @@
 
                                                     </form>
                                                 </form>
-                        </div>
-                        </td>
+                                        </div>
+                                 </td>
                         </tr>
                     @empty
                         <tr>
@@ -788,60 +694,6 @@
                                 formulir pendaftar masuk.</td>
                         </tr>
             @endforelse
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    
-                    // ==========================================
-                    // 1. HANDLER TOGGLE SIDEBAR & OVERLAY MOBILE
-                    // ==========================================
-                    const toggleBtn = document.getElementById('toggleSidebar');
-                    const sidebar = document.querySelector('.sidebar');
-                    const overlay = document.getElementById('sidebarOverlay');
-
-                    function toggleMenu() {
-                        if (sidebar) sidebar.classList.toggle('show');
-                        if (overlay) overlay.classList.toggle('show');
-                    }
-
-                    // Klik tombol garis 3
-                    if (toggleBtn) {
-                        toggleBtn.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            toggleMenu();
-                        });
-                    }
-
-                    // Klik area latar belakang gelap (overlay) untuk menutup sidebar
-                    if (overlay) {
-                        overlay.addEventListener('click', function() {
-                            toggleMenu();
-                        });
-                    }
-
-
-                    // ==========================================
-                    // 2. HANDLER TAB AKTIF (KODE ANDA)
-                    // ==========================================
-                    var activeTab = localStorage.getItem('activeAdminTab');
-                    if (activeTab) {
-                        var tabElement = document.querySelector('button[data-bs-target="' + activeTab + '"]') ||
-                                        document.querySelector('a[href="' + activeTab + '"]');
-                        if (tabElement && typeof bootstrap !== 'undefined') {
-                            var tab = new bootstrap.Tab(tabElement);
-                            tab.show();
-                        }
-                    }
-
-                    var tabTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tab"], [data-bs-toggle="pill"]'));
-                    tabTriggerList.forEach(function(tabTriggerEl) {
-                        tabTriggerEl.addEventListener('shown.bs.tab', function(event) {
-                            var targetId = event.target.getAttribute('data-bs-target') || event.target.getAttribute('href');
-                            localStorage.setItem('activeAdminTab', targetId);
-                        });
-                    });
-
-                });
-            </script>
             </tbody>
             </table>
         </div>
@@ -1807,42 +1659,26 @@
         });
     </script>
             <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const tombol = document.getElementById("toggleSidebar");
-                    const sidebar = document.getElementById("sidebar") || document.querySelector(".sidebar");
-                    const overlay = document.getElementById("sidebarOverlay");
+                    document.addEventListener("DOMContentLoaded",function(){
 
-                    function closeMenu() {
-                        if (sidebar) sidebar.classList.remove("show");
-                        if (overlay) overlay.classList.remove("show");
-                    }
+                const sidebar=document.getElementById("sidebar");
+                const overlay=document.getElementById("sidebarOverlay");
+                const toggle=document.getElementById("toggleSidebar");
 
-                    if (tombol && sidebar) {
-                        tombol.onclick = function (e) {
-                            e.preventDefault();
-                            sidebar.classList.toggle("show");
-                            if (overlay) overlay.classList.toggle("show");
-                        };
-                    }
+                toggle.addEventListener("click",function(){
 
-                    // Klik area hitam overlay untuk menutup
-                    if (overlay) {
-                        overlay.onclick = closeMenu;
-                    }
+                sidebar.classList.toggle("show");
+                overlay.classList.toggle("show");
 
-                    // Klik salah satu menu di sidebar untuk otomatis menutup (khusus mobile)
-                    if (sidebar) {
-                        const menuItems = sidebar.querySelectorAll('.nav-link, button, a');
-                        menuItems.forEach(function(item) {
-                            item.addEventListener('click', function() {
-                                if (window.innerWidth <= 991) {
-                                    closeMenu();
-                                }
-                            });
-                        });
-                    }
                 });
-            </script>
+
+                overlay.addEventListener("click",function(){
+
+                sidebar.classList.remove("show");
+                overlay.classList.remove("show");
+                });
+          });
+    </script>
 <script>
     document.querySelectorAll('.btn-detail').forEach(function(btn) {
         btn.addEventListener('click', function() {

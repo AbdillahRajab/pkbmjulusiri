@@ -1,354 +1,229 @@
-@media (max-width: 991px) {
-    /* ===================
-       SIDEBAR OVERLAY
-    =================== */
-    #sidebarOverlay {
-        position: fixed !important;
-        inset: 0 !important;
-        display: none;
-        background: rgba(0, 0, 0, 0.5) !important;
-        z-index: 1080 !important; /* Di atas navbar fixed-top */
-    }
+/* ===============================
+   DESKTOP
+================================= */
 
-    #sidebarOverlay.show {
-        display: block !important;
-    }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            width: 260px;
+            background-color: #001f3f;
+        }
 
-    /* ===================
-       SIDEBAR KIRI
-    =================== */
-    .sidebar {
-        position: fixed !important;
-        top: 0 !important;
-        left: -270px !important;
-        width: 270px !important;
-        height: 100vh !important;
-        background: #001f3f !important;
-        transition: left 0.35s ease !important;
-        overflow-y: auto !important;
-        z-index: 1090 !important; /* Paling tinggi, wajib di atas overlay (1080) */
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.35) !important;
-    }
+        .sidebar .nav-link {
+            font-weight: bold;
+            color: #b8c7ce;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin: 2px 10px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-    /* Saat class .show aktif, paksa geser ke layar */
-    .sidebar.show {
-        left: 0 !important;
-    }
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #003366;
+        }
+
+        .sidebar-heading {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            color: #6c757d;
+            padding: 15px 20px 5px;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding-top: 100px;
+        }
+
+        .navbar-top {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            left: 260px;
+            width: calc(100% - 260px);
+        }
+
+        .nav-pills .nav-link,
+        .sidebar .nav-link,
+        .nav-item .nav-link {
+            transition: all 0.3s ease;
+            color: #495057;
+        }
+
+        .nav-pills .nav-link:hover,
+        .sidebar .nav-link:hover,
+        .nav-item .nav-link:hover {
+            background-color: #f8f9fa !important;
+            /* Warna latar belakang jadi terang/abu-abu halus */
+            color: #0d6efd !important;
+            /* Warna teks/ikon berubah jadi biru cerah */
+            padding-left: 20px !important;
+            /* Efek geser sedikit ke kanan biar estetik */
+            font-weight: bold;
+        }
+
+        .bg-dark .nav-link:hover,
+        .sidebar-dark .nav-link:hover {
+            background-color: #212529 !important;
+            /* Latar belakang abu-abu gelap */
+            color: #ffffff !important;
+            /* Teks jadi putih bersih */
+            padding-left: 20px !important;
+        }
+
+        .nav-pills .nav-link.active,
+        .sidebar .nav-link.active {
+            background-color: #0d6efd !important;
+            /* Warna biru saat aktif */
+            color: white !important;
+        }
+    
+
+/* ===============================
+   MOBILE
+================================= */
+
+@media (max-width:991px){
+
+.sidebar{
+
+    left:-270px;
+    top:0;
+    width:260px;
+    height:100vh;
+    transition:.35s;
+    z-index:1100;
+    overflow-y:auto;
+
 }
-    /* ===================
-    NAVBAR
-    =================== */
 
-    .navbar-top{
+.sidebar.show{
 
-        left:0 !important;
-        width:100% !important;
-        padding:.5rem .8rem;
+    left:0;
 
-    }
+}
 
-    .navbar-top .navbar-text{
+#sidebarOverlay{
 
-        font-size:.95rem;
-        font-weight:600;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    z-index:1090;
 
-    }
+}
 
-        /* ===================
-    MAIN CONTENT
-    =================== */
-    .main-content{
+#sidebarOverlay.show{
 
+    display:block;
+
+}
+
+.navbar-top{
+
+    left:0;
+    width:100%;
+    padding:.6rem 1rem;
+
+}
+.navbar-top .container-fluid{
+
+    padding-left:8px !important;
+    padding-right:8px !important;
+
+}
+.navbar-text{
+
+    font-size:.82rem;
+
+}
+
+.main-content{
     margin-left:0 !important;
     width:100% !important;
-    padding:90px 12px 20px;
-    overflow-x:hidden;
-}
-    .tab-content{
-        width:100%;
-    }
-    .tab-pane{
-        width:100%;
 
-    }
-
-    .btn-mobile-xs {
-        font-size: 11px;
-        padding: 3px 8px !important;
-        line-height: 1.2;
-    }
-
-/* CARD HEADER */
-
-#panel-dash .card:first-child{
-
-    padding:18px !important;
-    margin-bottom:18px !important;
-
+    padding-top:105px !important;
+    padding-left:10px !important;
+    padding-right:10px !important;
+    padding-bottom:20px !important;
 }
 
-#panel-dash h3{
+#toggleSidebar{
+    width:34px;
+    height:34px;
+    padding:0;
+    border-radius:8px;
 
-    font-size:1.35rem;
-    line-height:1.4;
-    margin-bottom:8px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-right:12px;   
+    flex-shrink:0;
 }
 
-#panel-dash p{
-    font-size:.95rem;
-
+#toggleSidebar i{
+    font-size:18px;
 }
-/* ===================
-   DASHBOARD CARD
-=================== */
 
-#panel-dash .card{
+.sidebar .nav{
 
-    border-radius:16px !important;
-    margin-bottom:15px !important;
+    display:block;
+    overflow:visible;
+    max-height:none;
 
 }
 
-#panel-dash .card-body{
-    padding:18px !important;
-
-}
-/* ===================
-   ROW DASHBOARD
-=================== */
-
-#panel-dash .row{
+.card{
 
     margin-left:0 !important;
     margin-right:0 !important;
 
 }
-/* ===================
-   CARD STATISTIK
-=================== */
 
-#panel-dash .col-xl-3,
-#panel-dash .col-lg-3,
-#panel-dash .col-md-4,
-#panel-dash .col-md-3,
-#panel-dash .col-sm-6{
+.card-body{
 
-    width:50%;
-    padding:6px;
-    flex:0 0 50%;
-    max-width:50%;
+    padding:14px !important;
 
 }
-/* ===================
-   ISI CARD
-=================== */
-#panel-dash .card h2{
 
-    font-size:1.4rem;
-    margin-bottom:4px;
-}
-
-#panel-dash .card h5{
-    font-size:.9rem;
-}
-
-#panel-dash .card p{
-    font-size:.75rem;
-}
-#panel-dash .card i{
-    font-size:1.6rem !important;
-}
-.badge{
-    font-size:.72rem;
-}
-/* ===================
-   CARD TABEL
-=================== */
-.card{
-
-    border-radius:16px !important;
-    margin-bottom:15px !important;
-}
-/* ===================
-   TABLE RESPONSIVE
-=================== */
 .table-responsive{
 
     overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-}
-.table{
-
-    font-size:.82rem;
-    white-space:nowrap;
-}
-.table thead th{
-
-    font-size:.8rem;
-    padding:10px 8px;
-    vertical-align:middle;
-}
-.table tbody td{
-
-    padding:10px 8px;
-    vertical-align:middle;
-}
-.table .btn{
-
-    font-size:.72rem;
-    padding:4px 8px;
-}
-.table .badge{
-
-    font-size:.68rem;
-}
-/* ===================
-   MODAL
-=================== */
-.modal-dialog{
-
-    margin:.8rem;
-}
-
-.modal-content{
-
-    border-radius:16px;
-}
-
-.modal-header h5{
-
-    font-size:1rem;
-}
-
-.modal-body{
-
-    font-size:.9rem;
-}
-/* ===================
-   FORM
-=================== */
-.form-control,
-.form-select{
-
-    font-size:.9rem;
-}
-
-label{
-
-    font-size:.88rem;
-}
-textarea{
-
-    min-height:120px;
-}
-/* ===================
-   DETAIL KELAS
-=================== */
-#panel-kelas .card,
-#panel-kelas-tutor .card,
-#panel-kelas-saya .card{
-
-    border-radius:16px;
-    margin-bottom:15px;
-}
-
-#panel-kelas .card-body,
-#panel-kelas-tutor .card-body,
-#panel-kelas-saya .card-body{
-
-    padding:16px;
-}
-/* ===================
-   JUDUL MATERI
-=================== */
-.card-title{
-
-    font-size:1rem;
-    line-height:1.4;
-    font-weight:600;
-}
-.card-text{
-
-    font-size:.88rem;
-    line-height:1.6;
-}
-/* ===================
-   BUTTON DOWNLOAD
-=================== */
-.btn{
-
-    margin-bottom:6px;
-}
-
-.btn-sm{
-
-    font-size:.78rem;
-}
-@media(max-width:576px){
-    .btn-group-mobile .btn{
-
-        width:100%;
-        margin-bottom:8px;
-    }
 
 }
-/* ===================
-   UPLOAD
-=================== */
-input[type=file]{
 
-    font-size:.82rem;
-}
-
-textarea{
-
-    font-size:.88rem;
-}
-/* ===================
-   BUTTON
-=================== */
 .btn{
 
     border-radius:10px;
-}
-
-.btn-success,
-.btn-primary,
-.btn-warning,
-.btn-danger{
-
-    padding:8px 14px;
-}
-.bi{
-
-    vertical-align:middle;
-}
-.card{
-
-    overflow:hidden;
-}
-@media (max-width:991px){
-
-.dashboard-card{
-    padding:12px !important;
-}
-
-.dashboard-card h3,
-.dashboard-card .fs-1{
-    font-size:1.5rem !important;
-}
-
-.dashboard-card small{
-    font-size:.72rem;
-}
-
-.dashboard-card i{
-    font-size:1.5rem !important;
-}
-
-.dashboard-card .p-3{
-    padding:.8rem !important;
-}
 
 }
+.sidebar-header{
+    padding:12px 10px;
+}
+#panel-dash .col-md-3,
+#panel-dash .col-xl-3{
+
+    flex:0 0 50%;
+    max-width:50%;
+    padding:5px;
+
+}
+#panel-dash .card:first-child{
+    margin-top:1px !important;
+}
+}
+
 
