@@ -89,13 +89,26 @@
             border-radius: 8px 8px 0 0;
         }
         @media(max-width:576px){
-            .hero-banner{
-                min-height: 140vh;
-                align-items: flex-start !important;
-            }
-            .hero-banner .container{
-                padding-top: 20px !important;
-            }
+
+        .hero-banner{
+            min-height:120vh;
+            display:flex;
+            align-items:flex-start !important;
+        }
+
+        .hero-banner .container{
+            padding-top:70px !important;
+        }
+            /* Tombol turun */
+        .hero-banner .btn{
+            margin-top:80px !important;
+            margin-bottom:55px !important;
+        }
+
+        /* Statistik turun */
+        .hero-banner .row{
+            margin-top:55px !important;
+    }
         }
         @media (max-width:576px){
 
@@ -254,7 +267,9 @@
             border-radius: 15px;
             padding: 12px 8px;
         }
-
+            .hero-banner .row{
+            margin-top:90px;
+        }
         .hero-stat i {
             font-size: 1.5rem;
             margin-bottom: 5px;
@@ -440,13 +455,15 @@
             </p>
 
             <!-- Tombol Jelajahi Diperkecil Sedikit (Menggunakan btn-md, bukan btn-lg) & Style Center -->
-            <div class="d-flex justify-content-center w-100">
-                <a href="#fasilitas" class="btn btn-primary btn-md rounded-pill px-4 py-2 fw-bold shadow transition">
-                    <i class="bi bi-info-circle me-1"></i> Jelajahi Selengkapnya
+            <div class="d-flex justify-content-center w-100 hero-button">
+                <a href="#fasilitas"
+                class="btn btn-primary btn-md rounded-pill px-4 py-2 fw-bold shadow transition">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Jelajahi Selengkapnya
                 </a>
             </div>
             {{-- STATISKTIK WELCOME --}}
-            <div class="w-100 mt-5">
+            <div class="w-100 hero-statistik">
                 <div class="row justify-content-center text-center g-3">
 
                     <div class="col-6 col-md-3 px-2">

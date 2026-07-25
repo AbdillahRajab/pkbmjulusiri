@@ -141,21 +141,27 @@
                 Portal Pembelajaran PKBM JULU SIRI
             </span>
         </div>
-                <div class="dropdown">
-                    <button class="btn btn-light btn-sm dropdown-toggle fw-bold" type="button"
-                        data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle text-primary"></i> {{ Auth::user()->name }}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                        <li>
-                            <form action="{{ route('logout') }}" method="POST" class="px-2">
-                                @csrf
-                                <button type="submit" class="btn btn-danger btn-sm w-100 text-start rounded"><i
-                                        class="bi bi-box-arrow-right me-2"></i> Keluar Sistem</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
+                <div class="dropdown ms-auto">
+                <button class="btn btn-light btn-sm dropdown-toggle fw-bold"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        data-bs-display="static">
+                    <i class="bi bi-person-circle text-primary"></i>
+                    {{ Auth::user()->name }}
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST" class="px-2 py-1">
+                            @csrf
+                            <button type="submit"
+                                    class="btn btn-danger btn-sm w-100">
+                                <i class="bi bi-box-arrow-right me-2"></i>
+                                Keluar Sistem
+                            </button>
+                        </form>
+                    </li>
+                </ul>
             </div>
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible fade show mt-3">
@@ -710,11 +716,11 @@
                     <i class="bi bi-people-fill text-primary me-2"></i>
                     Tabel Data Warga Belajar
                 </h5>
-
-                <a href="{{ route('admin.siswa.import') }}" class="btn btn-success">
-                    <i class="bi bi-file-earmark-excel"></i>
-                    Import File Excel
-                </a>
+                    <a href="{{ route('admin.siswa.import') }}"
+                    class="btn btn-success btn-import-mobile">
+                        <i class="bi bi-file-earmark-excel"></i>
+                        Import File Excel
+                    </a>
             </div>
             <div class="row mb-3">
                 <div class="col-md-5">
@@ -1079,9 +1085,9 @@
                             </div>
                         </div>
                         <hr>
-                        <p class="text-secondary fs-6 mb-4" style="line-height:1.8">
-                            {{ $berita->isi }}
-                        </p>
+                            <p class="text-secondary fs-6 mb-4 berita-isi">
+                                {{ $berita->isi }}
+                            </p>
                         <div class="d-flex justify-content-end gap-2">
                             <form action="{{ route('admin.berita.hapus', $berita->id) }}" method="POST"
                                 onsubmit="return confirm('Yakin ingin menghapus berita ini?')">

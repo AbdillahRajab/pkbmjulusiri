@@ -89,8 +89,7 @@
             /* Warna biru saat aktif */
             color: white !important;
         }
-    
-
+        
 /* ===============================
    MOBILE
 ================================= */
@@ -224,6 +223,249 @@
 #panel-dash .card:first-child{
     margin-top:1px !important;
 }
+    #panel-dash .card:last-child{
+
+        width:100% !important;
+        margin:18px 0 !important;
+
+    }
+    #panel-dash .card-body{
+
+        padding:16px !important;
+
+    }
+/* ==========================
+   BUTTON IMPORT FILE
+========================== */
+
+.btn-import-mobile{
+
+    font-size:10px !important;
+    padding:5px 8px !important;
+    border-radius:8px;
+    white-space:nowrap;
+
 }
+
+.btn-import-mobile i{
+
+    font-size:10px !important;
+    margin-right:3px;
+
+}
+.table{
+
+    font-size:12px !important;
+
+}
+.table th{
+
+    padding:9px 8px !important;
+    font-size:12px;
+
+}
+.table td{
+
+    padding:9px 8px !important;
+    font-size:12px;
+
+}
+.table .btn{
+
+    font-size:11px !important;
+    padding:4px 8px !important;
+
+}
+.modal-dialog{
+
+    margin:.7rem;
+
+}
+
+.modal-body{
+
+    font-size:.88rem;
+
+}
+/* ==========================
+   HEADER CARD TABEL SISWA
+========================== */
+
+#panel-siswa .d-flex.justify-content-between{
+
+    align-items:flex-start !important;
+    gap:10px;
+    margin-bottom:15px !important;
+
+}
+
+#panel-siswa h5{
+
+    font-size:18px !important;
+    line-height:1.3;
+    flex:1;
+
+}
+
+#panel-siswa h5 i{
+
+    font-size:18px !important;
+
+}
+/* ==========================
+   SEARCH BOX
+========================== */
+
+#panel-siswa .form-control{
+
+    font-size:13px !important;
+    padding:8px 12px !important;
+
+}
+
+#panel-siswa .input-group-text{
+
+    font-size:13px !important;
+    padding:8px 12px !important;
+
+}
+/* ==========================
+   TABLE SISWA
+========================== */
+
+#panel-siswa .table{
+
+    font-size:12px !important;
+
+}
+
+#panel-siswa .table th{
+    font-size:12px !important;
+    padding:10px 8px !important;
+    white-space:nowrap;
+}
+#panel-siswa .table td{
+    font-size:12px !important;
+    padding:9px 8px !important;
+    white-space:nowrap;
+}
+#panel-siswa .table .btn{
+    font-size:10px !important;
+    padding:4px 8px !important;
+}
+/* ==========================
+   PANEL SISWA
+========================== */
+#panel-siswa{
+    padding:0 !important;
+}
+#panel-siswa .card{
+    margin:12px 0 !important;
+    border-radius:14px !important;
+
+}
+#panel-siswa .card-body{
+    padding:14px !important;
+
+}
+/* ==========================
+   TABLE WRAPPER
+========================== */
+#panel-siswa .table-responsive{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    border-radius:10px;
+
+}
+/* ==========================
+   PAGINATION MOBILE
+========================== */
+#panel-siswa .pagination{
+
+    justify-content:center;
+
+}
+#panel-siswa .page-link{
+    font-size:12px;
+    padding:6px 10px;
+
+}
+/* ==========================
+   STATUS
+========================== */
+#panel-siswa .badge{
+
+    font-size:10px !important;
+    padding:5px 8px;
+
+}
+/* ==========================
+   BERITA SISWA MOBILE
+========================== */
+#panel-berita .card{
+    border-radius:18px !important;
+}
+
+#panel-berita .card-body{
+    padding:18px !important;
+}
+
+#panel-berita h4{
+    font-size:1.15rem;
+    line-height:1.4;
+}
+
+#panel-berita .badge{
+    font-size:.72rem;
+}
+
+#panel-berita .small{
+    font-size:.75rem;
+}
+
+#panel-berita .berita-isi{
+    font-size:.92rem;
+    line-height:1.8;
+    white-space:pre-line;
+    word-break:break-word;
+}
+
+#panel-berita .btn{
+    font-size:.78rem;
+    padding:6px 12px;
+}
+/* Dropdown user di HP */
+.navbar-top .dropdown{
+    margin-left: auto;
+}
+
+.navbar-top .dropdown-menu{
+    right: 0 !important;
+    left: auto !important;
+    min-width: 170px;
+    margin-top: 8px;
+}
+
+.navbar-top .dropdown-toggle{
+    font-size: .85rem;
+    padding: .3rem .55rem;
+}
+.hero-statistik{
+    margin-top:70px !important;
+}
+    .hero-banner{
+        min-height:140vh;
+    }
+
+    .hero-button{
+        margin-top:90px;
+        margin-bottom:30px;
+    }
+
+    .hero-banner .row{
+        margin-top:40px;
+    }
+}
+
 
 
