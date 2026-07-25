@@ -365,7 +365,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropHubungi">
                             <!-- 1. WhatsApp: Langsung Menuju Chat -->
                             <li>
-                                <a class="dropdown-item" href="https://wa.me/6281234567890" target="_blank">
+                                <a class="dropdown-item" href="https://wa.me/6288704491032" target="_blank">
                                     <i class="bi bi-whatsapp me-2"></i> WhatsApp Admin
                                 </a>
                             </li>
@@ -486,7 +486,7 @@
                         <div class="hero-stat">
                             <i class="bi bi-journal-bookmark-fill"></i>
                             <h3>{{ $jumlahKelas }}</h3>
-                            <small>Kelas Aktif</small>
+                            <small>Kelas E-learning</small>
                         </div>
                     </div>
 
