@@ -136,6 +136,30 @@
             }
 
         }
+
+        @media (min-width:992px){
+
+            .navbar-nav .nav-item{
+                margin-right:18px;
+            }
+
+            .navbar-nav .nav-item:last-child{
+                margin-right:0;
+            }
+
+            .navbar-custom .btn{
+                white-space:nowrap;
+            }
+
+        }
+        @media (min-width: 992px) {
+
+            .navbar-nav{
+                margin-right: 60px !important;
+            }
+
+        }
+
         /* RESPONSIVE MOBILE */
         @media (max-width:768px){
         .display-3{
@@ -162,20 +186,8 @@
         .navbar-brand small{
             display:none;
         }
-        }
-        @media(max-width:768px){
-        .navbar .d-flex{
-            flex-direction:column;
-            width:100%;
-        }
-        .navbar .btn{
-            width:100%;
-        }
-        }
-        .card-img-top{
-        height:240px;
-        object-fit:cover;
-        }
+     }
+       
         @media(max-width:768px){
         .card-img-top{
         height:180px;
@@ -216,49 +228,42 @@
         .navbar-brand small{
             display:none;
         }
-        .navbar .d-flex{
-            flex-direction:column;
-            width:100%;
-            margin-top:15px;
-        }
-        .navbar .btn{
-            width:100%;
-        }
-        .card-img-top{
-            height:180px;
-        }
+
         }
         /* ================= NAVBAR MOBILE ================= */
         @media (max-width:768px){
-        .navbar-collapse{
-            background:#0b3c68;
-            margin-top:15px;
-            padding:15px;
-            border-radius:12px;
-        }
-        .navbar-nav{
-            text-align:center;
-        }
-        .nav-item{
-            margin-bottom:8px;
-        }
-        .dropdown-menu{
-            text-align:center;
-        }
-        }
-        .card-img-top{
-            transition:.4s;
-        }
 
-        .card:hover .card-img-top{
-            transform:scale(1.05);
-        }
-        .card{
-            border-radius:18px;
-            overflow:hidden;
-        }
-        .shadow-sm{
-            box-shadow:0 8px 20px rgba(0,0,0,.08)!important;
+            .navbar-collapse{
+                background:#0b3c68;
+                margin-top:15px;
+                padding:15px;
+                border-radius:12px;
+            }
+
+            .navbar-nav{
+                text-align:center;
+            }
+
+            .nav-item{
+                margin-bottom:8px;
+            }
+
+            /* Tombol Login & Form Pendaftaran */
+            .navbar-action{
+                display:flex;
+                flex-direction:column;
+                gap:10px;
+                margin-top:15px;
+            }
+
+            .navbar-action .btn{
+                width:100%;
+            }
+
+            .dropdown-menu{
+                text-align:center;
+            }
+
         }
         /* ================= HERO STATISTICS ================= */
             .hero-stat {
@@ -310,96 +315,243 @@
             font-size:0.65rem;
         }
     }
+/* NAVBAR DEKSTOP */
+        @media (min-width:992px){
+
+        .navbar-collapse{
+
+            display:flex;
+            align-items:center;
+
+        }
+
+        .navbar-menu{
+
+            margin:0 auto;
+        }
+
+        .navbar-menu .nav-item{
+
+            margin:0 8px;
+
+        }
+
+        .navbar-action{
+
+            display:flex;
+            align-items:center;
+            gap:10px;
+
+            margin-left:auto;
+
+        }
+        .navbar-action{
+
+            margin-right:-25px;
+
+        }
+    }
+/* NAVBAR MOBILE */
+        @media (max-width:768px){
+
+            .navbar-collapse{
+                background:#0b3c68;
+                margin-top:15px;
+                padding:15px;
+                border-radius:12px;
+            }
+
+            .navbar-nav{
+                text-align:center;
+            }
+
+            .nav-item{
+                margin-bottom:8px;
+            }
+
+            .navbar-action{
+                display:flex;
+                flex-direction:column;
+                gap:10px;
+                margin-top:15px;
+            }
+
+            .navbar-action .btn{
+                width:100%;
+            }
+
+            .dropdown-menu{
+                text-align:center;
+            }
+
+            .navbar>.container{
+                display:flex;
+                align-items:left;
+            }
+
+            .navbar-toggler{
+                order:1;
+            }
+
+            .navbar-brand{
+                order:2;
+                flex:1;
+                justify-content:center;
+                display:flex;
+                align-items:center;
+                margin:0 !important;
+
+                transform: translateX(-20px);
+            }
+
+            .navbar-brand img{
+
+                height:42px !important;
+
+            }
+
+            .navbar-brand span{
+
+                font-size:1rem !important;
+
+            }
+
+            .navbar-brand small{
+
+                display:none;
+
+            }
+
+        }
     </style>
 </head>
 
 <body>
 
     <!-- NAVBAR UTAMA -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-        <div class="container">
-            <!-- LOGO INSTANSI -->
-            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                <img src="{{ asset('images/logo3.png') }}" alt="Logo PKBM" class="me-2"
-                    style="height: 50px; width: auto; object-fit: contain;">
-                <div>
-                    <span class="mb-0 d-block lh-1 fw-bold" style="font-size: 1.5 rem; letter-spacing: 0.3 px;">PKBM
-                        JULU SIRI</span>
-                    <small style="font-size: 0.65rem; color: #b8c7ce; font-weight: normal;">Website Resmi Pusat Kegiatan
-                        Belajar Masyarakat JULU SIRI</small>
-                </div>
-            </a>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Tombol Hamburger -->
+        <button class="navbar-toggler border-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center mx-auto" href="{{ url('/') }}">
+            <img src="{{ asset('images/logo3.png') }}"
+                 class="me-2"
+                 style="height:50px;width:auto;object-fit:contain;">
+
+            <div>
+                <span class="fw-bold d-block">
+                    PKBM JULU SIRI
+                </span>
+
+                <small>
+                    Website Resmi PKBM JULU SIRI
+                </small>
+            </div>
+        </a>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto text-center">
-                    <!-- Dropdown Menu Tentang Kami -->
+
+                <!-- MENU -->
+                <ul class="navbar-nav mx-auto navbar-menu">
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropTentang" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-file-text me-1"></i> Tentang Kami
+                        <a class="nav-link dropdown-toggle" href="#" id="dropTentang"
+                            data-bs-toggle="dropdown">
+                            <i class="bi bi-file-text me-1"></i>
+                            Tentang Kami
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropTentang">
+
+                        <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#seksi-profil">Profil</a></li>
                             <li><a class="dropdown-item" href="#seksi-visimisi">Visi & Misi</a></li>
                             <li><a class="dropdown-item" href="#seksi-struktur">Struktur Organisasi</a></li>
                         </ul>
                     </li>
 
-                    <!-- Menu Fasilitas-->
                     <li class="nav-item">
                         <a class="nav-link" href="#seksi-fasilitas">
-                            <i class="bi bi-images me-1"></i> Fasilitas
+                            <i class="bi bi-images me-1"></i>
+                            Fasilitas
                         </a>
                     </li>
 
-                    <!-- Dropdown Menu Hubungi -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropHubungi" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-telephone me-1"></i> Hubungi
+                        <a class="nav-link dropdown-toggle" href="#" id="dropHubungi"
+                            data-bs-toggle="dropdown">
+
+                            <i class="bi bi-telephone me-1"></i>
+                            Hubungi
+
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropHubungi">
-                            <!-- 1. WhatsApp: Langsung Menuju Chat -->
+
+                        <ul class="dropdown-menu">
+
                             <li>
-                                <a class="dropdown-item" href="https://wa.me/6288704491032" target="_blank">
-                                    <i class="bi bi-whatsapp me-2"></i> WhatsApp Admin
+                                <a class="dropdown-item"
+                                    href="https://wa.me/6288704491032"
+                                    target="_blank">
+
+                                    <i class="bi bi-whatsapp me-2"></i>
+                                    WhatsApp Admin
+
                                 </a>
                             </li>
 
-                            <!-- 2. Email: Otomatis Scroll ke Layanan & Hubungi -->
                             <li>
-                                <a class="dropdown-item" href="#kontak-kantor"
-                                    onclick="bootstrap.Dropdown.getInstance(document.getElementById('dropHubungi')).hide(); window.location.hash = 'kontak-kantor';">
-                                    <i class="bi bi-envelope-fill me-2"></i> Email
+                                <a class="dropdown-item" href="#kontak-kantor">
+                                    <i class="bi bi-envelope-fill me-2"></i>
+                                    Email
                                 </a>
                             </li>
 
-                            <!-- 3. Lokasi Kantor: Otomatis Scroll ke Layanan & Hubungi -->
                             <li>
-                                <a class="dropdown-item" href="#kontak-kantor"
-                                    onclick="bootstrap.Dropdown.getInstance(document.getElementById('dropHubungi')).hide(); window.location.hash = 'kontak-kantor';">
-                                    <i class="bi bi-geo-alt-fill me-2"></i> Lokasi
+                                <a class="dropdown-item" href="#kontak-kantor">
+                                    <i class="bi bi-geo-alt-fill me-2"></i>
+                                    Lokasi
                                 </a>
                             </li>
+
+                        </ul>
+
                     </li>
+
                 </ul>
-                    <!-- TOMBOL NAVIGASI KANAN -->
-                    <div class="d-flex gap-2 justify-content-center">
-                        <button type="button"
-                            class="btn btn-warning btn-sm px-3 fw-bold rounded-pill text-dark d-flex align-items-center"
-                            data-bs-toggle="modal" data-bs-target="#modalSiswaBaru">
-                            <i class="bi bi-person-plus-fill me-1"></i> Form Pendaftaran
-                        </button>
-                        <button type="button"
-                            class="btn btn-outline-light btn-sm px-3 rounded-pill d-flex align-items-center"
-                            data-bs-toggle="modal" data-bs-target="#modalLoginRegister">
-                            <i class="bi bi-box-arrow-in-right me-1"></i> Login/Masuk
-                        </button>
-                    </div>
+
+                <!-- BUTTON -->
+                <div class="navbar-action">
+
+                    <button
+                        type="button"
+                        class="btn btn-warning btn-sm rounded-pill px-3 fw-bold"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalSiswaBaru">
+
+                        <i class="bi bi-person-plus-fill me-1"></i>
+                        Form Pendaftaran
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline-light btn-sm rounded-pill px-3"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalLoginRegister">
+
+                        <i class="bi bi-box-arrow-in-right me-1"></i>
+                        Login/Masuk
+
+                    </button>
+
+                </div>
+
             </div>
         </div>
     </nav>
@@ -507,7 +659,7 @@
     <!-- SEKSI FASILITAS KANTOR & GALERI -->
     <div id="fasilitas" class="py-5">
         <section id="seksi-fasilitas" class="section-padding bg-white">
-            <div class="container">
+           <div class="container-xl">
                 <div class="text-center mb-5">
                     <h2 class="fw-bold text-dark">Fasilitas Kantor & Lingkungan Belajar</h2>
                     <div class="mx-auto bg-primary my-2" style="width: 60px; height: 3px;"></div>
@@ -1121,7 +1273,7 @@
                                 <label class="form-label small fw-bold text-secondary">Nama Sekolah Sebelumnya /
                                     Terakhir</label>
                                 <input type="text" name="sekolah_asal" class="form-control form-control-sm"
-                                    placeholder="Contoh: SMK 2 BUNGORO">
+                                    placeholder="Contoh: SMKN 1 PANGKEP">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small fw-bold text-secondary">Tahun Lulus / Tahun
