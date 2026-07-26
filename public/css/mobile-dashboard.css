@@ -234,6 +234,33 @@
         padding:16px !important;
 
     }
+    /* ================= HAMBURGER MOBILE ================= */
+@media (max-width:768px){
+
+    #toggleSidebar{
+
+        width:60px;
+        height:60px;
+
+        border-radius:16px;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        padding:0;
+
+        margin-right:12px;
+
+    }
+
+    #toggleSidebar i{
+
+        font-size:30px;
+
+    }
+
+}
 /* ==========================
    BUTTON IMPORT FILE
 ========================== */
@@ -466,6 +493,67 @@
         margin-top:40px;
     }
 }
+/* ================= GRAFIK MOBILE ================= */
+.chart-wrapper{
+    position: relative;
+    height: 380px;
+}
 
+@media (max-width:768px){
+
+    .chart-wrapper{
+        height: 260px;
+    }
+
+}
+
+/* ================= CARD STATISTIK MOBILE ================= */
+@media (max-width:768px){
+
+    .stat-card{
+        padding:12px 12px !important;
+        min-height:110px;
+    }
+
+    .stat-card .icon-box{
+        margin-bottom:6px;
+    }
+
+    .stat-card .icon-box i{
+
+        font-size:24px;
+
+    }
+
+    .stat-card h2{
+
+        font-size:26px;
+        margin-bottom:2px;
+        font-weight:700;
+
+    }
+
+    .stat-card h4{
+
+        font-size:13px;
+        margin-bottom:4px;
+
+    }
+
+    .stat-card p{
+
+        font-size:12px;
+        margin-bottom:0;
+
+    }
+    .stat-card h2{
+    margin-bottom:0;
+    }
+
+    .stat-card p{
+        margin-top:2px;
+    }
+
+}
 
 

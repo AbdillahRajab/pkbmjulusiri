@@ -209,8 +209,8 @@
                 @endif
 
                 @if (Auth::user()->role == 'admin')
-                    <div class="row g-3 mt-3">
-                        <div class="col-6 col-md-3">
+                   <div class="row gx-2 gy-2">
+                        <div class="col-6 col-md-3 mb-2">
                             <div class="card dashboard-card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">CALON PENDAFTAR</small>
                                     <h3 class="fw-bold mb-0 text-danger">{{ $total_pendaftar }} Orang</h3>
@@ -219,7 +219,7 @@
                                         class="bi bi-clipboard2-data fs-3"></i></div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-3">
+                        <div class="col-6 col-md-3 mb-2">
                            <div class="card dashboard-card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">WARGA BELAJAR</small>
                                     <h3 class="fw-bold mb-0 text-primary">{{ $total_siswa }} Siswa</h3>
@@ -228,7 +228,7 @@
                                         class="bi bi-people fs-3"></i></div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-3">
+                        <div class="col-6 col-md-3 mb-2">
                             <div
                                 class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">TOTAL TUTOR</small>
@@ -238,7 +238,7 @@
                                         class="bi bi-person-workspace fs-3"></i></div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-3">
+                        <div class="col-6 col-md-3 mb-2">
                             <div class="card border-0 bg-white p-3 rounded-3 shadow-sm d-flex flex-row align-items-center justify-content-between">
                                 <div><small class="text-muted fw-bold">TOTAL USER</small>
                                     <h3 class="fw-bold mb-0 text-warning">{{ $total_user }} User</h3>
@@ -247,7 +247,7 @@
                                         class="bi bi-shield-lock fs-3"></i></div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-3">
+                        <div class="col-6 col-md-3 mb-2">
                             <div class="card border-0 shadow-sm rounded-4 h-100">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <div>
@@ -267,7 +267,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-3">
+                        <div class="col-6 col-md-3 mb-2">
                             <div class="card border-0 shadow-sm rounded-4 h-100">
                                 <div class="card-body d-flex justify-content-between align-items-center">
                                     <div>
@@ -300,7 +300,9 @@
                                 <i class="bi bi-bar-chart-fill text-primary me-2"></i>
                                 Grafik Statistik PKBM JULU SIRI
                             </h5>
-                            <canvas id="grafikStatistik" height="90"></canvas>
+                           <div class="chart-wrapper">
+                            <canvas id="grafikStatistik"></canvas>
+                        </div>
                         </div>
                     </div>
                 @endif
@@ -1640,20 +1642,28 @@
                 }]
             },
             options: {
-                responsive: true,
+                    responsive:true,
+                    maintainAspectRatio:false,
                 plugins: {
                     legend: {
                         display: false
                     },
-                    title: {
-                        display: true,
-                        text: 'Statistik PKBM JULU SIRI Tahun {{ date('Y') }}',
-                        font: {
-                            size: 18
-                        }
+                title:{
+                    display:true,
+                    text:'Statistik PKBM JULU SIRI Tahun {{ date('Y') }}',
+                    font:{
+                        size: window.innerWidth < 768 ? 14 : 18
                     }
+                }
                 },
                 scales: {
+                    x:{
+                        ticks:{
+                            font:{
+                                size: window.innerWidth < 768 ? 11 : 13
+                            }
+                        }
+                    },
                     y: {
                         beginAtZero: true,
                         ticks: {
